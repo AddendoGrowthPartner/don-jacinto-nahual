@@ -1,0 +1,306 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const phone = '(213) 598-1928';
+const phoneHref = 'tel:+12135981928';
+const wa = 'https://wa.me/12135981928';
+
+export async function getStaticPaths() {
+  const servicios = [
+    {
+      slug: 'limpias-espirituales',
+      title: 'Limpias Espirituales en Los Ángeles',
+      description:
+        'Don Jacinto Nahual realiza limpias espirituales en Los Ángeles y sur de California. Liberación de energías negativas, males puestos y cargas espirituales. Llama: (213) 598-1928',
+      heroImg: '/images/limpia-velas.jpg',
+      heroAlt:
+        'Limpia espiritual con velas Don Jacinto Nahual brujo curandero de Catemaco Los Ángeles',
+      h1: 'Limpias Espirituales',
+      h2Subtitle: 'El primer paso hacia la sanación',
+      intro: [
+        'La limpia espiritual es el fundamento de la tradición curanderil mexicana. Antes de cualquier trabajo, Don Jacinto evalúa si hay energías negativas, males puestos o cargas espirituales que estén afectando tu vida. La limpia es el primer paso — el que abre el camino para todo lo demás.',
+        'En la tradición de Catemaco, Veracruz, la limpia no es un ritual superficial. Es un proceso profundo de identificación y liberación de lo que está bloqueando tu energía vital — ya sea envidia de personas cercanas, un mal puesto deliberado, o cargas acumuladas a lo largo de los años.',
+      ],
+      listSection: {
+        h2: '¿Cuándo necesitas una limpia espiritual?',
+        items: [
+          'Sientes una pesadez constante que no desaparece',
+          'Tu vida cambió drásticamente sin razón aparente',
+          'Tienes mala suerte en todo lo que intentas',
+          'Sientes presencias extrañas o energías en tu hogar',
+          'Los médicos no encuentran la causa de tu malestar',
+          'Tus relaciones se destruyen una tras otra',
+        ],
+      },
+      paragraphSection: {
+        h2: 'Cómo trabaja Don Jacinto',
+        text: 'Don Jacinto Nahual realiza la limpia con los elementos de la tradición de Catemaco: hierbas, velas, rezos e imposición de manos. El proceso varía según cada caso — no hay dos limpias iguales porque no hay dos personas iguales. Después de la limpia, Don Jacinto evalúa si se requiere trabajo adicional y te lo comunica con total honestidad.',
+      },
+      ctaText:
+        '¿Sientes que necesitas una limpia espiritual? La primera consulta no tiene costo. Don Jacinto te escucha y evalúa tu caso antes de cualquier compromiso.',
+    },
+    {
+      slug: 'ayuda-espiritual-amor',
+      title: 'Ayuda Espiritual para el Amor',
+      description:
+        'Don Jacinto Nahual ofrece ayuda espiritual para recuperar el amor, sanar relaciones y resolver separaciones en Los Ángeles California. Llama: (213) 598-1928',
+      heroImg: '/images/amor-pareja.jpg',
+      heroAlt:
+        'Ayuda espiritual para el amor y la pareja Don Jacinto Nahual curandero Catemaco',
+      h1: 'Ayuda Espiritual para el Amor',
+      h2Subtitle: 'Cuando el amor se pierde sin razón',
+      intro: [
+        'Hay separaciones que no tienen explicación lógica. Una pareja estable que de repente se enfría. Un amor que desaparece de la noche a la mañana. Una relación destruida por interferencias externas que no puedes ver. En la tradición curanderil, estas situaciones tienen nombre — y tienen solución.',
+        'Don Jacinto Nahual trabaja los casos de amor desde la raíz espiritual del problema. No con promesas de resultados garantizados — porque cada caso es único — sino con la honestidad y la experiencia de más de 30 años acompañando a personas que creyeron que su amor estaba perdido para siempre.',
+      ],
+      listSection: {
+        h2: 'Situaciones en las que Don Jacinto puede ayudarte',
+        items: [
+          'Tu pareja se alejó sin darte una razón clara',
+          'Hay un tercero interfiriendo en tu relación',
+          'Sientes que le pusieron un amarre a tu pareja',
+          'Tu matrimonio se está destruyendo a pesar de todo',
+          'Llevas tiempo solo y el amor no llega',
+          'Una relación pasada que no puedes superar',
+        ],
+      },
+      paragraphSection: {
+        h2: 'Lo que Don Jacinto no te va a prometer',
+        text: 'Don Jacinto Nahual no garantiza resultados específicos en ningún caso de amor. Cualquier curandero que te garantice recuperar a una persona específica te está mintiendo. Lo que sí puede hacer: evaluar tu caso con honestidad, trabajar espiritualmente lo que esté a su alcance y acompañarte en el proceso. La primera conversación es gratis.',
+      },
+      ctaText:
+        'Si tu corazón está sufriendo y sientes que ya intentaste todo, cuéntale tu caso a Don Jacinto. Él te escucha sin juicios y te dice con honestidad qué puede hacer.',
+    },
+    {
+      slug: 'proteccion-espiritual',
+      title: 'Protección Espiritual contra Brujería y Mal Puesto',
+      description:
+        'Don Jacinto Nahual ofrece protección espiritual contra brujería, envidia y mal puesto en Los Ángeles California. Más de 30 años de experiencia. Llama: (213) 598-1928',
+      heroImg: '/images/don-jacinto-invocacion.jpg',
+      heroAlt:
+        'Protección espiritual contra brujería y mal puesto Don Jacinto Nahual Catemaco',
+      h1: 'Protección Espiritual',
+      h2Subtitle: 'Cuando sientes que alguien te desea el mal',
+      intro: [
+        'La envidia es una de las fuerzas más destructivas en la tradición espiritual mexicana. No es superstición — es una realidad que Don Jacinto Nahual ha visto actuar durante más de 30 años. Personas que de repente pierden todo lo que construyeron. Familias que se destruyen desde adentro. Negocios que quiebran sin razón lógica.',
+        'La protección espiritual tiene dos partes: primero limpiar lo que ya fue puesto, luego blindar para que no vuelva a ocurrir. Don Jacinto trabaja ambas partes con la tradición de Catemaco — rezos, invocaciones, hierbas y imposición de manos — para devolverte la paz y cerrar los caminos por donde entró el daño.',
+      ],
+      listSection: {
+        h2: 'Señales de que puedes tener un mal puesto',
+        items: [
+          'Tu vida cambió drásticamente de un día para otro',
+          'Tienes sueños perturbadores o presencias que sientes',
+          'Pierdes todo lo que construyes sin razón aparente',
+          'Hay personas en tu entorno que claramente te desean el mal',
+          'Sientes una energía pesada en tu casa o negocio',
+          'Has tenido accidentes o enfermedades inexplicables en cadena',
+        ],
+      },
+      paragraphSection: {
+        h2: 'El trabajo de protección de Don Jacinto',
+        text: 'Don Jacinto evalúa cada caso de protección de manera individual. Primero identifica el tipo y origen del daño — no todos los males son iguales. Luego determina el trabajo espiritual necesario y te lo explica con claridad antes de proceder. Sin sorpresas. Sin cobros adicionales no acordados.',
+      },
+      ctaText:
+        'Si sientes que alguien te hizo daño o que tu vida está siendo afectada por fuerzas que no puedes ver, Don Jacinto puede evaluarte. Primera consulta sin costo.',
+    },
+    {
+      slug: 'curaciones-espirituales',
+      title: 'Curaciones Espirituales para Enfermedades que no Ceden',
+      description:
+        'Don Jacinto Nahual realiza curaciones espirituales para enfermedades sin diagnóstico en Los Ángeles California. Tradición curanderil de Catemaco. Llama: (213) 598-1928',
+      heroImg: '/images/don-jacinto-ritual.jpg',
+      heroAlt:
+        'Curación espiritual enfermedades inexplicables Don Jacinto Nahual chamán Catemaco',
+      h1: 'Curaciones Espirituales',
+      h2Subtitle: 'Cuando la medicina no tiene respuesta',
+      intro: [
+        'Hay enfermedades que los médicos no encuentran. Malestares que llevan meses o años sin diagnóstico. Dolores que van y vienen sin causa. Fatiga profunda que no responde a ningún tratamiento. En la tradición curanderil mexicana, estas condiciones a veces tienen raíz espiritual — y requieren una solución espiritual.',
+        'Don Jacinto Nahual no reemplaza a los médicos. Su trabajo es complementario — actúa sobre lo que la medicina no puede ver. Si llevas tiempo buscando respuestas y no las encuentras, quizás es momento de explorar si hay algo espiritual detrás de lo que estás viviendo.',
+      ],
+      listSection: {
+        h2: 'Condiciones que Don Jacinto ha acompañado',
+        items: [
+          'Malestares prolongados sin diagnóstico médico claro',
+          'Dolores físicos que van y vienen sin causa identificable',
+          'Fatiga extrema que no mejora con descanso ni tratamiento',
+          'Condiciones que empeoran a pesar del tratamiento médico',
+          'Enfermedades que aparecieron de repente tras un conflicto',
+          'Malestares que varios médicos no han podido explicar',
+        ],
+      },
+      paragraphSection: {
+        h2: 'Importante — Lo que Don Jacinto no garantiza',
+        text: 'Don Jacinto Nahual trabaja desde la tradición espiritual, no desde la medicina. No garantiza curas ni resultados específicos. Lo que sí ofrece es una evaluación honesta: si después de escucharte considera que puede ayudarte, te lo dice. Si considera que tu caso requiere atención médica específica, también te lo dice. Honestidad ante todo.',
+      },
+      ctaText:
+        'Si llevas tiempo con algo que los médicos no han podido resolver, cuéntale tu caso a Don Jacinto. La primera conversación es gratis y sin compromisos.',
+    },
+  ];
+
+  return servicios.map((s) => ({
+    params: { slug: s.slug },
+    props: s,
+  }));
+}
+
+const s = Astro.props;
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: s.h1,
+  description: s.description,
+  provider: {
+    '@type': 'LocalBusiness',
+    '@id': 'https://donjacintonahual.com/#business',
+    name: 'Don Jacinto Nahual',
+    telephone: '+1-213-598-1928',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '1208 Venice Blvd',
+      addressLocality: 'Los Angeles',
+      addressRegion: 'CA',
+      postalCode: '90006',
+      addressCountry: 'US',
+    },
+  },
+  areaServed: {
+    '@type': 'AdministrativeArea',
+    name: 'Southern California',
+  },
+};
+---
+
+<Layout title={s.title} description={s.description} preloadHero={s.heroImg}>
+  <!-- ============ HERO ============ -->
+  <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+    <img
+      src={s.heroImg}
+      alt={s.heroAlt}
+      width="1920"
+      height="1080"
+      loading="eager"
+      fetchpriority="high"
+      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;"
+    />
+    <div class="absolute inset-0 bg-black/75" style="z-index:1;"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-bg/40 via-transparent to-bg" style="z-index:1;"></div>
+
+    <div class="relative z-10 max-w-3xl mx-auto px-6 py-24 text-center">
+      <div class="inline-block mb-6 px-5 py-2 border border-gold/40 rounded-full">
+        <span class="text-gold-light text-xs sm:text-sm tracking-[0.2em] uppercase">
+          ✦ Tradición de Catemaco, Veracruz ✦
+        </span>
+      </div>
+
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-text leading-tight">
+        {s.h1}
+      </h1>
+      <h2 class="font-display italic text-2xl sm:text-3xl text-gold mb-8">
+        {s.h2Subtitle}
+      </h2>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href={phoneHref}
+          class="bg-gold hover:bg-gold-light text-bg font-semibold px-8 py-4 rounded-full transition-all hover:scale-105"
+        >
+          📞 Llamar: {phone}
+        </a>
+        <a
+          href={wa}
+          target="_blank"
+          rel="noopener"
+          class="border-2 border-gold text-gold hover:bg-gold hover:text-bg font-semibold px-8 py-4 rounded-full transition-all hover:scale-105"
+        >
+          💬 WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BACK LINK ============ -->
+  <section class="py-8 border-b border-gold/10">
+    <div class="max-w-[720px] mx-auto px-6">
+      <a
+        href="/"
+        class="text-gold hover:text-gold-light text-sm tracking-wider uppercase transition-colors"
+      >
+        ← Volver al inicio
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ CONTENIDO ============ -->
+  <article class="py-16 sm:py-20">
+    <div class="max-w-[720px] mx-auto px-6">
+      <div class="space-y-6 text-text/85 text-base sm:text-lg leading-relaxed mb-16">
+        {s.intro.map((p) => <p>{p}</p>)}
+      </div>
+
+      <div class="mb-16">
+        <h2 class="font-display text-2xl sm:text-3xl md:text-4xl text-gold-light mb-6 leading-tight">
+          {s.listSection.h2}
+        </h2>
+        <ul class="space-y-3">
+          {s.listSection.items.map((item) => (
+            <li class="flex gap-3 text-text/85 leading-relaxed">
+              <span class="text-gold flex-shrink-0 mt-1">✦</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="mb-16">
+        <h2 class="font-display text-2xl sm:text-3xl md:text-4xl text-gold-light mb-6 leading-tight">
+          {s.paragraphSection.h2}
+        </h2>
+        <p class="text-text/85 text-base sm:text-lg leading-relaxed">
+          {s.paragraphSection.text}
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ============ CTA ============ -->
+  <section class="py-16 sm:py-20 bg-bg-alt border-t border-gold/10">
+    <div class="max-w-[720px] mx-auto px-6">
+      <div class="border border-gold/30 rounded-lg p-10 sm:p-14 bg-bg/60 text-center">
+        <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">✦ Próximo paso ✦</p>
+        <p class="text-text/90 text-lg sm:text-xl leading-relaxed mb-8">{s.ctaText}</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href={phoneHref}
+            class="bg-gold hover:bg-gold-light text-bg font-semibold px-8 py-4 rounded-full transition-all"
+          >
+            📞 Llamar: {phone}
+          </a>
+          <a
+            href={wa}
+            target="_blank"
+            rel="noopener"
+            class="border-2 border-gold text-gold hover:bg-gold hover:text-bg font-semibold px-8 py-4 rounded-full transition-all"
+          >
+            💬 WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHATSAPP FLOTANTE ============ -->
+  <a
+    href={wa}
+    target="_blank"
+    rel="noopener"
+    aria-label="Contactar por WhatsApp"
+    class="fixed bottom-6 right-6 z-50 bg-gold hover:bg-gold-light text-bg font-semibold px-5 py-3 rounded-full shadow-2xl shadow-gold/30 flex items-center gap-2 transition-all hover:scale-105"
+  >
+    <span class="text-xl">💬</span>
+    <span class="hidden sm:inline text-sm">WhatsApp</span>
+  </a>
+
+  <!-- Service schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+</Layout>

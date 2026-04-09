@@ -1,0 +1,160 @@
+---
+import Layout from './Layout.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  heroImg: string;
+  heroAlt: string;
+  category: string;
+  date: string;
+  readTime: string;
+  h1: string;
+  metaTitle?: string;
+}
+
+const { title, description, heroImg, heroAlt, category, date, readTime, h1, metaTitle } =
+  Astro.props;
+
+const phone = '(213) 598-1928';
+const wa = 'https://wa.me/12135981928';
+---
+
+<Layout title={metaTitle ?? title} description={description} preloadHero={heroImg}>
+  <!-- ============ HERO ============ -->
+  <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+    <img
+      src={heroImg}
+      alt={heroAlt}
+      width="1920"
+      height="1080"
+      loading="eager"
+      fetchpriority="high"
+      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;"
+    />
+    <div class="absolute inset-0 bg-black/75" style="z-index:1;"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-bg/40 via-transparent to-bg" style="z-index:1;"></div>
+
+    <div class="relative z-10 max-w-3xl mx-auto px-6 py-24 text-center">
+      <div class="flex gap-3 justify-center text-xs uppercase tracking-[0.2em] mb-6">
+        <span class="text-gold">{category}</span>
+        <span class="text-muted">·</span>
+        <span class="text-muted">{date}</span>
+        <span class="text-muted">·</span>
+        <span class="text-muted">{readTime}</span>
+      </div>
+      <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-text leading-tight">
+        {h1}
+      </h1>
+    </div>
+  </section>
+
+  <!-- ============ BACK LINK ============ -->
+  <section class="py-8 border-b border-gold/10">
+    <div class="max-w-[680px] mx-auto px-6">
+      <a
+        href="/"
+        class="text-gold hover:text-gold-light text-sm tracking-wider uppercase transition-colors"
+      >
+        ← Volver al inicio
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ CONTENIDO ============ -->
+  <article class="py-16 sm:py-20">
+    <div class="max-w-[680px] mx-auto px-6 blog-content">
+      <slot />
+    </div>
+  </article>
+
+  <!-- ============ WHATSAPP FLOTANTE ============ -->
+  <a
+    href={wa}
+    target="_blank"
+    rel="noopener"
+    aria-label="Contactar por WhatsApp"
+    class="fixed bottom-6 right-6 z-50 bg-gold hover:bg-gold-light text-bg font-semibold px-5 py-3 rounded-full shadow-2xl shadow-gold/30 flex items-center gap-2 transition-all hover:scale-105"
+  >
+    <span class="text-xl">💬</span>
+    <span class="hidden sm:inline text-sm">WhatsApp</span>
+  </a>
+</Layout>
+
+<style is:global>
+  .blog-content p {
+    color: rgba(245, 240, 232, 0.85);
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .blog-content p {
+      font-size: 1.125rem;
+    }
+  }
+  .blog-content h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: #E8C97A;
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-top: 3rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
+  }
+  @media (min-width: 640px) {
+    .blog-content h2 {
+      font-size: 2rem;
+    }
+  }
+  .blog-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 2rem;
+  }
+  .blog-content ul li {
+    color: rgba(245, 240, 232, 0.85);
+    padding-left: 1.75rem;
+    position: relative;
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+  }
+  .blog-content ul li::before {
+    content: '✦';
+    color: #C9A84C;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .blog-content strong {
+    color: #E8C97A;
+    font-weight: 600;
+  }
+  .blog-content .blog-cta {
+    margin-top: 4rem;
+    padding: 2.5rem;
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    border-radius: 0.5rem;
+    background-color: rgba(17, 17, 17, 0.5);
+    text-align: center;
+  }
+  .blog-content .blog-cta p {
+    color: rgba(245, 240, 232, 0.9);
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+  }
+  .blog-content .blog-cta a.btn {
+    display: inline-block;
+    background-color: #C9A84C;
+    color: #0D0D0D;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+  .blog-content .blog-cta a.btn:hover {
+    background-color: #E8C97A;
+  }
+</style>
