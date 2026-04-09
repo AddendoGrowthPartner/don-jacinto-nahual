@@ -87,7 +87,7 @@ const personSchema = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="robots" content={robots} />
+    <meta name="robots" content={robots ?? "index, follow"} />
     <meta name="theme-color" content="#0D0D0D" />
 
     <title>{title}</title>
