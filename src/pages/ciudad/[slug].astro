@@ -1,0 +1,411 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const phone = '(213) 598-1928';
+const phoneHref = 'tel:+12135981928';
+const wa = 'https://wa.me/12135981928';
+
+export async function getStaticPaths() {
+  const ciudades = [
+    {
+      slug: 'los-angeles',
+      ciudad: 'Los Ángeles',
+      intro:
+        'Si estás en Los Ángeles y sientes que algo en tu vida se torció sin razón — una relación que se enfrió de la noche a la mañana, un negocio que no despega aunque trabajas sin parar, una enfermedad que los médicos no encuentran — no estás solo. Miles de familias latinas en Los Ángeles han pasado por lo mismo. Don Jacinto Nahual lleva más de 30 años resolviendo casos que parecían no tener solución. La primera llamada no tiene costo. Llama hoy.',
+    },
+    {
+      slug: 'santa-ana',
+      ciudad: 'Santa Ana',
+      intro:
+        '¿Sientes que alguien te hizo un daño? ¿Tu pareja se alejó sin razón? ¿Tu negocio en Santa Ana no prospera aunque haces todo bien? Cuando la lógica no tiene respuesta, la tradición espiritual de Catemaco sí la tiene. Don Jacinto Nahual atiende a familias del condado de Orange con casos difíciles — amor, protección, salud y caminos cerrados. Confidencial. Sin compromisos. La primera llamada no cuesta nada.',
+    },
+    {
+      slug: 'ontario',
+      ciudad: 'Ontario',
+      intro:
+        'En Ontario y el Inland Empire, hay personas que trabajan duro y aun así nada les sale bien. Negocios que no levantan. Relaciones que se destruyen solas. Salud que no mejora. Si sientes que hay una fuerza invisible bloqueando tu vida, Don Jacinto Nahual puede ayudarte. Viene de Catemaco, Veracruz — la tierra de los curanderos — y lleva décadas ayudando a familias que ya habían perdido la esperanza.',
+    },
+    {
+      slug: 'san-fernando',
+      ciudad: 'San Fernando',
+      intro:
+        'El Valle de San Fernando es tierra de familias trabajadoras que no se rinden fácil. Pero hay situaciones que el trabajo y la voluntad no pueden resolver solos. Si en San Fernando llevas tiempo sufriendo algo que no puedes explicar — en el amor, en los negocios, en la salud o en la familia — Don Jacinto Nahual está aquí para ayudarte. Más de 30 años de práctica espiritual genuina. La primera consulta es sin costo.',
+    },
+    {
+      slug: 'anaheim',
+      ciudad: 'Anaheim',
+      intro:
+        '¿Llevas meses o años con una situación que no mejora? ¿Sientes que en Anaheim todo lo que intentas fracasa — el amor, el trabajo, la salud? No sigas cargando ese peso solo. Don Jacinto Nahual, brujo curandero de Catemaco, ha acompañado a cientos de personas del condado de Orange que llegaron sin esperanza y encontraron el camino de regreso a su vida. Llama hoy. La primera llamada no tiene costo.',
+    },
+    {
+      slug: 'long-beach',
+      ciudad: 'Long Beach',
+      intro:
+        'Hay un tipo de sufrimiento que no se puede explicar con palabras. Una relación que se destruyó sola. Un negocio que nunca despega. Una enfermedad que los médicos de Long Beach no encuentran. Cuando sientes que algo invisible está bloqueando tu vida, Don Jacinto Nahual tiene respuestas. Curandero de Catemaco con más de 30 años de práctica. Atención confidencial y sin juicios. Llama hoy.',
+    },
+    {
+      slug: 'san-bernardino',
+      ciudad: 'San Bernardino',
+      intro:
+        'Si en San Bernardino sientes que la vida te cerró todas las puertas — en el amor, en el trabajo, en la salud — puede que haya algo espiritual detrás. La envidia, el mal puesto y los caminos cerrados son reales en la tradición mexicana. Don Jacinto Nahual los ha visto y los ha resuelto durante más de 30 años. No esperes más. La primera llamada es gratis y confidencial.',
+    },
+    {
+      slug: 'santa-monica',
+      ciudad: 'Santa Mónica',
+      intro:
+        'A veces el sufrimiento no tiene explicación lógica. Una pareja que se fue de la noche a la mañana. Un proyecto que siempre falla justo cuando estaba por funcionar. Una angustia que no desaparece sin razón. Si en Santa Mónica llevas tiempo con algo que no puedes resolver, Don Jacinto Nahual puede orientarte. Atención discreta, confidencial y sin compromisos. La primera llamada no tiene costo.',
+    },
+    {
+      slug: 'inglewood',
+      ciudad: 'Inglewood',
+      intro:
+        '¿Tu vida en Inglewood cambió de repente para mal? ¿Sientes que alguien te hizo daño? ¿Que la mala suerte te persigue sin importar lo que hagas? Don Jacinto Nahual ha ayudado a cientos de personas en el sur de Los Ángeles que sentían exactamente eso. Brujo curandero de Catemaco con décadas de experiencia. Sin promesas falsas. Solo trabajo espiritual genuino. Llama hoy.',
+    },
+    {
+      slug: 'east-la',
+      ciudad: 'East LA',
+      intro:
+        'East Los Ángeles es tierra de familias mexicanas que conocen el valor de la tradición. Y en la tradición de nuestros pueblos, hay fuerzas que la medicina no ve y que solo el curandero puede tratar. Si llevas tiempo sufriendo algo que no tiene nombre — en el amor, en los negocios, en la salud — Don Jacinto Nahual, nacido en Catemaco, Veracruz, está aquí para ayudarte. La primera llamada no cuesta nada.',
+    },
+    {
+      slug: 'huntington-park',
+      ciudad: 'Huntington Park',
+      intro:
+        'En Huntington Park, como en muchas ciudades latinas, hay cosas que no se hablan abiertamente pero que todos conocen: el mal de ojo, la envidia, el amarre. Cuando sientes que algo así te afecta — que tu relación se destruyó, que tu negocio no prospera, que tu salud no mejora — Don Jacinto Nahual puede ayudarte. Más de 30 años resolviendo casos difíciles. Confidencial. Sin costo la primera llamada.',
+    },
+    {
+      slug: 'monterey-park',
+      ciudad: 'Monterey Park',
+      intro:
+        '¿Sientes que en Monterey Park llevas demasiado tiempo sufriendo algo que no tiene explicación? Relaciones que se rompen solas. Negocios que no levantan. Enfermedades que no ceden. En la tradición curanderil mexicana, estos casos tienen nombre y tienen solución. Don Jacinto Nahual lleva más de 30 años acompañando a familias que habían perdido la esperanza. Llama hoy. La primera consulta es sin costo.',
+    },
+    {
+      slug: 'montebello',
+      ciudad: 'Montebello',
+      intro:
+        'Hay personas en Montebello que cargan con un peso que no eligieron. Una mala racha que no termina. Un amor que se fue sin razón. Una enfermedad que los doctores no encuentran. Si eso te suena conocido, Don Jacinto Nahual quiere escucharte. Curandero de Catemaco con décadas de experiencia resolviendo casos que parecían imposibles. Atención confidencial. Primera llamada sin costo.',
+    },
+    {
+      slug: 'downey',
+      ciudad: 'Downey',
+      intro:
+        'En Downey, como en toda comunidad latina, hay situaciones que van más allá de lo que la ciencia puede explicar. Si sientes que algo invisible bloquea tu prosperidad, tu amor o tu salud, Don Jacinto Nahual puede ayudarte a encontrar la raíz espiritual del problema y el camino para resolverlo. Más de 30 años de práctica genuina. Sin promesas falsas. Llama hoy.',
+    },
+    {
+      slug: 'compton',
+      ciudad: 'Compton',
+      intro:
+        'La vida a veces golpea sin razón aparente. Una relación destruida. Un negocio cerrado. Una enfermedad sin nombre. Si en Compton sientes que algo más que mala suerte está afectando tu vida, Don Jacinto Nahual tiene la experiencia y la tradición de Catemaco para ayudarte. Confidencial. Sin juicios. La primera llamada no tiene costo. No sigas cargando ese peso solo.',
+    },
+    {
+      slug: 'san-pedro',
+      ciudad: 'San Pedro',
+      intro:
+        '¿Llevas tiempo en San Pedro con una situación que no mejora sin importar lo que hagas? A veces el problema no está donde lo buscamos. Don Jacinto Nahual, brujo curandero de Catemaco con más de 30 años de práctica, ha ayudado a cientos de personas del sur de Los Ángeles con casos de amor, protección, salud y caminos cerrados. La primera llamada es gratis. Llama hoy.',
+    },
+    {
+      slug: 'gardena',
+      ciudad: 'Gardena',
+      intro:
+        'Si en Gardena sientes que alguien te desea el mal — que tu vida cambió drásticamente sin razón, que la mala suerte no te suelta, que todo lo que construiste se está derrumbando — Don Jacinto Nahual puede ayudarte. La envidia y el daño espiritual son reales, y tienen solución. Más de 30 años de práctica curanderil de Catemaco. Atención confidencial. Primera llamada sin costo.',
+    },
+    {
+      slug: 'south-gate',
+      ciudad: 'South Gate',
+      intro:
+        'En South Gate hay familias que trabajan duro y aun así sienten que algo invisible les impide prosperar. Si ese eres tú — si tu amor se enfrió, tu negocio no levanta o tu salud no mejora — Don Jacinto Nahual quiere escucharte. Curandero mexicano de Catemaco con décadas de experiencia resolviendo lo que la medicina y la lógica no pueden. Llama hoy. La primera consulta es sin costo.',
+    },
+    {
+      slug: 'commerce',
+      ciudad: 'Commerce',
+      intro:
+        '¿Sientes que en Commerce todo lo que intentas fracasa? ¿Que hay una fuerza invisible bloqueando tu camino — en el amor, en los negocios, en la salud? Don Jacinto Nahual ha visto casos así durante más de 30 años. Y los ha resuelto. Brujo curandero de Catemaco, Veracruz. Atención confidencial, sin compromisos y sin promesas falsas. La primera llamada no tiene costo.',
+    },
+    {
+      slug: 'covina',
+      ciudad: 'Covina',
+      intro:
+        'En Covina y el Valle de San Gabriel, hay personas que llevan años sufriendo algo que no pueden explicar. Una relación que se destruyó sola. Un negocio que nunca despega. Una enfermedad que no cede. Don Jacinto Nahual, curandero de Catemaco con más de 30 años de práctica, puede ayudarte a encontrar el origen espiritual de tu situación y el camino para resolverla. Llama hoy.',
+    },
+    {
+      slug: 'irvine',
+      ciudad: 'Irvine',
+      intro:
+        'Irvine es una ciudad de personas que trabajan duro y esperan resultados. Pero hay situaciones que el esfuerzo solo no puede resolver — una relación que se destruyó sin razón, una salud que no mejora, una angustia que no desaparece. Don Jacinto Nahual ofrece orientación espiritual confidencial para personas de Irvine que buscan respuestas donde otros no las tienen. Primera llamada sin costo.',
+    },
+    {
+      slug: 'fullerton',
+      ciudad: 'Fullerton',
+      intro:
+        '¿Llevas tiempo en Fullerton con una situación que parece no tener salida? Amor perdido. Negocio bloqueado. Salud que no mejora. Cuando la medicina y la lógica no tienen respuesta, la tradición curanderil de Catemaco sí puede tenerla. Don Jacinto Nahual lleva más de 30 años acompañando a familias del condado de Orange que habían perdido la esperanza. La primera llamada es gratis.',
+    },
+    {
+      slug: 'garden-grove',
+      ciudad: 'Garden Grove',
+      intro:
+        'En Garden Grove, como en toda comunidad latina, hay cosas que se sienten pero no se pueden explicar. Una mala racha que no termina. Un amor que se perdió de repente. Una enfermedad sin nombre. Don Jacinto Nahual, brujo curandero de Catemaco con décadas de experiencia, puede ayudarte a entender qué está pasando y qué se puede hacer. Confidencial. Sin costo la primera llamada.',
+    },
+    {
+      slug: 'mission-viejo',
+      ciudad: 'Mission Viejo',
+      intro:
+        'Hay situaciones que ningún médico, psicólogo o abogado puede resolver. Si en Mission Viejo sientes que algo espiritual está afectando tu vida — tu amor, tu prosperidad o tu salud — Don Jacinto Nahual puede orientarte. Curandero de Catemaco con más de 30 años de práctica genuina. Atención discreta y completamente confidencial. La primera llamada no tiene costo.',
+    },
+    {
+      slug: 'san-clemente',
+      ciudad: 'San Clemente',
+      intro:
+        '¿Sientes que en San Clemente tu vida tomó un rumbo que no elegiste? Una relación destruida. Un camino bloqueado. Una salud que no responde. Don Jacinto Nahual, brujo curandero nacido en Catemaco, Veracruz, ha acompañado a cientos de personas de la costa sur del condado de Orange que llegaron sin esperanza. Hoy tienen su vida de regreso. Llama. La primera consulta es sin costo.',
+    },
+    {
+      slug: 'laguna-beach',
+      ciudad: 'Laguna Beach',
+      intro:
+        'Hay un tipo de sufrimiento que no se habla en voz alta. Una relación que se destruyó sola. Una angustia que no desaparece. Una mala racha que no tiene fin. Si en Laguna Beach llevas tiempo con algo así, Don Jacinto Nahual puede escucharte sin juicios. Curandero de Catemaco con más de 30 años resolviendo casos difíciles. Atención completamente confidencial. Primera llamada sin costo.',
+    },
+    {
+      slug: 'buena-park',
+      ciudad: 'Buena Park',
+      intro:
+        'En Buena Park, como en toda la comunidad latina del condado de Orange, hay personas que cargan con situaciones que nadie más puede resolver. Si sientes que alguien te hizo daño, que tu amor se perdió sin razón o que tus negocios no prosperan a pesar de todo tu esfuerzo, Don Jacinto Nahual puede ayudarte. Más de 30 años de práctica curanderil de Catemaco. La primera llamada no tiene costo.',
+    },
+  ];
+
+  return ciudades.map((c) => ({
+    params: { slug: c.slug },
+    props: { ciudad: c.ciudad, intro: c.intro },
+  }));
+}
+
+const { ciudad, intro } = Astro.props;
+
+const title = `Brujo Curandero en ${ciudad} · Don Jacinto Nahual`;
+const description = `Don Jacinto Nahual, brujo curandero de Catemaco en ${ciudad}, California. Limpias espirituales, amor, protección y curaciones. Llama: (213) 598-1928`;
+const businessName = `Don Jacinto Nahual - Brujo en ${ciudad}`;
+const businessDescription = `Brujo curandero mexicano de Catemaco, Veracruz atendiendo a la comunidad latina en ${ciudad}, California. Más de 30 años de práctica espiritual: limpias, amor, protección y curaciones.`;
+
+const areasCondensed = [
+  {
+    icon: '❤️‍🔥',
+    title: 'Problemas del Corazón',
+    desc: 'Rezo, oración e imposición de manos para parejas distanciadas, frialdad repentina, recuperación del ser amado y armonización de relaciones.',
+  },
+  {
+    icon: '🌿',
+    title: 'Enfermedades que no Ceden',
+    desc: 'Acompañamiento espiritual para malestares prolongados sin diagnóstico claro y condiciones que los tratamientos convencionales no mejoran.',
+  },
+  {
+    icon: '💼',
+    title: 'Caminos Cerrados',
+    desc: 'Trabajos espirituales para negocios que no prosperan, oportunidades que se pierden y problemas económicos sin explicación lógica.',
+  },
+  {
+    icon: '🛡️',
+    title: 'Brujería y Envidia',
+    desc: 'Limpias, protección y defensa espiritual para víctimas de envidia, daños espirituales o energías puestas desde afuera.',
+  },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  businessName={businessName}
+  businessDescription={businessDescription}
+  preloadHero="/images/don-jacinto-rezo.jpg"
+>
+  <!-- ============ HERO ============ -->
+  <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+    <img
+      src="/images/don-jacinto-rezo.jpg"
+      alt={`Don Jacinto Nahual brujo curandero de Catemaco Veracruz guía espiritual en ${ciudad} California`}
+      width="1920"
+      height="1080"
+      loading="eager"
+      fetchpriority="high"
+      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;"
+    />
+    <div class="absolute inset-0 bg-black/75" style="z-index:1;"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-bg/40 via-transparent to-bg" style="z-index:1;"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-6 py-24 text-center">
+      <div class="inline-block mb-6 px-5 py-2 border border-gold/40 rounded-full">
+        <span class="text-gold-light text-xs sm:text-sm tracking-[0.2em] uppercase">
+          ✦ Catemaco, Veracruz · {ciudad}, California ✦
+        </span>
+      </div>
+
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-3 text-text leading-tight">
+        Brujo Curandero en {ciudad}
+      </h1>
+      <h2 class="font-display italic text-2xl sm:text-3xl md:text-4xl text-gold mb-8">
+        Don Jacinto Nahual
+      </h2>
+
+      <p class="text-base sm:text-lg text-text/85 max-w-3xl mx-auto leading-relaxed mb-10">
+        {intro}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+        <a
+          href={phoneHref}
+          class="bg-gold hover:bg-gold-light text-bg font-semibold px-8 py-4 rounded-full transition-all hover:scale-105 shadow-lg shadow-gold/20"
+        >
+          📞 Llamar: {phone}
+        </a>
+        <a
+          href={wa}
+          target="_blank"
+          rel="noopener"
+          class="border-2 border-gold text-gold hover:bg-gold hover:text-bg font-semibold px-8 py-4 rounded-full transition-all hover:scale-105"
+        >
+          💬 WhatsApp
+        </a>
+      </div>
+
+      <p class="text-xs sm:text-sm text-muted tracking-widest">
+        ✦ Consultas presenciales · Tradición de Catemaco · Más de 30 años ✦
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ INTRO CIUDAD ============ -->
+  <section class="bg-bg-alt py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div>
+          <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">
+            ✦ Presencia en {ciudad} ✦
+          </p>
+          <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-6 leading-tight">
+            Curandero Mexicano en {ciudad}
+          </h2>
+          <div class="space-y-4 text-text/85 text-base sm:text-lg leading-relaxed">
+            <p>{intro}</p>
+            <p>
+              Don Jacinto Nahual trabaja con rezo, oración, imposición de manos e invocación
+              espiritual desde la tradición ancestral de Catemaco, Veracruz — reconocida en todo
+              México y Latinoamérica por la profundidad de sus conocimientos. Si buscas un
+              <strong class="text-gold-light">brujo curandero cerca de {ciudad}</strong>, Don
+              Jacinto puede orientarte.
+            </p>
+          </div>
+          <div class="mt-10">
+            <a
+              href={phoneHref}
+              class="inline-block bg-gold hover:bg-gold-light text-bg font-semibold px-8 py-4 rounded-full transition-all"
+            >
+              📞 Agendar Consulta
+            </a>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="absolute -inset-4 border border-gold/30 rounded-lg"></div>
+          <img
+            src="/images/don-jacinto-curandero.jpg"
+            alt={`Don Jacinto Nahual brujo curandero de Catemaco atendiendo consultas espirituales en ${ciudad} California`}
+            class="relative w-full h-auto rounded-lg shadow-2xl"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4 ÁREAS (condensado) ============ -->
+  <section class="py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">✦ Práctica espiritual ✦</p>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-4">Áreas de Trabajo</h2>
+        <p class="text-muted max-w-2xl mx-auto">
+          Don Jacinto trabaja con cuatro áreas principales desde la tradición curanderil de
+          Catemaco.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {areasCondensed.map((a) => (
+          <div class="bg-bg-alt p-8 rounded-lg border border-gold/10 hover:border-gold/30 transition-colors">
+            <div class="text-4xl mb-4">{a.icon}</div>
+            <h3 class="font-display text-xl text-gold-light mb-3">{a.title}</h3>
+            <p class="text-muted text-sm leading-relaxed">{a.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="relative py-24 sm:py-28 overflow-hidden">
+    <div
+      class="absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/images/altar-espiritual.jpg');"
+    >
+    </div>
+    <div class="absolute inset-0 bg-bg/90"></div>
+    <div class="relative max-w-3xl mx-auto px-6 text-center">
+      <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">✦ Contacto ✦</p>
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-6 text-text leading-tight">
+        ¿Buscas un brujo curandero en {ciudad}?
+      </h2>
+      <p class="text-text/85 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
+        Don Jacinto Nahual atiende personalmente a la comunidad latina de {ciudad} y todo el sur
+        de California. Décadas de práctica espiritual en la tradición ancestral de Catemaco,
+        Veracruz. La primera llamada no tiene costo.
+      </p>
+
+      <div class="bg-bg-alt/80 backdrop-blur border border-gold/20 rounded-lg p-8 mb-10">
+        <div class="text-gold-light font-display text-xl mb-2">📍 1208 Venice Blvd</div>
+        <div class="text-text/85 mb-6">Los Angeles, CA 90006</div>
+        <div class="text-gold font-display text-3xl">{phone}</div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+        <a
+          href={phoneHref}
+          class="bg-gold hover:bg-gold-light text-bg font-semibold px-8 py-4 rounded-full transition-all"
+        >
+          📞 Llamar Ahora
+        </a>
+        <a
+          href={wa}
+          target="_blank"
+          rel="noopener"
+          class="border-2 border-gold text-gold hover:bg-gold hover:text-bg font-semibold px-8 py-4 rounded-full transition-all"
+        >
+          💬 WhatsApp
+        </a>
+      </div>
+
+      <p class="text-muted text-sm tracking-wide">
+        Atención confidencial · Tradición de Catemaco, Veracruz
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ BACK LINK ============ -->
+  <section class="bg-bg-alt py-12 border-t border-gold/10">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <a
+        href="/"
+        class="inline-block text-gold hover:text-gold-light text-sm tracking-wider uppercase transition-colors"
+      >
+        ← Ver todos los servicios
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ WHATSAPP FLOTANTE ============ -->
+  <a
+    href={wa}
+    target="_blank"
+    rel="noopener"
+    aria-label="Contactar por WhatsApp"
+    class="fixed bottom-6 right-6 z-50 bg-gold hover:bg-gold-light text-bg font-semibold px-5 py-3 rounded-full shadow-2xl shadow-gold/30 flex items-center gap-2 transition-all hover:scale-105"
+  >
+    <span class="text-xl">💬</span>
+    <span class="hidden sm:inline text-sm">WhatsApp</span>
+  </a>
+</Layout>

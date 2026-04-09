@@ -159,11 +159,38 @@ const blogPosts = [
 ];
 
 const galeria = [
-  { img: '/images/don-jacinto-retrato.jpg', caption: 'Don Jacinto Nahual · Chamán de Catemaco' },
-  { img: '/images/ritual-fuego.jpg', caption: 'Ritual de fuego · Tradición ancestral' },
-  { img: '/images/limpia-pareja.jpg', caption: 'Limpia espiritual para parejas' },
-  { img: '/images/altar-espiritual.jpg', caption: 'Altar espiritual de Catemaco' },
-  { img: '/images/amor-recuperar.jpg', caption: 'Trabajos de amor y unión' },
+  {
+    img: '/images/don-jacinto-retrato.jpg',
+    caption: 'Don Jacinto Nahual · Chamán de Catemaco',
+    alt: 'Don Jacinto Nahual brujo curandero de Catemaco Veracruz chamán mexicano Los Ángeles California',
+  },
+  {
+    img: '/images/ritual-fuego.jpg',
+    caption: 'Ritual de fuego · Tradición ancestral',
+    alt: 'Ritual de fuego sagrado tradición curanderil Catemaco Veracruz Don Jacinto Nahual',
+  },
+  {
+    img: '/images/limpia-pareja.jpg',
+    caption: 'Limpia espiritual para parejas',
+    alt: 'Limpia espiritual para pareja amor Don Jacinto Nahual curandero Los Ángeles',
+  },
+  {
+    img: '/images/altar-espiritual.jpg',
+    caption: 'Altar espiritual de Catemaco',
+    alt: 'Altar espiritual tradición de Catemaco Veracruz brujo curandero Don Jacinto',
+  },
+  {
+    img: '/images/amor-recuperar.jpg',
+    caption: 'Trabajos de amor y unión',
+    alt: 'Trabajo espiritual amor y unión Don Jacinto Nahual chamán California',
+  },
+];
+
+const areaAltTexts = [
+  'Ayuda espiritual para el amor y la pareja Don Jacinto Nahual curandero Los Ángeles',
+  'Curación espiritual enfermedades inexplicables Don Jacinto Nahual chamán Catemaco',
+  'Limpia espiritual para negocios y trabajo Don Jacinto Nahual brujo California',
+  'Protección espiritual contra brujería y mal puesto Don Jacinto Nahual Catemaco',
 ];
 
 const faqSchema = {
@@ -225,13 +252,17 @@ const faqSchema = {
 <Layout preloadHero="/images/don-jacinto-rezo.jpg">
   <!-- ============ SECCIÓN 1 — HERO ============ -->
   <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <div
-      class="absolute inset-0 bg-cover bg-center"
-      style="background-image: url('/images/don-jacinto-rezo.jpg');"
-    >
-    </div>
-    <div class="absolute inset-0 bg-black/70"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-bg/40 via-transparent to-bg"></div>
+    <img
+      src="/images/don-jacinto-rezo.jpg"
+      alt="Don Jacinto Nahual brujo curandero de Catemaco Veracruz guía espiritual Los Ángeles California"
+      width="1920"
+      height="1080"
+      loading="eager"
+      fetchpriority="high"
+      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;"
+    />
+    <div class="absolute inset-0 bg-black/70" style="z-index:1;"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-bg/40 via-transparent to-bg" style="z-index:1;"></div>
 
     <div class="relative z-10 max-w-4xl mx-auto px-6 py-24 text-center">
       <div class="inline-block mb-6 px-5 py-2 border border-gold/40 rounded-full">
@@ -367,7 +398,7 @@ const faqSchema = {
           <div class="absolute -inset-4 border border-gold/30 rounded-lg"></div>
           <img
             src="/images/don-jacinto-curandero.jpg"
-            alt="Don Jacinto Nahual, brujo curandero de Catemaco"
+            alt="Don Jacinto Nahual brujo curandero de Catemaco Veracruz atendiendo consulta espiritual en Los Ángeles California"
             class="relative w-full h-auto rounded-lg shadow-2xl"
             loading="lazy"
           />
@@ -389,12 +420,12 @@ const faqSchema = {
       </div>
 
       <div class="grid md:grid-cols-2 gap-8">
-        {areas.map((a) => (
+        {areas.map((a, i) => (
           <div class="bg-bg-alt rounded-lg overflow-hidden border border-gold/10 hover:border-gold/40 transition-all flex flex-col">
             <div class="relative h-64 overflow-hidden">
               <img
                 src={a.img}
-                alt={a.title}
+                alt={areaAltTexts[i]}
                 class={`w-full h-full object-cover ${a.slug === 'curaciones' ? 'object-top' : ''}`}
                 loading="lazy"
               />
@@ -455,7 +486,7 @@ const faqSchema = {
           <div class="absolute -inset-4 border border-gold/30 rounded-lg"></div>
           <img
             src="/images/don-jacinto-retrato.jpg"
-            alt="Retrato de Don Jacinto Nahual"
+            alt="Don Jacinto Nahual chamán y curandero mexicano de Catemaco Veracruz guía espiritual en California"
             class="relative w-full h-auto rounded-lg shadow-2xl"
             loading="lazy"
           />
@@ -519,7 +550,7 @@ const faqSchema = {
           <div class="group relative aspect-square overflow-hidden rounded-lg">
             <img
               src={g.img}
-              alt={g.caption}
+              alt={g.alt}
               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               loading="lazy"
             />
