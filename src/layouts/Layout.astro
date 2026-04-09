@@ -1,0 +1,151 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  preloadHero?: string;
+  robots?: string;
+}
+
+const {
+  title = 'Don Jacinto Nahual · Brujo Curandero en Los Ángeles · Catemaco',
+  description = 'Don Jacinto Nahual, brujo curandero de Catemaco, Veracruz. Limpias espirituales, amarres de amor, protección y curaciones en Los Ángeles, Santa Ana, Ontario y San Fernando. Más de 30 años de experiencia. Llama: (213) 598-1928',
+  ogImage = '/images/don-jacinto-rezo.jpg',
+  preloadHero,
+  robots = 'index, follow',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const ogImageUrl = new URL(ogImage, Astro.site).toString();
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': 'https://donjacintonahual.com/#business',
+  name: 'Don Jacinto Nahual',
+  alternateName: 'Brujo Curandero Don Jacinto Nahual',
+  description:
+    'Brujo curandero y chamán de Catemaco, Veracruz. Más de 30 años de práctica espiritual al servicio de la comunidad latina en el sur de California.',
+  image: ogImageUrl,
+  telephone: '+1-213-598-1928',
+  priceRange: '$$',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '1208 Venice Blvd',
+    addressLocality: 'Los Angeles',
+    addressRegion: 'CA',
+    postalCode: '90006',
+    addressCountry: 'US',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 34.0152,
+    longitude: -118.2836,
+  },
+  url: 'https://donjacintonahual.com',
+  areaServed: [
+    'Los Angeles',
+    'Santa Ana',
+    'Ontario',
+    'San Fernando',
+    'Anaheim',
+    'Long Beach',
+    'San Bernardino',
+  ],
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    opens: '09:00',
+    closes: '20:00',
+  },
+};
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': 'https://donjacintonahual.com/#person',
+  name: 'Don Jacinto Nahual',
+  jobTitle: 'Brujo Curandero · Chamán · Guía Espiritual',
+  birthPlace: {
+    '@type': 'Place',
+    name: 'Catemaco, Veracruz, México',
+  },
+  description:
+    'Brujo curandero y chamán nacido en Catemaco, Veracruz. Trabaja a través del rezo, la oración, la imposición de manos y la invocación espiritual.',
+  telephone: '+1-213-598-1928',
+  worksFor: {
+    '@id': 'https://donjacintonahual.com/#business',
+  },
+};
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content={robots} />
+    <meta name="theme-color" content="#0D0D0D" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="brujo Los Angeles, curandero cerca de mí, limpias espirituales Los Angeles, brujo mexicano California, curandero mexicano, brujo de Catemaco, amarres de amor Los Angeles, chamán Los Angeles, brujo para el amor, limpia espiritual cerca de mí, brujo curandero California, curandero espiritual Los Angeles"
+    />
+    <meta name="author" content="Don Jacinto Nahual" />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Don Jacinto Nahual" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Don Jacinto Nahual - Brujo Curandero de Catemaco en Los Ángeles" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="es_MX" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Google Fonts non-blocking -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+    />
+
+    {preloadHero && <link rel="preload" as="image" href={preloadHero} fetchpriority="high" />}
+
+    <!-- Schema.org -->
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+
+    <!-- Google Analytics placeholder
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    -->
+  </head>
+  <body class="bg-bg text-text font-body antialiased">
+    <slot />
+  </body>
+</html>

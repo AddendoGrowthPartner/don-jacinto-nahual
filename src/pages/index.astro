@@ -1,17 +1,836 @@
 ---
+import Layout from '../layouts/Layout.astro';
 
+const phone = '(213) 598-1928';
+const phoneHref = 'tel:+12135981928';
+const wa = 'https://wa.me/12135981928';
+
+const cities = [
+  { name: 'Los Ángeles', slug: 'los-angeles' },
+  { name: 'Santa Mónica', slug: 'santa-monica' },
+  { name: 'Inglewood', slug: 'inglewood' },
+  { name: 'East LA', slug: 'east-la' },
+  { name: 'Huntington Park', slug: 'huntington-park' },
+  { name: 'Monterey Park', slug: 'monterey-park' },
+  { name: 'Montebello', slug: 'montebello' },
+  { name: 'Downey', slug: 'downey' },
+  { name: 'Compton', slug: 'compton' },
+  { name: 'Long Beach', slug: 'long-beach' },
+  { name: 'San Pedro', slug: 'san-pedro' },
+  { name: 'Gardena', slug: 'gardena' },
+  { name: 'South Gate', slug: 'south-gate' },
+  { name: 'Commerce', slug: 'commerce' },
+  { name: 'Ontario', slug: 'ontario' },
+  { name: 'San Fernando', slug: 'san-fernando' },
+  { name: 'Covina', slug: 'covina' },
+  { name: 'San Bernardino', slug: 'san-bernardino' },
+  { name: 'Santa Ana', slug: 'santa-ana' },
+  { name: 'Irvine', slug: 'irvine' },
+  { name: 'Anaheim', slug: 'anaheim' },
+  { name: 'Fullerton', slug: 'fullerton' },
+  { name: 'Garden Grove', slug: 'garden-grove' },
+  { name: 'Mission Viejo', slug: 'mission-viejo' },
+  { name: 'San Clemente', slug: 'san-clemente' },
+  { name: 'Laguna Beach', slug: 'laguna-beach' },
+  { name: 'Buena Park', slug: 'buena-park' },
+];
+
+const areas = [
+  {
+    icon: '❤️‍🔥',
+    title: 'Problemas del Corazón',
+    img: '/images/amor-pareja.jpg',
+    desc: 'Cuando el amor se enfría sin razón. Cuando una pareja se aleja de la noche a la mañana. Cuando hay infidelidad, separación o un tercero que interfiere. Cuando has intentado todo y nada funciona. Don Jacinto trabaja con rezo, oración e imposición de manos para sanar lo que está dañado en el plano espiritual y abrir el camino al amor verdadero.',
+    senales: 'frialdad repentina, alejamiento inexplicable, peleas constantes, pérdida del interés, presencia de un tercero.',
+    slug: 'amor-pareja',
+  },
+  {
+    icon: '🌿',
+    title: 'Enfermedades que no Ceden',
+    img: '/images/don-jacinto-ritual.jpg',
+    desc: 'Malestares que llevan meses o años sin diagnóstico claro. Dolores que van y vienen sin causa. Fatiga extrema que los médicos no explican. Condiciones que los tratamientos convencionales no mejoran. La medicina trata el cuerpo. La curanderil trata el espíritu. Cuando la raíz del problema es espiritual, la solución también debe serlo.',
+    senales: 'enfermedades sin diagnóstico, recaídas constantes, malestares que los médicos no encuentran, decaimiento general inexplicable.',
+    slug: 'curaciones',
+  },
+  {
+    icon: '💼',
+    title: 'Caminos Cerrados en el Trabajo y los Negocios',
+    img: '/images/altar-espiritual.jpg',
+    desc: 'Cuando el negocio no levanta aunque hagas todo bien. Cuando pierdes empleos sin razón. Cuando los clientes no llegan o los proyectos se caen. Cuando sientes que hay una fuerza invisible bloqueando tu prosperidad. Don Jacinto trabaja para limpiar los caminos y abrir las puertas que la envidia o la brujería han cerrado.',
+    senales: 'negocios que no prosperan, clientes que no llegan, oportunidades que se pierden, problemas económicos sin explicación lógica.',
+    slug: 'caminos-cerrados',
+  },
+  {
+    icon: '🛡️',
+    title: 'Víctimas de Brujería y Envidia',
+    img: '/images/don-jacinto-invocacion.jpg',
+    desc: 'Cuando sospechas que alguien te ha hecho un daño espiritual. Cuando tu vida cambió drásticamente sin razón aparente. Cuando sientes presencias extrañas o energías que te persiguen. Cuando todo lo que construiste empieza a derrumbarse. Don Jacinto puede limpiar lo que fue puesto y protegerte para que no vuelva a suceder.',
+    senales: 'cambios drásticos en la vida, sensación de ser observado, sueños perturbadores, mala racha que no termina, pérdida de lo que tenías.',
+    slug: 'proteccion',
+  },
+];
+
+const quienesLoBuscan = [
+  'Madres desesperadas por hijos en vicios o conductas destructivas que no responden a ningún tratamiento.',
+  'Personas que sienten que les pusieron un mal — que su vida cambió de golpe sin razón aparente.',
+  'Parejas separadas que quieren recuperar al ser amado y no saben a quién más acudir.',
+  'Emprendedores y dueños de negocios que trabajan duro pero no ven resultados — como si algo invisible los bloqueara.',
+  'Personas con enfermedades prolongadas sin diagnóstico que los médicos no han podido resolver.',
+  'Familias con discordia constante, mala vibra en el hogar o presencias que alteran la paz.',
+];
+
+const proceso = [
+  { num: '01', title: 'Contacto Inicial', desc: 'Llama o escribe por WhatsApp. Cuéntanos brevemente lo que estás viviendo. Sin juicios, sin preguntas incómodas. Solo escuchamos.' },
+  { num: '02', title: 'Consulta Personal', desc: 'Don Jacinto te recibe en su centro espiritual en Los Ángeles. Todo lo que compartas es completamente confidencial.' },
+  { num: '03', title: 'Evaluación Espiritual', desc: 'Don Jacinto evalúa tu caso con sus herramientas tradicionales y te explica con honestidad lo que puede hacer por ti.' },
+  { num: '04', title: 'Acompañamiento', desc: 'Si decides continuar, Don Jacinto te acompaña con el trabajo espiritual indicado para tu caso específico.' },
+];
+
+const testimonios = [
+  {
+    text: 'Llevaba dos años sin trabajo y con problemas en mi matrimonio. Visité a Don Jacinto en Los Ángeles y poco a poco las cosas empezaron a cambiar. No lo puedo explicar racionalmente, pero algo se movió. Hoy tengo trabajo, mi matrimonio está mejor y por primera vez en mucho tiempo siento paz.',
+    name: 'María G.',
+    city: 'East Los Ángeles, CA',
+  },
+  {
+    text: 'Mi hijo estaba muy metido en malos pasos. Busqué a Don Jacinto completamente desesperada. Hizo rezos y oraciones por él durante varias semanas. Hoy mi hijo está trabajando, volvió a casa y es otra persona. No sé cómo agradecerle.',
+    name: 'Rosa E.',
+    city: 'Santa Ana, CA',
+  },
+  {
+    text: 'Tenía una enfermedad que los doctores no me podían explicar después de años de consultas. Don Jacinto hizo una limpia y una imposición de manos. En pocas semanas mi cuerpo respondió de una manera que ningún médico había logrado.',
+    name: 'José A.',
+    city: 'Ontario, CA',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Quién es Don Jacinto Nahual?',
+    a: 'Don Jacinto Nahual es un brujo curandero y chamán de Catemaco, Veracruz, México. Con más de 30 años de experiencia, hoy atiende a la comunidad latina en el sur de California con consultas personales presenciales.',
+  },
+  {
+    q: '¿Don Jacinto atiende consultas personales?',
+    a: 'Sí. Atiende consultas presenciales en Los Ángeles, Ontario, San Fernando y Santa Ana. También puede orientarte por teléfono o WhatsApp antes de tu primera visita.',
+  },
+  {
+    q: '¿Puede ayudar en temas de amor?',
+    a: 'Sí. Ofrece orientación espiritual para separaciones, frialdad sentimental, recuperación del ser amado y armonización de pareja desde la práctica espiritual tradicional de Catemaco.',
+  },
+  {
+    q: '¿Qué es una limpia espiritual?',
+    a: 'Una limpia espiritual es un ritual de la tradición curanderil mexicana que busca liberar al consultante de energías negativas, cargas espirituales o males puestos desde afuera. Es el primer paso en muchos trabajos de Don Jacinto.',
+  },
+  {
+    q: '¿Se garantizan resultados?',
+    a: 'No. Don Jacinto Nahual no garantiza resultados específicos. Cada caso es diferente. Lo que sí garantizamos es atención genuina, confidencial y con décadas de experiencia espiritual.',
+  },
+  {
+    q: '¿Cómo puedo agendar una consulta?',
+    a: 'Llama al (213) 598-1928 o escribe por WhatsApp al mismo número. Te orientarán sobre disponibilidad y el centro espiritual más cercano a tu ciudad.',
+  },
+];
+
+const blogPosts = [
+  {
+    cat: 'Limpias',
+    date: 'Marzo 2026',
+    title: '¿Qué es una limpia espiritual y cuándo necesitas una?',
+    excerpt: 'La limpia es el fundamento de la curanderil mexicana. Aprende cuándo es el momento y qué señales indican que la necesitas.',
+    img: '/images/limpia-velas.jpg',
+    slug: 'que-es-una-limpia-espiritual',
+  },
+  {
+    cat: 'Amor',
+    date: 'Febrero 2026',
+    title: 'Señales espirituales de que tu relación tiene una interferencia',
+    excerpt: 'Cuando el amor se enfría sin razón aparente — la espiritualidad tiene respuestas que la psicología no siempre alcanza.',
+    img: '/images/amor-recuperar.jpg',
+    slug: 'senales-interferencia-relacion',
+  },
+  {
+    cat: 'Catemaco',
+    date: 'Enero 2026',
+    title: 'La tradición brujeril de Catemaco, Veracruz: historia y significado',
+    excerpt: 'Catemaco es reconocido en toda América Latina como el centro de la curanderil mexicana. Conoce por qué.',
+    img: '/images/altar-espiritual.jpg',
+    slug: 'tradicion-catemaco',
+  },
+];
+
+const galeria = [
+  { img: '/images/don-jacinto-retrato.jpg', caption: 'Don Jacinto Nahual · Chamán de Catemaco' },
+  { img: '/images/ritual-fuego.jpg', caption: 'Ritual de fuego · Tradición ancestral' },
+  { img: '/images/limpia-pareja.jpg', caption: 'Limpia espiritual para parejas' },
+  { img: '/images/altar-espiritual.jpg', caption: 'Altar espiritual de Catemaco' },
+  { img: '/images/amor-recuperar.jpg', caption: 'Trabajos de amor y unión' },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '¿Quién es Don Jacinto Nahual?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Don Jacinto Nahual es un brujo curandero y chamán de Catemaco, Veracruz, México. Con más de 30 años de experiencia, hoy atiende a la comunidad latina en el sur de California con consultas personales presenciales.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Don Jacinto atiende consultas personales?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sí. Atiende consultas presenciales en Los Ángeles, Ontario, San Fernando y Santa Ana. También puede orientarte por teléfono o WhatsApp antes de tu primera visita. Teléfono: (213) 598-1928',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Puede ayudar en temas de amor?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sí. Ofrece orientación espiritual para separaciones, frialdad sentimental, recuperación del ser amado y armonización de pareja desde la práctica espiritual tradicional de Catemaco.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Qué es una limpia espiritual?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Una limpia espiritual es un ritual de la tradición curanderil mexicana que busca liberar al consultante de energías negativas, cargas espirituales o males puestos desde afuera. Es el primer paso en muchos trabajos de Don Jacinto.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Se garantizan resultados?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Don Jacinto Nahual no garantiza resultados específicos. Cada caso es diferente. Lo que sí garantizamos es atención genuina, confidencial y con décadas de experiencia espiritual.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Cómo puedo agendar una consulta?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Llama al (213) 598-1928 o escribe por WhatsApp al mismo número. La primera llamada no tiene costo.',
+      },
+    },
+  ],
+};
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout preloadHero="/images/don-jacinto-rezo.jpg">
+  <!-- ============ SECCIÓN 1 — HERO ============ -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div
+      class="absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/images/don-jacinto-rezo.jpg');"
+    >
+    </div>
+    <div class="absolute inset-0 bg-black/70"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-bg/40 via-transparent to-bg"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-6 py-24 text-center">
+      <div class="inline-block mb-6 px-5 py-2 border border-gold/40 rounded-full">
+        <span class="text-gold-light text-xs sm:text-sm tracking-[0.2em] uppercase">
+          ✦ Brujo Curandero · Catemaco, Veracruz · Más de 30 Años de Práctica ✦
+        </span>
+      </div>
+
+      <h1 class="font-display text-5xl sm:text-6xl md:text-7xl font-bold mb-3 text-text">
+        Don Jacinto Nahual
+      </h1>
+      <h2 class="font-display italic text-2xl sm:text-3xl md:text-4xl text-gold mb-8">
+        Guía Espiritual y Curandero
+      </h2>
+
+      <p class="text-lg sm:text-xl text-text/85 max-w-3xl mx-auto leading-relaxed mb-10">
+        Hay situaciones que la medicina no puede explicar, que los médicos no encuentran y que
+        la familia no comprende. Problemas que se repiten sin razón. Amores que se pierden de la
+        noche a la mañana. Negocios que no levantan. Enfermedades que no ceden. Si sientes que
+        algo está bloqueando tu vida, Don Jacinto puede ayudarte.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+        <a
+          href={phoneHref}
+          class="bg-gold hover:bg-gold-light text-bg font-semibold px-8 py-4 rounded-full transition-all hover:scale-105 shadow-lg shadow-gold/20"
+        >
+          📞 Llamar: {phone}
+        </a>
+        <a
+          href={wa}
+          target="_blank"
+          rel="noopener"
+          class="border-2 border-gold text-gold hover:bg-gold hover:text-bg font-semibold px-8 py-4 rounded-full transition-all hover:scale-105"
+        >
+          💬 WhatsApp
+        </a>
+      </div>
+
+      <p class="text-xs sm:text-sm text-muted tracking-widest">
+        ✦ Atención presencial en Los Ángeles · Ontario · San Fernando · Santa Ana ✦
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 2 — ¿SIENTES QUE ALGO NO ESTÁ BIEN? ============ -->
+  <section class="bg-bg py-20 sm:py-28 border-t border-gold/10">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">✦ Tal vez te suene familiar ✦</p>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl leading-tight">
+          ¿Sientes que algo en tu vida no está bien?
+        </h2>
+      </div>
+      <div class="space-y-6 text-text/85 text-lg leading-relaxed">
+        <p>
+          Hay personas que cargan con un peso que no eligieron. Se levantan con angustia sin
+          saber por qué. Sus relaciones fracasan una y otra vez. Sus negocios no prosperan
+          aunque trabajen duro. Sus cuerpos enferman sin que ningún doctor encuentre la causa.
+        </p>
+        <p>
+          En la tradición curanderil mexicana, esto tiene nombre: <span class="text-gold-light">mal puesto, envidia, brujería, camino cerrado</span>.
+          Son fuerzas espirituales reales que afectan la vida de las personas — y que tienen
+          solución.
+        </p>
+        <p>
+          Don Jacinto Nahual ha trabajado con cientos de personas en el sur de California que
+          llegaron sin esperanza y encontraron el camino de regreso a su vida.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 3 — CREDENCIALES ============ -->
+  <section class="bg-bg-alt py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div>
+          <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">
+            ✦ Nacido en Catemaco, Veracruz, México
+          </p>
+          <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-6 leading-tight">
+            El Chamán que la Comunidad Latina Busca en el Sur de California
+          </h2>
+
+          <div class="space-y-4 text-text/85 text-base sm:text-lg leading-relaxed">
+            <p>
+              Don Jacinto Nahual es un brujo curandero y guía espiritual con décadas de práctica
+              en la tradición ancestral de Catemaco, Veracruz — reconocida en todo México y
+              Latinoamérica por la profundidad de sus conocimientos espirituales.
+            </p>
+            <p>
+              Hoy atiende a la comunidad latina en Los Ángeles y alrededores, llevando consigo el
+              conocimiento de sus maestros y la fuerza de una práctica espiritual genuina: rezo,
+              oración, imposición de manos e invocación espiritual para casos que la medicina y
+              la ciencia no han podido resolver.
+            </p>
+            <p>
+              Si buscas un <strong class="text-gold-light">brujo cerca de ti</strong>, un
+              curandero mexicano de confianza o ayuda espiritual para el amor, la protección o
+              males que no puedes explicar — Don Jacinto Nahual puede orientarte.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-6 my-10">
+            <div class="border-l-2 border-gold pl-4">
+              <div class="font-display text-3xl text-gold">+30</div>
+              <div class="text-xs uppercase tracking-wider text-muted mt-1">Años de Experiencia</div>
+            </div>
+            <div class="border-l-2 border-gold pl-4">
+              <div class="font-display text-3xl text-gold">4</div>
+              <div class="text-xs uppercase tracking-wider text-muted mt-1">Áreas de Trabajo</div>
+            </div>
+            <div class="border-l-2 border-gold pl-4">
+              <div class="font-display text-3xl text-gold">4+</div>
+              <div class="text-xs uppercase tracking-wider text-muted mt-1">Ciudades en CA</div>
+            </div>
+            <div class="border-l-2 border-gold pl-4">
+              <div class="font-display text-3xl text-gold">100%</div>
+              <div class="text-xs uppercase tracking-wider text-muted mt-1">Confidencial</div>
+            </div>
+          </div>
+
+          <a
+            href={phoneHref}
+            class="inline-block bg-gold hover:bg-gold-light text-bg font-semibold px-8 py-4 rounded-full transition-all"
+          >
+            📞 Agendar Consulta Personal
+          </a>
+        </div>
+
+        <div class="relative">
+          <div class="absolute -inset-4 border border-gold/30 rounded-lg"></div>
+          <img
+            src="/images/don-jacinto-curandero.jpg"
+            alt="Don Jacinto Nahual, brujo curandero de Catemaco"
+            class="relative w-full h-auto rounded-lg shadow-2xl"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 4 — 4 ÁREAS DE TRABAJO ============ -->
+  <section class="py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">✦ Práctica espiritual ✦</p>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-4">Áreas de Trabajo</h2>
+        <p class="text-muted max-w-2xl mx-auto">
+          Don Jacinto trabaja con cuatro áreas principales en las que la tradición curanderil de
+          Catemaco ha demostrado dar frutos durante generaciones.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        {areas.map((a) => (
+          <div class="bg-bg-alt rounded-lg overflow-hidden border border-gold/10 hover:border-gold/40 transition-all flex flex-col">
+            <div class="relative h-64 overflow-hidden">
+              <img
+                src={a.img}
+                alt={a.title}
+                class={`w-full h-full object-cover ${a.slug === 'curaciones' ? 'object-top' : ''}`}
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-bg-alt via-bg-alt/30 to-transparent"></div>
+              <div class="absolute bottom-4 left-6 text-5xl">{a.icon}</div>
+            </div>
+            <div class="p-8 flex-grow flex flex-col">
+              <h3 class="font-display text-2xl text-gold-light mb-4">{a.title}</h3>
+              <p class="text-text/80 leading-relaxed mb-6 flex-grow">{a.desc}</p>
+              <div class="border-t border-gold/15 pt-4">
+                <p class="text-xs uppercase tracking-[0.2em] text-gold mb-2">Señales</p>
+                <p class="text-muted text-sm leading-relaxed">{a.senales}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 5 — CTA MEDIO ============ -->
+  <section class="relative py-20 sm:py-24 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-gold-dark via-gold/30 to-gold-dark"></div>
+    <div class="absolute inset-0 bg-bg/70"></div>
+    <div class="relative max-w-3xl mx-auto px-6 text-center">
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-6 text-gold-light">
+        ¿Tu situación parece no tener solución?
+      </h2>
+      <p class="text-text/90 text-lg leading-relaxed mb-10">
+        Don Jacinto Nahual atiende casos que la medicina, la psicología o la ciencia no han
+        podido resolver. Décadas de práctica espiritual en la tradición ancestral de Catemaco al
+        servicio de tu caso.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href={phoneHref}
+          class="bg-gold hover:bg-gold-light text-bg font-semibold px-8 py-4 rounded-full transition-all"
+        >
+          📞 Llamar: {phone}
+        </a>
+        <a
+          href={wa}
+          target="_blank"
+          rel="noopener"
+          class="border-2 border-gold text-gold hover:bg-gold hover:text-bg font-semibold px-8 py-4 rounded-full transition-all"
+        >
+          💬 WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 6 — POR QUÉ DON JACINTO ============ -->
+  <section class="bg-bg-alt py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div class="relative md:order-2">
+          <div class="absolute -inset-4 border border-gold/30 rounded-lg"></div>
+          <img
+            src="/images/don-jacinto-retrato.jpg"
+            alt="Retrato de Don Jacinto Nahual"
+            class="relative w-full h-auto rounded-lg shadow-2xl"
+            loading="lazy"
+          />
+        </div>
+        <div class="md:order-1">
+          <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">✦ Tradición ancestral ✦</p>
+          <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-6 leading-tight">
+            ¿Por qué confiar en Don Jacinto Nahual?
+          </h2>
+          <div class="space-y-5 text-text/85 text-base sm:text-lg leading-relaxed">
+            <p>
+              Catemaco, Veracruz, es reconocido en toda América Latina como la tierra de los
+              curanderos. No es un título que se compra ni un curso que se toma en línea — es
+              una tradición que se hereda, se aprende y se vive durante décadas.
+            </p>
+            <p>
+              Don Jacinto nació en esa tierra. Creció en esa tradición. Y lleva más de 30 años
+              practicando con las mismas herramientas que le enseñaron sus maestros: el rezo, la
+              oración, la imposición de manos y la invocación espiritual.
+            </p>
+            <p>
+              Don Jacinto no promete milagros. Promete <span class="text-gold-light">honestidad, confidencialidad y décadas de práctica genuina</span>
+              al servicio de quien lo necesita.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 7 — AVISO DE CONFIANZA ============ -->
+  <section class="py-20 sm:py-28">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="border border-gold/30 rounded-lg p-10 sm:p-14 bg-bg-alt/50 relative">
+        <div class="absolute -top-4 left-10 bg-bg px-4 text-gold text-xs tracking-[0.25em] uppercase">
+          ✦ Honestidad ante todo ✦
+        </div>
+        <h2 class="font-display text-2xl sm:text-3xl md:text-4xl mb-6 text-gold-light leading-tight">
+          Lo que Don Jacinto no te va a decir
+        </h2>
+        <p class="text-text/85 text-base sm:text-lg leading-relaxed">
+          Don Jacinto no te va a garantizar resultados. Cualquier curandero que te garantice
+          resultados específicos te está mintiendo — cada caso es único y el trabajo espiritual
+          no funciona como una máquina. Lo que sí te garantiza: <span class="text-gold-light">atención honesta, total
+          confidencialidad y décadas de práctica genuina</span>. Si después de escucharte siente que no
+          puede ayudarte, te lo va a decir directamente. <span class="text-gold-light">La primera llamada no tiene costo.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 8 — GALERÍA ============ -->
+  <section class="bg-bg-alt py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">✦ Tradición viva ✦</p>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-4">Galería Espiritual</h2>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+        {galeria.map((g) => (
+          <div class="group relative aspect-square overflow-hidden rounded-lg">
+            <img
+              src={g.img}
+              alt={g.caption}
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-bg via-bg/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-3">
+              <p class="text-text text-xs sm:text-sm leading-tight">{g.caption}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 9 — QUIÉNES LO BUSCAN ============ -->
+  <section class="py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">✦ Personas reales ✦</p>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-4">¿Quiénes lo buscan?</h2>
+        <p class="text-muted max-w-2xl mx-auto">
+          Cada semana, personas de toda California llegan a Don Jacinto con historias muy
+          distintas — pero con un patrón en común.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {quienesLoBuscan.map((item, i) => (
+          <div class="bg-bg-alt p-8 rounded-lg border border-gold/10 hover:border-gold/30 transition-colors">
+            <div class="font-display text-4xl text-gold/40 mb-4">0{i + 1}</div>
+            <p class="text-text/85 leading-relaxed">{item}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 10 — PROCESO ============ -->
+  <section class="bg-bg-alt py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">✦ Cómo trabajamos ✦</p>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-4">¿Cómo es una consulta?</h2>
+        <p class="text-muted max-w-2xl mx-auto">
+          Un proceso pausado, confidencial y respetuoso desde el primer contacto.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {proceso.map((p) => (
+          <div class="relative bg-bg p-8 rounded-lg border border-gold/10">
+            <div class="font-display text-5xl text-gold/30 mb-4">{p.num}</div>
+            <h3 class="font-display text-xl text-gold-light mb-3">{p.title}</h3>
+            <p class="text-muted text-sm leading-relaxed">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 11 — CIUDADES ============ -->
+  <section class="py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">
+          ✦ Presencia en el sur de California
+        </p>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-4">
+          Brujo Curandero Cerca de Ti
+        </h2>
+        <p class="text-muted max-w-2xl mx-auto">
+          Don Jacinto Nahual atiende a la comunidad latina en estas ciudades con consultas
+          personales presenciales.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+        {cities.map((c) => (
+          <a
+            href={`/ciudad/${c.slug}`}
+            class="bg-bg-alt border border-gold/10 hover:border-gold/40 hover:bg-bg-alt/80 px-4 py-3 rounded-md text-center text-sm text-text/90 hover:text-gold-light transition-all"
+          >
+            {c.name}
+          </a>
+        ))}
+      </div>
+      <p class="text-center text-muted text-sm mt-10">
+        ¿Tu ciudad no aparece? Don Jacinto atiende a personas de toda el área metropolitana de
+        Los Ángeles.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 12 — TESTIMONIOS ============ -->
+  <section class="bg-bg-alt py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">
+          ✦ Lo que dicen quienes le consultaron
+        </p>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-4">
+          Testimonios de Personas Reales
+        </h2>
+        <p class="text-muted max-w-2xl mx-auto">
+          Historias de personas de la comunidad latina que encontraron orientación y
+          acompañamiento espiritual.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {testimonios.map((t) => (
+          <div class="bg-bg p-8 rounded-lg border border-gold/10 flex flex-col">
+            <div class="text-gold mb-4 text-lg">★★★★★</div>
+            <p class="text-text/85 italic leading-relaxed mb-6 flex-grow">"{t.text}"</p>
+            <div class="border-t border-gold/20 pt-4">
+              <div class="font-display text-gold-light">{t.name}</div>
+              <div class="text-muted text-xs uppercase tracking-wider mt-1">{t.city}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 13 — FAQ ============ -->
+  <section class="py-20 sm:py-28">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">✦ Preguntas frecuentes ✦</p>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-4">¿Tienes dudas?</h2>
+      </div>
+      <div class="space-y-4">
+        {faqs.map((f, i) => (
+          <div
+            class="faq-item bg-bg-alt rounded-lg border border-gold/10"
+            data-open={i === 0 ? 'true' : 'false'}
+          >
+            <button
+              class="faq-toggle w-full text-left px-6 py-5 flex items-center justify-between gap-4"
+              type="button"
+              aria-expanded={i === 0 ? 'true' : 'false'}
+            >
+              <span class="font-display text-lg text-gold-light">{f.q}</span>
+              <span class="faq-icon text-gold text-2xl flex-shrink-0">+</span>
+            </button>
+            <div class="faq-answer px-6 text-muted leading-relaxed">{f.a}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 14 — BLOG PREVIEW ============ -->
+  <section class="bg-bg-alt py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">✦ Conocimiento espiritual</p>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-4">
+          Artículos y Contenido Espiritual
+        </h2>
+        <p class="text-muted max-w-2xl mx-auto">
+          Aprende sobre la tradición curanderil de Catemaco, las limpias espirituales y cómo
+          proteger tu vida y tu familia.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {blogPosts.map((p) => (
+          <a
+            href={`/blog/${p.slug}`}
+            class="group bg-bg rounded-lg overflow-hidden border border-gold/10 hover:border-gold/40 transition-all"
+          >
+            <div class="relative h-48 overflow-hidden">
+              <img
+                src={p.img}
+                alt={p.title}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex gap-3 text-xs uppercase tracking-wider mb-3">
+                <span class="text-gold">{p.cat}</span>
+                <span class="text-muted">{p.date}</span>
+              </div>
+              <h3 class="font-display text-xl text-text group-hover:text-gold-light transition-colors mb-3 leading-snug">
+                {p.title}
+              </h3>
+              <p class="text-muted text-sm leading-relaxed">{p.excerpt}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-12">
+        <a
+          href="/blog"
+          class="inline-block border-2 border-gold text-gold hover:bg-gold hover:text-bg font-semibold px-8 py-3 rounded-full transition-all"
+        >
+          Ver todos los artículos
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 15 — CTA FINAL ============ -->
+  <section id="contacto" class="relative py-24 sm:py-32 overflow-hidden">
+    <div
+      class="absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/images/altar-espiritual.jpg');"
+    >
+    </div>
+    <div class="absolute inset-0 bg-bg/90"></div>
+    <div class="relative max-w-3xl mx-auto px-6 text-center">
+      <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">✦ Contacto ✦</p>
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-6 text-text leading-tight">
+        ¿Llevas tiempo sufriendo algo que no puedes explicar?
+      </h2>
+      <p class="text-text/85 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
+        Don Jacinto ha acompañado a cientos de personas en el sur de California con casos que
+        parecían imposibles. Habla con él hoy mismo.
+      </p>
+
+      <div class="bg-bg-alt/80 backdrop-blur border border-gold/20 rounded-lg p-8 mb-10">
+        <div class="text-gold-light font-display text-xl mb-2">📍 1208 Venice Blvd</div>
+        <div class="text-text/85 mb-6">Los Angeles, CA 90006</div>
+        <div class="text-gold font-display text-3xl">{phone}</div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+        <a
+          href={phoneHref}
+          class="bg-gold hover:bg-gold-light text-bg font-semibold px-8 py-4 rounded-full transition-all"
+        >
+          📞 Llamar Ahora
+        </a>
+        <a
+          href={wa}
+          target="_blank"
+          rel="noopener"
+          class="border-2 border-gold text-gold hover:bg-gold hover:text-bg font-semibold px-8 py-4 rounded-full transition-all"
+        >
+          💬 WhatsApp
+        </a>
+      </div>
+
+      <p class="text-muted text-sm tracking-wide">
+        La primera llamada no tiene costo · Atención confidencial · Tradición de Catemaco, Veracruz
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="bg-bg-alt border-t border-gold/10 pt-20 pb-10">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h3 class="font-display text-2xl text-gold-light mb-2">Don Jacinto Nahual</h3>
+        <p class="text-muted text-sm tracking-wider uppercase">
+          Brujo Curandero · Chamán · Catemaco, Veracruz
+        </p>
+        <p class="text-muted text-sm mt-4">
+          1208 Venice Blvd, Los Angeles, CA 90006 ·
+          <a href={phoneHref} class="text-gold hover:text-gold-light">{phone}</a>
+        </p>
+      </div>
+
+      <div class="border-t border-gold/10 pt-10 mb-10">
+        <h4 class="font-display text-gold text-center mb-6 text-sm uppercase tracking-[0.25em]">
+          ✦ Ciudades atendidas ✦
+        </h4>
+        <div class="flex flex-wrap justify-center gap-x-4 gap-y-2">
+          {cities.map((c) => (
+            <a href={`/ciudad/${c.slug}`} class="text-muted text-xs hover:text-gold-light transition-colors">
+              {c.name}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="border-t border-gold/10 pt-10 text-center">
+        <a
+          href="/aviso-legal"
+          class="text-gold hover:text-gold-light text-sm uppercase tracking-[0.25em] transition-colors"
+        >
+          Aviso Legal y Términos de Servicio
+        </a>
+      </div>
+
+      <div class="text-center text-muted text-xs mt-10 pt-10 border-t border-gold/10">
+        © 2026 Don Jacinto Nahual · Todos los derechos reservados · Servicios de orientación
+        espiritual y práctica tradicional
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ BOTÓN FLOTANTE WHATSAPP ============ -->
+  <a
+    href={wa}
+    target="_blank"
+    rel="noopener"
+    aria-label="Contactar por WhatsApp"
+    class="fixed bottom-6 right-6 z-50 bg-gold hover:bg-gold-light text-bg font-semibold px-5 py-3 rounded-full shadow-2xl shadow-gold/30 flex items-center gap-2 transition-all hover:scale-105"
+  >
+    <span class="text-xl">💬</span>
+    <span class="hidden sm:inline text-sm">WhatsApp</span>
+  </a>
+
+  <script is:inline>
+    document.querySelectorAll('.faq-item').forEach((item) => {
+      const btn = item.querySelector('.faq-toggle');
+      btn.addEventListener('click', () => {
+        const open = item.dataset.open === 'true';
+        item.dataset.open = open ? 'false' : 'true';
+        btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      });
+    });
+  </script>
+
+  <!-- FAQPage schema para rich snippets en Google -->
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</Layout>
