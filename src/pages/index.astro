@@ -248,7 +248,7 @@ const faqSchema = {
   <!-- ============ SECCIÓN 1 — HERO ============ -->
   <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
     <picture style="position:absolute;inset:0;width:100%;height:100%;z-index:0;">
-      <source media="(max-width: 768px)" srcset="/images/don-jacinto-rezo-mobile.webp" type="image/webp">
+      <source media="(max-width: 768px)" srcset="/images/don-jacinto-rezo-mobile.webp" type="image/webp" width="800" height="450">
       <img
         src="/images/don-jacinto-rezo.webp"
         alt="Don Jacinto Nahual brujo curandero de Catemaco Veracruz guía espiritual Los Ángeles California"
@@ -396,14 +396,18 @@ const faqSchema = {
 
         <div class="relative">
           <div class="absolute -inset-4 border border-gold/30 rounded-lg"></div>
-          <img
-            src="/images/don-jacinto-curandero.webp"
-            alt="Don Jacinto Nahual brujo curandero de Catemaco Veracruz atendiendo consulta espiritual en Los Ángeles California"
-            width="875"
-            height="1313"
-            class="relative w-full h-auto rounded-lg shadow-2xl"
-            loading="lazy"
-          />
+          <picture>
+            <source media="(max-width: 1024px)" srcset="/images/don-jacinto-curandero-sm.webp" type="image/webp" width="637" height="956">
+            <img
+              src="/images/don-jacinto-curandero.webp"
+              alt="Don Jacinto Nahual brujo curandero de Catemaco Veracruz atendiendo consulta espiritual en Los Ángeles California"
+              width="875"
+              height="1313"
+              class="relative w-full h-auto rounded-lg shadow-2xl"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
         </div>
       </div>
     </div>
