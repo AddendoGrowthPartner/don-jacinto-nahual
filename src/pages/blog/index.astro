@@ -1,0 +1,133 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const posts = [
+  {
+    slug: 'brujeria-2026-04-15',
+    title: 'Brujería: cómo reconocerla, entenderla y saber qué hacer',
+    excerpt: 'Señales, diferencias entre problemas espirituales y emocionales, y cuándo tiene sentido buscar orientación tradicional.',
+    category: 'Brujería',
+    date: '15 de abril, 2026',
+    dateISO: '2026-04-15',
+    heroImg: '/images/don-jacinto-invocacion.webp',
+  },
+  {
+    slug: 'santeria-2026-04-15',
+    title: 'Santería: tradición, creencias y prácticas en la comunidad hispana',
+    excerpt: 'Raíces, rituales y cómo la santería acompaña a la comunidad latina en Estados Unidos.',
+    category: 'Santería',
+    date: '15 de abril, 2026',
+    dateISO: '2026-04-15',
+    heroImg: '/images/altar-espiritual.webp',
+  },
+  {
+    slug: 'que-es-una-limpia-espiritual',
+    title: '¿Qué es una limpia espiritual y cuándo necesitas una?',
+    excerpt: 'La tradición curanderil de Catemaco explicada: qué es, cómo se hace y cuándo tiene sentido pedir una.',
+    category: 'Limpias',
+    date: '10 de abril, 2026',
+    dateISO: '2026-04-10',
+    heroImg: '/images/limpia-velas.webp',
+  },
+  {
+    slug: 'senales-espirituales-relacion',
+    title: 'Señales espirituales en tu relación: cómo reconocerlas',
+    excerpt: 'Cuando el amor se enfría sin razón, cuando un tercero interfiere, cuando sientes que algo cambió de golpe.',
+    category: 'Amor',
+    date: '10 de abril, 2026',
+    dateISO: '2026-04-10',
+    heroImg: '/images/amor-pareja.webp',
+  },
+  {
+    slug: 'tradicion-curanderil-catemaco',
+    title: 'La tradición curanderil de Catemaco, Veracruz',
+    excerpt: 'Origen, linaje y filosofía del curanderismo veracruzano que Don Jacinto Nahual hereda de cuatro generaciones.',
+    category: 'Tradición',
+    date: '10 de abril, 2026',
+    dateISO: '2026-04-10',
+    heroImg: '/images/don-jacinto-retrato.webp',
+  },
+];
+---
+
+<Layout
+  title="Blog · Don Jacinto Nahual · Brujo Curandero en Los Ángeles"
+  description="Artículos sobre limpias espirituales, brujería, amarres de amor, tradición curanderil y protección energética. Publicados por Don Jacinto Nahual, curandero de Catemaco, Veracruz."
+>
+  <!-- ============ HERO ============ -->
+  <section class="relative py-20 sm:py-28 border-b border-[#C9A84C]/10">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <p class="text-[#C9A84C] text-xs tracking-[0.25em] uppercase mb-4">✦ Blog ✦</p>
+      <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6" style="color: #f5f0e8;">
+        Orientación espiritual para la vida que vivimos
+      </h1>
+      <p class="text-base sm:text-lg leading-relaxed max-w-2xl mx-auto" style="color: rgba(245, 240, 232, 0.75);">
+        Artículos sobre limpias, brujería, protección energética, amor y tradición curanderil.
+        Escritos desde la herencia de Catemaco, Veracruz, para la comunidad hispana del sur de California.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ LISTA DE ARTICULOS ============ -->
+  <section class="py-16 sm:py-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <ul class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 list-none p-0">
+        {posts.map((p) => (
+          <li>
+            <a
+              href={`/blog/${p.slug}`}
+              class="group block h-full bg-[#111] border border-[#C9A84C]/15 rounded-lg overflow-hidden hover:border-[#C9A84C]/50 transition-all"
+            >
+              <div class="aspect-[16/10] overflow-hidden">
+                <img
+                  src={p.heroImg}
+                  alt={p.title}
+                  width="800"
+                  height="500"
+                  loading="lazy"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div class="p-6">
+                <div class="flex gap-3 text-xs uppercase tracking-wider mb-3">
+                  <span style="color: #C9A84C;">{p.category}</span>
+                  <span style="color: rgba(245, 240, 232, 0.4);">·</span>
+                  <time datetime={p.dateISO} style="color: rgba(245, 240, 232, 0.6);">{p.date}</time>
+                </div>
+                <h2 class="font-display text-xl leading-snug mb-3 transition-colors" style="color: #f5f0e8;">
+                  {p.title}
+                </h2>
+                <p class="text-sm leading-relaxed" style="color: rgba(245, 240, 232, 0.7);">
+                  {p.excerpt}
+                </p>
+                <div class="mt-5 text-xs uppercase tracking-[0.2em] transition-colors" style="color: #C9A84C;">
+                  Leer artículo →
+                </div>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="py-16 border-t border-[#C9A84C]/10">
+    <div class="max-w-2xl mx-auto px-6 text-center">
+      <h2 class="font-display text-2xl sm:text-3xl mb-4" style="color: #f5f0e8;">
+        ¿Estás viviendo algo que no puedes explicar?
+      </h2>
+      <p class="text-base leading-relaxed mb-8" style="color: rgba(245, 240, 232, 0.8);">
+        Don Jacinto Nahual atiende consultas presenciales en Los Ángeles y orientación a distancia
+        por llamada o WhatsApp.
+      </p>
+      <a
+        href="/#contacto"
+        class="inline-block font-semibold px-8 py-3 rounded-full transition-all"
+        style="background-color: #C9A84C; color: #0D0D0D;"
+      >
+        Hablar con Don Jacinto
+      </a>
+    </div>
+  </section>
+</Layout>

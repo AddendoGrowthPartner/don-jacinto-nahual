@@ -1,0 +1,96 @@
+---
+const wa = 'https://wa.me/12135981928?text=Hola%20Don%20Jacinto%2C%20quisiera%20recibir%20orientaci%C3%B3n%20espiritual';
+---
+
+<nav
+  id="site-nav"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+  style="background-color: transparent;"
+>
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a
+      href="/"
+      class="font-display text-lg sm:text-xl tracking-wide"
+      style="color: #C9A84C;"
+    >
+      Don Jacinto Nahual
+    </a>
+
+    <ul class="hidden md:flex items-center gap-8 text-sm tracking-wide uppercase">
+      <li><a href="/" class="text-white hover:text-[#E8C97A] transition-colors">Inicio</a></li>
+      <li><a href="/blog" class="text-white hover:text-[#E8C97A] transition-colors">Blog</a></li>
+      <li><a href="/#contacto" class="text-white hover:text-[#E8C97A] transition-colors">Contacto</a></li>
+      <li>
+        <a
+          href={wa}
+          target="_blank"
+          rel="noopener"
+          class="border border-[#C9A84C] px-4 py-2 rounded-full hover:bg-[#C9A84C] hover:text-[#0D0D0D] transition-colors"
+          style="color: #C9A84C;"
+        >
+          WhatsApp
+        </a>
+      </li>
+    </ul>
+
+    <button
+      id="nav-burger"
+      class="md:hidden flex flex-col gap-1.5 p-2"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+    >
+      <span class="block w-6 h-0.5 bg-white transition-all"></span>
+      <span class="block w-6 h-0.5 bg-white transition-all"></span>
+      <span class="block w-6 h-0.5 bg-white transition-all"></span>
+    </button>
+  </div>
+
+  <div
+    id="nav-mobile-panel"
+    class="md:hidden overflow-hidden transition-[max-height] duration-300"
+    style="max-height: 0; background-color: #0D0D0D;"
+  >
+    <ul class="flex flex-col gap-2 px-6 py-4 text-sm tracking-wide uppercase">
+      <li><a href="/" class="block py-2 text-white hover:text-[#E8C97A] transition-colors">Inicio</a></li>
+      <li><a href="/blog" class="block py-2 text-white hover:text-[#E8C97A] transition-colors">Blog</a></li>
+      <li><a href="/#contacto" class="block py-2 text-white hover:text-[#E8C97A] transition-colors">Contacto</a></li>
+      <li>
+        <a
+          href={wa}
+          target="_blank"
+          rel="noopener"
+          class="block py-2 font-semibold"
+          style="color: #C9A84C;"
+        >
+          WhatsApp
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<script is:inline>
+  (function () {
+    const nav = document.getElementById('site-nav');
+    const burger = document.getElementById('nav-burger');
+    const panel = document.getElementById('nav-mobile-panel');
+
+    const applyScrollStyle = () => {
+      if (window.scrollY > 20) {
+        nav.style.backgroundColor = '#0D0D0D';
+        nav.style.borderBottom = '1px solid rgba(201, 168, 76, 0.15)';
+      } else {
+        nav.style.backgroundColor = 'transparent';
+        nav.style.borderBottom = 'none';
+      }
+    };
+    applyScrollStyle();
+    window.addEventListener('scroll', applyScrollStyle, { passive: true });
+
+    burger.addEventListener('click', () => {
+      const open = panel.style.maxHeight && panel.style.maxHeight !== '0px';
+      panel.style.maxHeight = open ? '0px' : panel.scrollHeight + 'px';
+      burger.setAttribute('aria-expanded', String(!open));
+    });
+  })();
+</script>
