@@ -18,9 +18,42 @@ const { title, description, heroImg, heroAlt, category, date, readTime, h1, meta
 
 const phone = '(213) 598-1928';
 const wa = 'https://wa.me/12135981928';
+
+// Normaliza fechas a ISO 8601 para schema.org. Acepta "2026-04-21" tal cual;
+// "Marzo 2026" → "2026-03-01". Si no parsea, omite el campo.
+const MONTHS_ES: Record<string, string> = {
+  enero: '01', febrero: '02', marzo: '03', abril: '04', mayo: '05', junio: '06',
+  julio: '07', agosto: '08', septiembre: '09', octubre: '10', noviembre: '11', diciembre: '12',
+};
+function toISODate(d: string | undefined): string | undefined {
+  if (!d) return undefined;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(d)) return d;
+  const m = d.toLowerCase().match(/^([a-záéíóú]+)\s+(\d{4})$/);
+  if (m && MONTHS_ES[m[1]]) return `${m[2]}-${MONTHS_ES[m[1]]}-01`;
+  return undefined;
+}
+const isoDate = toISODate(date);
+const absUrl = new URL(Astro.url.pathname, Astro.site).href;
+const absImg = heroImg ? new URL(heroImg, Astro.site).href : undefined;
+
+const blogPostingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: h1 ?? title,
+  description,
+  image: absImg,
+  datePublished: isoDate,
+  dateModified: isoDate,
+  author: { '@id': 'https://donjacintonahual.com/#person' },
+  publisher: { '@id': 'https://donjacintonahual.com/#business' },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': absUrl },
+  articleSection: category,
+  inLanguage: 'es',
+};
 ---
 
 <Layout title={metaTitle ?? title} description={description} preloadHero={heroImg}>
+  <script type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
   <!-- ============ HERO ============ -->
   <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
     <img
