@@ -19,17 +19,19 @@ const { title, description, heroImg, heroAlt, category, date, readTime, h1, meta
 const phone = '(213) 598-1928';
 const wa = 'https://wa.me/12135981928';
 
-// Normaliza fechas a ISO 8601 para schema.org. Acepta "2026-04-21" tal cual;
-// "Marzo 2026" → "2026-03-01". Si no parsea, omite el campo.
+// Normaliza fechas a ISO 8601 con zona horaria Los Angeles (-07:00 PDT).
+// Acepta "2026-04-21" → "2026-04-21T00:00:00-07:00"; "Marzo 2026" → "2026-03-01T00:00:00-07:00".
+// Si no parsea, omite el campo para no emitir valor invalido.
+const TZ_LA = 'T00:00:00-07:00';
 const MONTHS_ES: Record<string, string> = {
   enero: '01', febrero: '02', marzo: '03', abril: '04', mayo: '05', junio: '06',
   julio: '07', agosto: '08', septiembre: '09', octubre: '10', noviembre: '11', diciembre: '12',
 };
 function toISODate(d: string | undefined): string | undefined {
   if (!d) return undefined;
-  if (/^\d{4}-\d{2}-\d{2}$/.test(d)) return d;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(d)) return `${d}${TZ_LA}`;
   const m = d.toLowerCase().match(/^([a-záéíóú]+)\s+(\d{4})$/);
-  if (m && MONTHS_ES[m[1]]) return `${m[2]}-${MONTHS_ES[m[1]]}-01`;
+  if (m && MONTHS_ES[m[1]]) return `${m[2]}-${MONTHS_ES[m[1]]}-01${TZ_LA}`;
   return undefined;
 }
 const isoDate = toISODate(date);
@@ -44,7 +46,10 @@ const blogPostingSchema = {
   image: absImg,
   datePublished: isoDate,
   dateModified: isoDate,
-  author: { '@id': 'https://donjacintonahual.com/#person' },
+  author: {
+    '@id': 'https://donjacintonahual.com/#person',
+    url: 'https://donjacintonahual.com/',
+  },
   publisher: { '@id': 'https://donjacintonahual.com/#business' },
   mainEntityOfPage: { '@type': 'WebPage', '@id': absUrl },
   articleSection: category,
