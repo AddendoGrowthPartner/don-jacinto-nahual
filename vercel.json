@@ -50,6 +50,21 @@
       "source": "/blog/que-es-una-limpia-espiritual",
       "destination": "/blog/limpia-espiritual",
       "permanent": true
+    },
+    {
+      "source": "/blog/amarres-de-amor-2026-04-16",
+      "destination": "/blog/amarres-de-amor",
+      "permanent": true
+    },
+    {
+      "source": "/blog/amarres-de-amor-2026-04-24",
+      "destination": "/blog/amarres-de-amor",
+      "permanent": true
+    },
+    {
+      "source": "/blog/amarres-de-amor-2026-05-01",
+      "destination": "/blog/amarres-de-amor",
+      "permanent": true
     }
   ]
 }
