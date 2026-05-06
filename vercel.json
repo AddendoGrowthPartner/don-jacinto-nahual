@@ -15,6 +15,16 @@
       "source": "/blog/lectura-de-cartas-2026-04-27",
       "destination": "/blog/lectura-de-cartas",
       "permanent": true
+    },
+    {
+      "source": "/blog/hechizos-de-amor-2026-04-20",
+      "destination": "/blog/hechizos-de-amor",
+      "permanent": true
+    },
+    {
+      "source": "/blog/hechizos-de-amor-2026-04-28",
+      "destination": "/blog/hechizos-de-amor",
+      "permanent": true
     }
   ]
 }
