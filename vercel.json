@@ -5,6 +5,16 @@
       "has": [{ "type": "host", "value": "donjacintonahual.com" }],
       "destination": "https://www.donjacintonahual.com/$1",
       "permanent": true
+    },
+    {
+      "source": "/blog/lectura-de-cartas-2026-04-19",
+      "destination": "/blog/lectura-de-cartas",
+      "permanent": true
+    },
+    {
+      "source": "/blog/lectura-de-cartas-2026-04-27",
+      "destination": "/blog/lectura-de-cartas",
+      "permanent": true
     }
   ]
 }
