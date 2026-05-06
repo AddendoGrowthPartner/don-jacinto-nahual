@@ -25,6 +25,16 @@
       "source": "/blog/hechizos-de-amor-2026-04-28",
       "destination": "/blog/hechizos-de-amor",
       "permanent": true
+    },
+    {
+      "source": "/blog/brujo-cerca-de-mi-2026-04-18",
+      "destination": "/blog/brujo-cerca-de-mi",
+      "permanent": true
+    },
+    {
+      "source": "/blog/brujo-cerca-de-mi-2026-04-26",
+      "destination": "/blog/brujo-cerca-de-mi",
+      "permanent": true
     }
   ]
 }
