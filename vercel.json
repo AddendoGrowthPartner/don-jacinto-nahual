@@ -35,6 +35,21 @@
       "source": "/blog/brujo-cerca-de-mi-2026-04-26",
       "destination": "/blog/brujo-cerca-de-mi",
       "permanent": true
+    },
+    {
+      "source": "/blog/limpia-espiritual-2026-04-17",
+      "destination": "/blog/limpia-espiritual",
+      "permanent": true
+    },
+    {
+      "source": "/blog/limpia-espiritual-2026-04-25",
+      "destination": "/blog/limpia-espiritual",
+      "permanent": true
+    },
+    {
+      "source": "/blog/que-es-una-limpia-espiritual",
+      "destination": "/blog/limpia-espiritual",
+      "permanent": true
     }
   ]
 }
