@@ -65,6 +65,21 @@
       "source": "/blog/amarres-de-amor-2026-05-01",
       "destination": "/blog/amarres-de-amor",
       "permanent": true
+    },
+    {
+      "source": "/blog/brujeria-2026-04-15",
+      "destination": "/blog/brujeria",
+      "permanent": true
+    },
+    {
+      "source": "/blog/brujeria-2026-04-23",
+      "destination": "/blog/brujeria",
+      "permanent": true
+    },
+    {
+      "source": "/blog/brujeria-2026-04-30",
+      "destination": "/blog/brujeria",
+      "permanent": true
     }
   ]
 }
