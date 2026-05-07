@@ -80,6 +80,21 @@
       "source": "/blog/brujeria-2026-04-30",
       "destination": "/blog/brujeria",
       "permanent": true
+    },
+    {
+      "source": "/blog/santeria-2026-04-15",
+      "destination": "/blog/santeria",
+      "permanent": true
+    },
+    {
+      "source": "/blog/santeria-2026-04-22",
+      "destination": "/blog/santeria",
+      "permanent": true
+    },
+    {
+      "source": "/blog/santeria-2026-04-29",
+      "destination": "/blog/santeria",
+      "permanent": true
     }
   ]
 }
