@@ -1,0 +1,228 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const phone = '(213) 598-1928';
+const phoneHref = 'tel:+12135981928';
+const wa = 'https://wa.me/12135981928?text=Hola%20Don%20Jacinto%2C%20me%20gustaría%20hablar%20sobre%20una%20consulta';
+
+const heroImg = '/images/don-jacinto-curandero.webp';
+const heroAlt =
+  'Don Jacinto Nahual brujo curandero de Catemaco en Los Ángeles California';
+
+const servicios = [
+  {
+    href: '/servicio/limpias-espirituales/',
+    name: 'Limpias espirituales',
+    desc: 'el primer paso de la tradición curanderil',
+  },
+  {
+    href: '/servicio/mal-de-ojo/',
+    name: 'Mal de ojo',
+    desc: 'limpia tradicional para esa creencia ancestral',
+  },
+  {
+    href: '/servicio/proteccion-espiritual/',
+    name: 'Protección espiritual',
+    desc: 'ante envidia, mal puesto o brujería',
+  },
+  {
+    href: '/servicio/ayuda-espiritual-amor/',
+    name: 'Ayuda espiritual en el amor',
+    desc: 'cuando una relación se pierde sin razón',
+  },
+  {
+    href: '/servicio/curaciones-espirituales/',
+    name: 'Curaciones espirituales',
+    desc: 'acompañamiento cuando la medicina no tiene respuesta',
+  },
+];
+---
+
+<Layout
+  title="Sobre Don Jacinto Nahual — Curandero de Catemaco en Los Ángeles"
+  description="Don Jacinto Nahual: brujo curandero nacido en Catemaco, Veracruz, con más de 30 años de práctica espiritual atendiendo a la comunidad latina del sur de California. Tradición curanderil mexicana en Los Ángeles."
+  preloadHero={heroImg}
+  robots="index, follow"
+>
+  <!-- ============ HERO ============ -->
+  <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+    <img
+      src={heroImg}
+      alt={heroAlt}
+      width="1920"
+      height="1080"
+      loading="eager"
+      fetchpriority="high"
+      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;"
+    />
+    <div class="absolute inset-0 bg-black/75" style="z-index:1;"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-bg/40 via-transparent to-bg" style="z-index:1;"></div>
+
+    <div class="relative z-10 max-w-3xl mx-auto px-6 py-24 text-center">
+      <div class="inline-block mb-6 px-5 py-2 border border-gold/40 rounded-full">
+        <span class="text-gold-light text-xs sm:text-sm tracking-[0.2em] uppercase">
+          ✦ Tradición de Catemaco, Veracruz ✦
+        </span>
+      </div>
+
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-text leading-tight">
+        Don Jacinto Nahual
+      </h1>
+      <h2 class="font-display italic text-2xl sm:text-3xl text-gold mb-8">
+        Brujo curandero · Chamán · Guía espiritual
+      </h2>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href={phoneHref}
+          class="bg-gold hover:bg-gold-light text-bg font-semibold px-8 py-4 rounded-full transition-all hover:scale-105"
+        >
+          📞 Llamar: {phone}
+        </a>
+        <a
+          href={wa}
+          target="_blank"
+          rel="noopener"
+          style="display:inline-flex;align-items:center;gap:0.5rem;background:#0D5C2E;color:white;font-weight:600;font-size:0.875rem;padding:0.75rem 1.5rem;border-radius:9999px;text-decoration:none;"
+        >
+          <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          💬 WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BACK LINK ============ -->
+  <section class="py-8 border-b border-gold/10">
+    <div class="max-w-[720px] mx-auto px-6">
+      <a
+        href="/"
+        class="text-gold hover:text-gold-light text-sm tracking-wider uppercase transition-colors"
+      >
+        ← Volver al inicio
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ CONTENIDO ============ -->
+  <article class="py-16 sm:py-20">
+    <div class="max-w-[720px] mx-auto px-6">
+
+      <!-- Sección 1 -->
+      <div class="mb-16">
+        <h2 class="font-display text-2xl sm:text-3xl md:text-4xl text-gold-light mb-6 leading-tight">
+          De Catemaco a Los Ángeles
+        </h2>
+        <div class="space-y-6 text-text/85 text-base sm:text-lg leading-relaxed">
+          <p>
+            Don Jacinto Nahual nació en Catemaco, Veracruz — la tierra reconocida en toda América Latina como el centro de la tradición curanderil mexicana. Creció rodeado de las prácticas espirituales que se han transmitido de generación en generación en esa región del sureste mexicano: las limpias con hierbas, el rezo ancestral, la imposición de manos, la lectura de las velas.
+          </p>
+          <p>
+            Con los años, Don Jacinto trasladó su práctica a Los Ángeles, donde hoy atiende a la comunidad latina del sur de California — en Los Ángeles, Santa Ana, Ontario, San Fernando y otras ciudades de la región. La tradición que practica no se aprende en libros ni cursos: es conocimiento transmitido por convivencia, por escuchar y por hacer junto a los maestros que vinieron antes.
+          </p>
+        </div>
+      </div>
+
+      <!-- Sección 2 -->
+      <div class="mb-16">
+        <h2 class="font-display text-2xl sm:text-3xl md:text-4xl text-gold-light mb-6 leading-tight">
+          Más de 30 años de práctica espiritual
+        </h2>
+        <div class="space-y-6 text-text/85 text-base sm:text-lg leading-relaxed">
+          <p>
+            Don Jacinto lleva más de tres décadas acompañando espiritualmente a quienes lo buscan. En ese tiempo ha visto pasar muchas historias: personas que sienten que algo invisible los está bloqueando, parejas que viven distancia sin razón aparente, familias que cargan con malestares que la medicina no logra explicar, gente que simplemente quiere encontrar un poco de paz.
+          </p>
+          <p>
+            Cada caso es distinto. Don Jacinto no aplica fórmulas iguales para todos — escucha primero, evalúa después, y si considera que puede acompañarte espiritualmente desde la tradición, te lo dice con honestidad. Si considera que tu situación requiere atención médica, psicológica u otro tipo de ayuda profesional, también te lo dice.
+          </p>
+        </div>
+      </div>
+
+      <!-- Sección 3 -->
+      <div class="mb-16">
+        <h2 class="font-display text-2xl sm:text-3xl md:text-4xl text-gold-light mb-6 leading-tight">
+          Cómo trabaja Don Jacinto
+        </h2>
+        <div class="space-y-6 text-text/85 text-base sm:text-lg leading-relaxed">
+          <p>
+            El método de Don Jacinto es el de la tradición curanderil de Catemaco: hierbas frescas, oración profunda, agua bendita, copal, velas, imposición de manos y, según el caso, huevo. No usa tecnología moderna, no inventa rituales nuevos, no agrega elementos foráneos. Es la tradición tal como se transmitió.
+          </p>
+          <p>
+            La primera conversación es siempre gratis y sin compromiso. Don Jacinto escucha tu caso, hace las preguntas necesarias y te dice con franqueza si considera que puede ayudarte o no. Si trabajan juntos, el costo, los detalles y el proceso quedan claros desde el principio — sin sorpresas ni cobros adicionales.
+          </p>
+        </div>
+      </div>
+
+      <!-- Sección 4 -->
+      <div class="mb-16">
+        <h2 class="font-display text-2xl sm:text-3xl md:text-4xl text-gold-light mb-6 leading-tight">
+          Lo que Don Jacinto no promete
+        </h2>
+        <div class="space-y-6 text-text/85 text-base sm:text-lg leading-relaxed">
+          <p>
+            Don Jacinto Nahual trabaja desde la tradición espiritual, no desde la medicina. No diagnostica enfermedades, no garantiza curas, no promete resultados específicos. Su trabajo es complementario al de los profesionales de la salud, nunca un reemplazo de ellos. Si atraviesas una crisis médica, psicológica o emocional grave, lo más responsable es buscar atención profesional especializada antes de cualquier consulta espiritual.
+          </p>
+          <p>
+            Lo que sí ofrece es honestidad: una evaluación clara de si la tradición curanderil puede acompañarte y, si decide trabajar contigo, una práctica espiritual seria, transmitida de generación en generación desde Catemaco.
+          </p>
+        </div>
+      </div>
+
+      <!-- Sección 5 -->
+      <div class="mb-16">
+        <h2 class="font-display text-2xl sm:text-3xl md:text-4xl text-gold-light mb-6 leading-tight">
+          Servicios espirituales
+        </h2>
+        <p class="text-text/85 text-base sm:text-lg leading-relaxed mb-6">
+          Don Jacinto trabaja con varios tipos de servicios dentro de la tradición:
+        </p>
+        <ul class="space-y-3">
+          {servicios.map((s) => (
+            <li class="flex gap-3 text-text/85 leading-relaxed">
+              <span class="text-gold flex-shrink-0 mt-1">✦</span>
+              <span>
+                <a
+                  href={s.href}
+                  class="text-gold underline hover:text-gold-light transition-colors"
+                >
+                  {s.name}
+                </a>
+                {' — '}{s.desc}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ============ CTA FINAL ============ -->
+  <section class="py-16 sm:py-20 bg-bg-alt border-t border-gold/10">
+    <div class="max-w-[720px] mx-auto px-6">
+      <div class="border border-gold/20 rounded-lg p-8 sm:p-10 bg-bg/60 text-center">
+        <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">✦ Primer paso ✦</p>
+        <p class="text-text/90 text-lg sm:text-xl leading-relaxed mb-8">
+          Si llevas tiempo con algo que no sabes cómo nombrar — un cansancio que no se va, una mala suerte que se repite, una pérdida que no se cierra — cuéntale tu caso a Don Jacinto. La primera conversación es gratis y sin compromisos.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href={phoneHref}
+            class="bg-gold hover:bg-gold-light text-bg font-semibold px-8 py-4 rounded-full transition-all hover:scale-105"
+          >
+            📞 Llamar: {phone}
+          </a>
+          <a
+            href={wa}
+            target="_blank"
+            rel="noopener"
+            style="display:inline-flex;align-items:center;gap:0.5rem;background:#0D5C2E;color:white;font-weight:600;font-size:0.875rem;padding:0.75rem 1.5rem;border-radius:9999px;text-decoration:none;"
+          >
+            <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            💬 WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
