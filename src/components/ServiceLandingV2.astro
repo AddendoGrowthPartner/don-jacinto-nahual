@@ -1,0 +1,526 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WhatsAppLink from './WhatsAppLink.astro';
+
+export interface ServiceLandingV2Props {
+  pageTitle: string;
+  pageDescription: string;
+  badge: string;
+  h1: string;
+  h2: string;
+  heroUSP: string;
+  heroImage: string;
+  heroImageMobile?: string;
+  heroImageAlt: string;
+  geoCities: string;
+
+  problemTitle: string;
+  problemParagraphs: string[];
+  problemSignals: string[];
+
+  solutionTitle: string;
+  solutionDescription: string;
+  solutionVariability: string;
+
+  credentialsImage: string;
+  credentialsImageAlt: string;
+  credentialsImageMobile?: string;
+  credentialsTitle: string;
+  credentialsManifesto: string[];
+  credentialsMetrics: { label: string; value: string }[];
+
+  honestyTitle: string;
+  honestyParagraphs: string[];
+  honestyGuarantees: string[];
+
+  processSteps: { number: string; title: string; description: string }[];
+
+  testimonials?: {
+    quote: string;
+    name: string;
+    city: string;
+    rating?: number;
+  }[];
+
+  faqs: { question: string; answer: string }[];
+
+  cities: { name: string; slug: string }[];
+
+  gallery?: { src: string; caption: string; alt: string }[];
+
+  finalCtaTitle: string;
+  finalCtaParagraph: string;
+
+  whatsappPrefilledMessage: string;
+}
+
+const props = Astro.props as ServiceLandingV2Props;
+const {
+  pageTitle,
+  pageDescription,
+  badge,
+  h1,
+  h2,
+  heroUSP,
+  heroImage,
+  heroImageMobile,
+  heroImageAlt,
+  geoCities,
+  problemTitle,
+  problemParagraphs,
+  problemSignals,
+  solutionTitle,
+  solutionDescription,
+  solutionVariability,
+  credentialsImage,
+  credentialsImageAlt,
+  credentialsImageMobile,
+  credentialsTitle,
+  credentialsManifesto,
+  credentialsMetrics,
+  honestyTitle,
+  honestyParagraphs,
+  honestyGuarantees,
+  processSteps,
+  testimonials,
+  faqs,
+  cities,
+  gallery,
+  finalCtaTitle,
+  finalCtaParagraph,
+  whatsappPrefilledMessage,
+} = props;
+
+const phone = '(213) 598-1928';
+const phoneHref = 'tel:+12135981928';
+
+const hasTestimonials = Array.isArray(testimonials) && testimonials.length > 0;
+const hasGallery = Array.isArray(gallery) && gallery.length > 0;
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.answer,
+    },
+  })),
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} preloadHero={heroImage}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <!-- ============ SECCIÓN 1 — HERO ============ -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <picture style="position:absolute;inset:0;width:100%;height:100%;z-index:0;">
+      {heroImageMobile && (
+        <source media="(max-width: 768px)" srcset={heroImageMobile} type="image/webp" width="800" height="450" />
+      )}
+      <img
+        src={heroImage}
+        alt={heroImageAlt}
+        width="1920"
+        height="1080"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+        style="width:100%;height:100%;object-fit:cover;object-position:center;"
+      />
+    </picture>
+    <div class="absolute inset-0 bg-black/70" style="z-index:1;"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-bg/40 via-transparent to-bg" style="z-index:1;"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-6 py-24 text-center">
+      <div class="inline-block mb-6 px-5 py-2 border border-gold/40 rounded-full">
+        <span class="text-gold-light text-xs sm:text-sm tracking-[0.2em] uppercase">
+          {badge}
+        </span>
+      </div>
+
+      <h1 class="font-display text-5xl sm:text-6xl md:text-7xl font-bold mb-3 text-text">
+        {h1}
+      </h1>
+      <h2 class="font-display italic text-2xl sm:text-3xl md:text-4xl text-gold mb-8">
+        {h2}
+      </h2>
+
+      <p class="text-lg sm:text-xl text-text/85 max-w-3xl mx-auto leading-relaxed mb-10">
+        {heroUSP}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+        <a
+          href={phoneHref}
+          class="bg-gold hover:bg-gold-light text-bg font-semibold px-8 py-4 rounded-full transition-all hover:scale-105 shadow-lg shadow-gold/20"
+        >
+          📞 Llamar: {phone}
+        </a>
+        <WhatsAppLink
+          prefilledMessage={whatsappPrefilledMessage}
+          style="display:inline-flex;align-items:center;gap:0.5rem;background:#0D5C2E;color:white;font-weight:600;font-size:0.875rem;padding:0.75rem 1.5rem;border-radius:9999px;text-decoration:none;"
+        >
+          <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          💬 WhatsApp
+        </WhatsAppLink>
+      </div>
+
+      <p class="text-xs sm:text-sm text-muted tracking-widest">
+        ✦ {geoCities} ✦
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 2 — PROBLEMA ============ -->
+  <section class="bg-bg py-20 sm:py-28 border-t border-gold/10">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">✦ Tal vez te suene familiar ✦</p>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl leading-tight">
+          {problemTitle}
+        </h2>
+      </div>
+      <div class="space-y-6 text-text/85 text-lg leading-relaxed">
+        {problemParagraphs.map((p) => <p set:html={p} />)}
+      </div>
+
+      <div class="mt-12 border-t border-gold/15 pt-8">
+        <p class="text-xs uppercase tracking-[0.2em] text-gold mb-4 text-center">Señales reconocibles</p>
+        <ul class="grid sm:grid-cols-2 gap-3 text-muted">
+          {problemSignals.map((s) => (
+            <li class="flex gap-3 items-start">
+              <span class="text-gold mt-1">✦</span>
+              <span>{s}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 3 — SOLUCIÓN (CÓMO TRABAJA) ============ -->
+  <section class="bg-bg-alt py-20 sm:py-28">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">✦ Cómo trabaja Don Jacinto ✦</p>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl leading-tight">
+          {solutionTitle}
+        </h2>
+      </div>
+      <div class="space-y-6 text-text/85 text-lg leading-relaxed">
+        <p set:html={solutionDescription} />
+        <p class="italic text-gold-light">{solutionVariability}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 4 — CREDENCIALES ============ -->
+  <section class="py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div>
+          <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">
+            ✦ Nacido en Catemaco, Veracruz, México
+          </p>
+          <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-6 leading-tight">
+            {credentialsTitle}
+          </h2>
+
+          <div class="space-y-4 text-text/85 text-base sm:text-lg leading-relaxed">
+            {credentialsManifesto.map((p) => <p set:html={p} />)}
+          </div>
+
+          <div class="grid grid-cols-2 gap-6 my-10">
+            {credentialsMetrics.map((m) => (
+              <div class="border-l-2 border-gold pl-4">
+                <div class="font-display text-3xl text-gold">{m.value}</div>
+                <div class="text-xs uppercase tracking-wider text-muted mt-1">{m.label}</div>
+              </div>
+            ))}
+          </div>
+
+          <a
+            href={phoneHref}
+            class="inline-block bg-gold hover:bg-gold-light text-bg font-semibold px-8 py-4 rounded-full transition-all"
+          >
+            📞 Agendar Consulta Personal
+          </a>
+        </div>
+
+        <div class="relative">
+          <div class="absolute -inset-4 border border-gold/30 rounded-lg"></div>
+          <picture>
+            {credentialsImageMobile && (
+              <source media="(max-width: 1024px)" srcset={credentialsImageMobile} type="image/webp" width="637" height="956" />
+            )}
+            <img
+              src={credentialsImage}
+              alt={credentialsImageAlt}
+              width="875"
+              height="1313"
+              class="relative w-full h-auto rounded-lg shadow-2xl"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 5 — CTA MEDIO ============ -->
+  <section class="relative py-20 sm:py-24 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-gold-dark via-gold/30 to-gold-dark"></div>
+    <div class="absolute inset-0 bg-bg/70"></div>
+    <div class="relative max-w-3xl mx-auto px-6 text-center">
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-6 text-gold-light">
+        ¿Tu situación parece no tener solución?
+      </h2>
+      <p class="text-text/90 text-lg leading-relaxed mb-10">
+        Don Jacinto Nahual atiende casos que la medicina, la psicología o la ciencia no han
+        podido resolver. Décadas de práctica espiritual en la tradición ancestral de Catemaco al
+        servicio de tu caso.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href={phoneHref}
+          class="bg-gold hover:bg-gold-light text-bg font-semibold px-8 py-4 rounded-full transition-all"
+        >
+          📞 Llamar: {phone}
+        </a>
+        <WhatsAppLink
+          prefilledMessage={whatsappPrefilledMessage}
+          style="display:inline-flex;align-items:center;gap:0.5rem;background:#0D5C2E;color:white;font-weight:600;font-size:0.875rem;padding:0.75rem 1.5rem;border-radius:9999px;text-decoration:none;"
+        >
+          <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          💬 WhatsApp
+        </WhatsAppLink>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 6 — HONESTIDAD ANTE TODO ============ -->
+  <section class="py-20 sm:py-28">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="border border-gold/30 rounded-lg p-10 sm:p-14 bg-bg-alt/50 relative">
+        <div class="absolute -top-4 left-10 bg-bg px-4 text-gold text-xs tracking-[0.25em] uppercase">
+          ✦ Honestidad ante todo ✦
+        </div>
+        <h2 class="font-display text-2xl sm:text-3xl md:text-4xl mb-6 text-gold-light leading-tight">
+          {honestyTitle}
+        </h2>
+        <div class="space-y-4 text-text/85 text-base sm:text-lg leading-relaxed">
+          {honestyParagraphs.map((p) => <p set:html={p} />)}
+        </div>
+
+        <ul class="mt-8 grid sm:grid-cols-2 gap-3">
+          {honestyGuarantees.map((g) => (
+            <li class="flex gap-3 items-start text-gold-light">
+              <span class="text-gold mt-1">✓</span>
+              <span>{g}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {hasGallery && (
+    <!-- ============ SECCIÓN 7 — GALERÍA (opcional) ============ -->
+    <section class="bg-bg-alt py-20 sm:py-28">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">✦ Tradición viva ✦</p>
+          <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-4">Galería Espiritual</h2>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {gallery!.map((g) => (
+            <div class="group relative aspect-square overflow-hidden rounded-lg">
+              <img
+                src={g.src}
+                alt={g.alt}
+                width="400"
+                height="400"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-bg via-bg/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-3">
+                <p class="text-text text-xs sm:text-sm leading-tight">{g.caption}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ============ SECCIÓN 8 — PROCESO ============ -->
+  <section class={`${hasGallery ? '' : 'bg-bg-alt'} py-20 sm:py-28`}>
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">✦ Cómo trabajamos ✦</p>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-4">¿Cómo es una consulta?</h2>
+        <p class="text-muted max-w-2xl mx-auto">
+          Un proceso pausado, confidencial y respetuoso desde el primer contacto.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {processSteps.map((p) => (
+          <div class="relative bg-bg p-8 rounded-lg border border-gold/10">
+            <div class="font-display text-5xl text-gold mb-4">{p.number}</div>
+            <h3 class="font-display text-xl text-gold-light mb-3">{p.title}</h3>
+            <p class="text-muted text-sm leading-relaxed">{p.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {hasTestimonials && (
+    <!-- ============ SECCIÓN 9 — TESTIMONIOS (opcional) ============ -->
+    <section class="bg-bg-alt py-20 sm:py-28">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">
+            ✦ Lo que dicen quienes le consultaron
+          </p>
+          <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-4">
+            Testimonios de Personas Reales
+          </h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          {testimonials!.map((t) => (
+            <div class="bg-bg p-8 rounded-lg border border-gold/10 flex flex-col">
+              <div class="text-gold mb-4 text-lg">{'★'.repeat(t.rating ?? 5)}</div>
+              <p class="text-text/85 italic leading-relaxed mb-6 flex-grow">"{t.quote}"</p>
+              <div class="border-t border-gold/20 pt-4">
+                <div class="font-display text-gold-light">{t.name}</div>
+                <div class="text-muted text-xs uppercase tracking-wider mt-1">{t.city}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ============ SECCIÓN 10 — CIUDADES ============ -->
+  <section class={`${hasTestimonials ? '' : 'bg-bg-alt'} py-20 sm:py-28`}>
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">
+          ✦ Presencia en el sur de California
+        </p>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-4">
+          Brujo Curandero Cerca de Ti
+        </h2>
+        <p class="text-muted max-w-2xl mx-auto">
+          Don Jacinto Nahual atiende a la comunidad latina en estas ciudades con consultas
+          personales presenciales.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+        {cities.map((c) => (
+          <a
+            href={`/ciudad/${c.slug}/`}
+            class="bg-bg-alt border border-gold/10 hover:border-gold/40 hover:bg-bg-alt/80 px-4 py-3 rounded-md text-center text-sm text-text/90 hover:text-gold-light transition-all"
+          >
+            {c.name}
+          </a>
+        ))}
+      </div>
+      <p class="text-center text-muted text-sm mt-10">
+        ¿Tu ciudad no aparece? Don Jacinto atiende a personas de toda el área metropolitana de
+        Los Ángeles.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 11 — FAQ ============ -->
+  <section class="bg-bg-alt py-20 sm:py-28">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">✦ Preguntas frecuentes ✦</p>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-4">¿Tienes dudas?</h2>
+      </div>
+      <div class="space-y-4">
+        {faqs.map((f, i) => (
+          <div
+            class="faq-item bg-bg rounded-lg border border-gold/10"
+            data-open={i === 0 ? 'true' : 'false'}
+          >
+            <button
+              class="faq-toggle w-full text-left px-6 py-5 flex items-center justify-between gap-4"
+              type="button"
+              aria-expanded={i === 0 ? 'true' : 'false'}
+            >
+              <span class="font-display text-lg text-gold-light">{f.question}</span>
+              <span class="faq-icon text-gold text-2xl flex-shrink-0">+</span>
+            </button>
+            <div class="faq-answer px-6 text-muted leading-relaxed">{f.answer}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓN 12 — CTA FINAL ============ -->
+  <section id="contacto" class="relative py-24 sm:py-32 overflow-hidden">
+    <div
+      class="absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/images/altar-espiritual.webp');"
+    >
+    </div>
+    <div class="absolute inset-0 bg-bg/90"></div>
+    <div class="relative max-w-3xl mx-auto px-6 text-center">
+      <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">✦ Contacto ✦</p>
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-6 text-text leading-tight">
+        {finalCtaTitle}
+      </h2>
+      <p class="text-text/85 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
+        {finalCtaParagraph}
+      </p>
+
+      <div class="bg-bg-alt/80 backdrop-blur border border-gold/20 rounded-lg p-8 mb-10">
+        <div class="text-gold-light font-display text-xl mb-2">📍 1208 Venice Blvd</div>
+        <div class="text-text/85 mb-6">Los Angeles, CA 90006</div>
+        <div class="text-gold font-display text-3xl">{phone}</div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+        <a
+          href={phoneHref}
+          class="bg-gold hover:bg-gold-light text-bg font-semibold px-8 py-4 rounded-full transition-all"
+        >
+          📞 Llamar Ahora
+        </a>
+        <WhatsAppLink
+          prefilledMessage={whatsappPrefilledMessage}
+          style="display:inline-flex;align-items:center;gap:0.5rem;background:#0D5C2E;color:white;font-weight:600;font-size:0.875rem;padding:0.75rem 1.5rem;border-radius:9999px;text-decoration:none;"
+        >
+          <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          💬 WhatsApp
+        </WhatsAppLink>
+      </div>
+
+      <p class="text-muted text-sm tracking-wide">
+        La primera llamada no tiene costo · Atención confidencial · Tradición de Catemaco, Veracruz
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<script is:inline>
+  document.querySelectorAll('.faq-item').forEach((item) => {
+    const btn = item.querySelector('.faq-toggle');
+    btn.addEventListener('click', () => {
+      const open = item.dataset.open === 'true';
+      item.dataset.open = open ? 'false' : 'true';
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+    });
+  });
+</script>

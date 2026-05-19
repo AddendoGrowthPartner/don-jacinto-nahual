@@ -1,0 +1,185 @@
+---
+import ServiceLandingV2 from '../../components/ServiceLandingV2.astro';
+
+const cities = [
+  { name: 'Los Ángeles', slug: 'los-angeles' },
+  { name: 'Santa Mónica', slug: 'santa-monica' },
+  { name: 'Inglewood', slug: 'inglewood' },
+  { name: 'East LA', slug: 'east-la' },
+  { name: 'Huntington Park', slug: 'huntington-park' },
+  { name: 'Monterey Park', slug: 'monterey-park' },
+  { name: 'Montebello', slug: 'montebello' },
+  { name: 'Downey', slug: 'downey' },
+  { name: 'Compton', slug: 'compton' },
+  { name: 'Long Beach', slug: 'long-beach' },
+  { name: 'San Pedro', slug: 'san-pedro' },
+  { name: 'Gardena', slug: 'gardena' },
+  { name: 'South Gate', slug: 'south-gate' },
+  { name: 'Commerce', slug: 'commerce' },
+  { name: 'Ontario', slug: 'ontario' },
+  { name: 'San Fernando', slug: 'san-fernando' },
+  { name: 'Covina', slug: 'covina' },
+  { name: 'San Bernardino', slug: 'san-bernardino' },
+  { name: 'Santa Ana', slug: 'santa-ana' },
+  { name: 'Irvine', slug: 'irvine' },
+  { name: 'Anaheim', slug: 'anaheim' },
+  { name: 'Fullerton', slug: 'fullerton' },
+  { name: 'Garden Grove', slug: 'garden-grove' },
+  { name: 'Mission Viejo', slug: 'mission-viejo' },
+  { name: 'San Clemente', slug: 'san-clemente' },
+  { name: 'Laguna Beach', slug: 'laguna-beach' },
+  { name: 'Buena Park', slug: 'buena-park' },
+];
+
+const processSteps = [
+  {
+    number: '01',
+    title: 'Contacto Inicial',
+    description:
+      'Llama o escribe por WhatsApp. Cuéntanos brevemente lo que estás viviendo. Sin juicios, sin preguntas incómodas. Solo escuchamos.',
+  },
+  {
+    number: '02',
+    title: 'Consulta Personal',
+    description:
+      'Don Jacinto te recibe en su centro espiritual en Los Ángeles. Todo lo que compartas es completamente confidencial.',
+  },
+  {
+    number: '03',
+    title: 'Evaluación Espiritual',
+    description:
+      'Don Jacinto evalúa tu caso con sus herramientas tradicionales y te explica con honestidad lo que puede hacer por ti.',
+  },
+  {
+    number: '04',
+    title: 'Acompañamiento',
+    description:
+      'Si decides continuar, Don Jacinto te acompaña con el trabajo espiritual indicado para tu caso específico.',
+  },
+];
+
+const gallery = [
+  {
+    src: '/images/don-jacinto-retrato.webp',
+    caption: 'Don Jacinto Nahual · Chamán de Catemaco',
+    alt: 'Don Jacinto Nahual brujo curandero de Catemaco Veracruz chamán mexicano Los Ángeles California',
+  },
+  {
+    src: '/images/ritual-fuego.webp',
+    caption: 'Ritual de fuego · Tradición ancestral',
+    alt: 'Ritual de fuego sagrado tradición curanderil Catemaco Veracruz Don Jacinto Nahual',
+  },
+  {
+    src: '/images/altar-espiritual.webp',
+    caption: 'Altar espiritual de Catemaco',
+    alt: 'Altar espiritual tradición de Catemaco Veracruz brujo curandero Don Jacinto Nahual Los Ángeles',
+  },
+  {
+    src: '/images/don-jacinto-ritual.webp',
+    caption: 'Trabajo espiritual con hierbas y oración',
+    alt: 'Don Jacinto Nahual trabajo espiritual hierbas oracion curandero Catemaco Los Angeles',
+  },
+];
+---
+
+<ServiceLandingV2
+  pageTitle="Brujo Curandero en Los Ángeles · Don Jacinto Nahual · Catemaco"
+  pageDescription="Don Jacinto Nahual, brujo curandero de Catemaco, Veracruz, atiende casos de brujería, mal puesto, envidia y daños espirituales en Los Ángeles y el sur de California. Más de 30 años de práctica. Llama: (213) 598-1928"
+  badge="✦ Brujo Curandero · Tradición de Catemaco, Veracruz · +30 Años ✦"
+  h1="Brujo Curandero en Los Ángeles"
+  h2="Don Jacinto Nahual · Tradición Ancestral Mexicana"
+  heroUSP="Hay daños que la medicina no ve, problemas que la psicología no resuelve y bloqueos que ningún consejo familiar logra mover. Cuando sientes que alguien te puso un trabajo espiritual, que la envidia se volvió contra ti o que tu vida cambió de golpe sin razón aparente — Don Jacinto Nahual, brujo curandero de Catemaco, puede orientarte."
+  heroImage="/images/don-jacinto-invocacion.webp"
+  heroImageAlt="Don Jacinto Nahual brujo curandero de Catemaco Veracruz invocación espiritual Los Ángeles California"
+  geoCities="Atención presencial en Los Ángeles · Ontario · San Fernando · Santa Ana"
+
+  problemTitle="¿Sientes que algo no te deja avanzar?"
+  problemParagraphs={[
+    'Hay personas que sienten un peso invisible que no eligieron. Se levantan con angustia sin saber por qué. Las cosas que antes funcionaban dejaron de funcionar. Las puertas que estaban abiertas se cerraron una a una. Y la sensación de que <span class="text-gold-light">algo o alguien está bloqueando tu vida</span> ya no es una sospecha — es una certeza.',
+    'En la tradición curanderil mexicana, esto tiene nombre: <span class="text-gold-light">mal puesto, envidia trabajada, brujería, daño espiritual, camino cerrado</span>. Son fuerzas reales que afectan la vida de las personas y que tienen solución cuando se trabajan con la práctica espiritual correcta.',
+    'Don Jacinto Nahual ha acompañado a cientos de personas en el sur de California que llegaron sintiendo que ya no quedaba nada por intentar — y encontraron el camino de regreso a su vida.',
+  ]}
+  problemSignals={[
+    'Tu vida cambió drásticamente sin razón aparente',
+    'Sospechas que alguien te ha hecho un daño espiritual',
+    'Sientes presencias extrañas o energías que te persiguen',
+    'Mala suerte que se repite sin explicación lógica',
+    'Sueños perturbadores que no te dejan descansar',
+    'Todo lo que construiste empieza a derrumbarse',
+  ]}
+
+  solutionTitle="Cómo trabaja Don Jacinto"
+  solutionDescription="Don Jacinto practica el oficio del brujo curandero desde la tradición de Catemaco, Veracruz — reconocida en toda América Latina por la profundidad de sus conocimientos espirituales. Su trabajo combina <span class='text-gold-light'>rezo, oración, imposición de manos, invocación espiritual y hierbas tradicionales</span> para identificar lo que está dañado en el plano espiritual, neutralizar el daño puesto y proteger a la persona para que no vuelva a ser alcanzada."
+  solutionVariability="No hay dos casos iguales — cada persona, cada daño y cada camino requiere un trabajo distinto."
+
+  credentialsImage="/images/don-jacinto-curandero.webp"
+  credentialsImageMobile="/images/don-jacinto-curandero-sm.webp"
+  credentialsImageAlt="Don Jacinto Nahual brujo curandero de Catemaco Veracruz atendiendo consulta espiritual en Los Ángeles California"
+  credentialsTitle="El Brujo Curandero que la Comunidad Latina Busca en el Sur de California"
+  credentialsManifesto={[
+    'Don Jacinto Nahual es un brujo curandero y guía espiritual con décadas de práctica en la tradición ancestral de Catemaco, Veracruz — la tierra reconocida en todo México y Latinoamérica como la cuna de la curanderil mexicana.',
+    'Hoy atiende a la comunidad latina en Los Ángeles y alrededores, llevando consigo el conocimiento de sus maestros y la fuerza de una práctica espiritual genuina: rezo, oración, imposición de manos e invocación espiritual para casos que la medicina y la psicología no han podido resolver.',
+    'Si buscas un <strong class="text-gold-light">brujo curandero cerca de ti</strong>, alguien de confianza para casos de brujería, mal puesto, envidia o daño espiritual — Don Jacinto Nahual puede orientarte.',
+  ]}
+  credentialsMetrics={[
+    { value: '+30', label: 'Años de Experiencia' },
+    { value: '4', label: 'Áreas de Trabajo' },
+    { value: '4+', label: 'Ciudades en CA' },
+    { value: '100%', label: 'Confidencial' },
+  ]}
+
+  honestyTitle="Lo que Don Jacinto no te va a prometer"
+  honestyParagraphs={[
+    'Don Jacinto no te va a garantizar resultados. Cualquier brujo curandero que te garantice resultados específicos te está mintiendo — cada caso es único y el trabajo espiritual no funciona como una máquina.',
+    'Si después de escucharte siente que tu caso no requiere su trabajo, o que está fuera de su alcance, te lo va a decir directamente. Es parte de su tradición — y de su honestidad.',
+  ]}
+  honestyGuarantees={[
+    'Atención honesta y directa',
+    'Total confidencialidad',
+    'Décadas de práctica genuina',
+    'La primera llamada no tiene costo',
+  ]}
+
+  processSteps={processSteps}
+
+  faqs={[
+    {
+      question: '¿Qué es un brujo curandero de Catemaco?',
+      answer:
+        'Un brujo curandero de Catemaco es un practicante de la tradición espiritual mexicana nacida en Catemaco, Veracruz — la región reconocida en toda Latinoamérica como la cuna del curanderismo mexicano. Combina rezo, oración, imposición de manos, hierbas tradicionales e invocación espiritual para trabajar casos de daño espiritual, envidia, mal puesto, brujería y camino cerrado.',
+    },
+    {
+      question: '¿Don Jacinto puede ayudar si me hicieron brujería?',
+      answer:
+        'Don Jacinto trabaja casos de brujería, mal puesto y daño espiritual desde hace más de 30 años. Su trabajo busca identificar el daño, neutralizarlo y proteger a la persona para que no vuelva a ser alcanzada. No promete resultados específicos — cada caso es distinto y requiere su propio camino.',
+    },
+    {
+      question: '¿Cómo sé si lo que tengo es un mal puesto o brujería?',
+      answer:
+        'Algunas señales reconocibles: cambios drásticos en tu vida sin razón aparente, mala suerte que se repite, sueños perturbadores recurrentes, sensación de ser observado, problemas de salud que los médicos no explican, todo lo que construyes empieza a derrumbarse. En la consulta personal, Don Jacinto evalúa el caso con sus herramientas tradicionales antes de cualquier trabajo.',
+    },
+    {
+      question: '¿La consulta es presencial o se puede hacer por WhatsApp?',
+      answer:
+        'Don Jacinto atiende consultas personales presenciales en su centro espiritual en Los Ángeles. Antes de la primera visita, puede orientarte brevemente por teléfono o WhatsApp para escuchar tu caso. El trabajo espiritual serio se realiza siempre en persona.',
+    },
+    {
+      question: '¿Se garantizan resultados?',
+      answer:
+        'No. Don Jacinto Nahual no garantiza resultados específicos. Cada caso es diferente y el trabajo espiritual no funciona como una máquina. Lo que sí garantiza: atención honesta, total confidencialidad y décadas de práctica genuina en la tradición de Catemaco.',
+    },
+    {
+      question: '¿Cómo puedo agendar una consulta con Don Jacinto?',
+      answer:
+        'Llama al (213) 598-1928 o escribe por WhatsApp al mismo número. Te orientarán sobre disponibilidad y el centro espiritual más cercano a tu ciudad. La primera llamada no tiene costo.',
+    },
+  ]}
+
+  cities={cities}
+  gallery={gallery}
+
+  finalCtaTitle="¿Llevas tiempo sintiendo que algo está mal y no encuentras respuesta?"
+  finalCtaParagraph="Don Jacinto Nahual ha acompañado a cientos de personas en el sur de California con casos de brujería, mal puesto, envidia y daño espiritual que parecían imposibles. Habla con él hoy mismo."
+
+  whatsappPrefilledMessage="Hola, vi su anuncio de brujo curandero en Google y quiero una consulta"
+/>
