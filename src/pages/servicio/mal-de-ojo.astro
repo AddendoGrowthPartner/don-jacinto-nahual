@@ -1,0 +1,186 @@
+---
+import ServiceLandingV2 from '../../components/ServiceLandingV2.astro';
+
+const cities = [
+  { name: 'Los Ángeles', slug: 'los-angeles' },
+  { name: 'Santa Mónica', slug: 'santa-monica' },
+  { name: 'Inglewood', slug: 'inglewood' },
+  { name: 'East LA', slug: 'east-la' },
+  { name: 'Huntington Park', slug: 'huntington-park' },
+  { name: 'Monterey Park', slug: 'monterey-park' },
+  { name: 'Montebello', slug: 'montebello' },
+  { name: 'Downey', slug: 'downey' },
+  { name: 'Compton', slug: 'compton' },
+  { name: 'Long Beach', slug: 'long-beach' },
+  { name: 'San Pedro', slug: 'san-pedro' },
+  { name: 'Gardena', slug: 'gardena' },
+  { name: 'South Gate', slug: 'south-gate' },
+  { name: 'Commerce', slug: 'commerce' },
+  { name: 'Ontario', slug: 'ontario' },
+  { name: 'San Fernando', slug: 'san-fernando' },
+  { name: 'Covina', slug: 'covina' },
+  { name: 'San Bernardino', slug: 'san-bernardino' },
+  { name: 'Santa Ana', slug: 'santa-ana' },
+  { name: 'Irvine', slug: 'irvine' },
+  { name: 'Anaheim', slug: 'anaheim' },
+  { name: 'Fullerton', slug: 'fullerton' },
+  { name: 'Garden Grove', slug: 'garden-grove' },
+  { name: 'Mission Viejo', slug: 'mission-viejo' },
+  { name: 'San Clemente', slug: 'san-clemente' },
+  { name: 'Laguna Beach', slug: 'laguna-beach' },
+  { name: 'Buena Park', slug: 'buena-park' },
+];
+
+const processSteps = [
+  {
+    number: '01',
+    title: 'Contacto Inicial',
+    description:
+      'Llama o escribe por WhatsApp. Cuéntanos brevemente lo que estás viviendo. Sin juicios, sin preguntas incómodas. Solo escuchamos.',
+  },
+  {
+    number: '02',
+    title: 'Consulta Personal',
+    description:
+      'Don Jacinto te recibe en su centro espiritual en Los Ángeles. Todo lo que compartas es completamente confidencial.',
+  },
+  {
+    number: '03',
+    title: 'Limpia Tradicional',
+    description:
+      'Don Jacinto realiza la limpia con las herramientas de la tradición de Catemaco — huevo, hierbas, velas, oración — según lo que tu caso requiera.',
+  },
+  {
+    number: '04',
+    title: 'Protección Posterior',
+    description:
+      'Don Jacinto te orienta sobre cómo cuidarte después de la limpia y si tu caso necesita protección espiritual continua.',
+  },
+];
+
+const gallery = [
+  {
+    src: '/images/altar-espiritual.webp',
+    caption: 'Altar espiritual de Catemaco',
+    alt: 'Altar espiritual tradición de Catemaco Veracruz Don Jacinto Nahual mal de ojo limpia',
+  },
+  {
+    src: '/images/limpia-velas.webp',
+    caption: 'Limpia con velas · Purificación energética',
+    alt: 'Limpia espiritual con velas curandero mexicano Don Jacinto Nahual mal de ojo Los Ángeles',
+  },
+  {
+    src: '/images/ritual-fuego.webp',
+    caption: 'Ritual de fuego · Tradición ancestral',
+    alt: 'Ritual de fuego sagrado limpia de mal de ojo Don Jacinto Nahual Catemaco',
+  },
+  {
+    src: '/images/don-jacinto-ritual.webp',
+    caption: 'Trabajo espiritual con hierbas y oración',
+    alt: 'Don Jacinto Nahual trabajo espiritual hierbas oración limpia mal de ojo Los Ángeles',
+  },
+];
+---
+
+<ServiceLandingV2
+  pageTitle="Limpia de Mal de Ojo en Los Ángeles · Don Jacinto Nahual · Catemaco"
+  pageDescription="Don Jacinto Nahual, curandero de Catemaco, Veracruz, realiza limpias de mal de ojo en Los Ángeles y el sur de California. Tradición ancestral con huevo, hierbas, velas y oración para liberar la envidia ajena. Llama: (213) 598-1928"
+  badge="✦ Mal de Ojo · Tradición de Catemaco, Veracruz · +30 Años ✦"
+  h1="Limpia de Mal de Ojo en Los Ángeles"
+  h2="Don Jacinto Nahual · Tradición Curanderil Ancestral"
+  heroUSP="Hay bloqueos que la lógica no explica, cansancios que el descanso no cura y momentos en que sientes miradas pesadas sobre tu vida sin saber de dónde vienen. Cuando todo lo que tocabas dejó de funcionar después de un logro visible, cuando la envidia ajena enturbió tu camino — Don Jacinto Nahual, curandero de Catemaco, puede ayudarte a liberar lo que se quedó pegado."
+  heroImage="/images/don-jacinto-rezo.webp"
+  heroImageMobile="/images/don-jacinto-rezo-mobile.webp"
+  heroImageAlt="Don Jacinto Nahual curandero de Catemaco realizando oración para limpia de mal de ojo en Los Ángeles California"
+  geoCities="Atención presencial en Los Ángeles · Ontario · San Fernando · Santa Ana"
+
+  problemTitle="¿Sientes que la envidia se volvió contra ti?"
+  problemParagraphs={[
+    'Hay personas que después de una buena noticia, un logro visible o una etapa de bonanza, comienzan a sentir que <span class="text-gold-light">todo se les bloquea sin razón</span>. La fluidez se va. Las puertas que estaban abiertas se cierran. Aparece un cansancio extraño que no se quita durmiendo. Y la sensación de que alguien los miró con envidia ya no es paranoia — es algo que se siente.',
+    'En la tradición curanderil mexicana, esto tiene nombre: <span class="text-gold-light">mal de ojo</span>. No es necesariamente un daño intencional como la brujería — muchas veces es <span class="text-gold-light">envidia que se contagió sin querer</span>, una mirada cargada que dejó energía pegada. Los niños y los bebés son especialmente vulnerables: lloran sin causa, no duermen, se enferman de un día para otro.',
+    'Don Jacinto Nahual trabaja casos de mal de ojo desde hace más de 30 años. La tradición de Catemaco tiene herramientas precisas para identificar la envidia instalada, liberarla y dejar a la persona protegida para que no vuelva a quedarse pegada.',
+  ]}
+  problemSignals={[
+    'Cambios bruscos de suerte después de logros visibles',
+    'Cansancio inexplicable después de visitas o reuniones',
+    'Niños o bebés con llanto sin causa médica',
+    'Dolor de cabeza sin razón, especialmente al frente',
+    'Pesadez emocional súbita sin motivo claro',
+    'Sensación de mirada pesada o de ser observado con malicia',
+  ]}
+
+  solutionTitle="Cómo trabaja Don Jacinto el mal de ojo"
+  solutionDescription="Don Jacinto trabaja el mal de ojo con las herramientas que la tradición de Catemaco transmite desde hace generaciones: <span class='text-gold-light'>limpia con huevo</span> como diagnóstico tradicional para identificar dónde está la energía instalada; <span class='text-gold-light'>limpia con hierbas</span> (ruda, albahaca, romero) para arrastrar lo que quedó pegado; <span class='text-gold-light'>limpia con velas</span> para purificación energética; <span class='text-gold-light'>rezos y oraciones específicas para el ojo</span>; y <span class='text-gold-light'>protección posterior</span> para que la envidia no vuelva a alcanzarte. El trabajo combina diagnóstico, liberación y blindaje."
+  solutionVariability="Cada caso de mal de ojo es único — depende de quién lo puso y cuánto tiempo lleva instalado."
+
+  credentialsImage="/images/don-jacinto-curandero.webp"
+  credentialsImageMobile="/images/don-jacinto-curandero-sm.webp"
+  credentialsImageAlt="Don Jacinto Nahual curandero de Catemaco Veracruz realizando limpia espiritual de mal de ojo en Los Ángeles California"
+  credentialsTitle="El Curandero que la Comunidad Latina Busca para Limpias de Mal de Ojo"
+  credentialsManifesto={[
+    'Don Jacinto Nahual es un curandero y guía espiritual con décadas de práctica en la tradición ancestral de Catemaco, Veracruz — la tierra reconocida en todo México y Latinoamérica como la cuna de la curanderil mexicana.',
+    'Hoy atiende a la comunidad latina en Los Ángeles y alrededores, llevando consigo el conocimiento de sus maestros y la fuerza de una práctica espiritual genuina: limpias con huevo, hierbas, velas, oración e imposición de manos para casos de mal de ojo, envidia trabajada y bloqueos espirituales que la medicina y la psicología no han podido explicar.',
+    'Si buscas una <strong class="text-gold-light">limpia de mal de ojo cerca de ti</strong>, una limpia para tu hijo o tu bebé con llanto inexplicable, o ayuda para liberar la envidia ajena que se te pegó — Don Jacinto Nahual puede orientarte.',
+  ]}
+  credentialsMetrics={[
+    { value: '+30', label: 'Años de Experiencia' },
+    { value: '4', label: 'Áreas de Trabajo' },
+    { value: '4+', label: 'Ciudades en CA' },
+    { value: '100%', label: 'Confidencial' },
+  ]}
+
+  honestyTitle="Lo que Don Jacinto no te va a prometer"
+  honestyParagraphs={[
+    'Cualquier curandero que te garantice que el mal de ojo se quita en una sola sesión sin conocer tu caso te está mintiendo. Cada ojo es diferente — algunos son leves y se van con una limpia, otros requieren varias sesiones y protección espiritual continua.',
+    'Si después de escucharte siente que tu caso no es mal de ojo, sino otra cosa, te lo va a decir directamente — es parte de su tradición y de su honestidad.',
+  ]}
+  honestyGuarantees={[
+    'Atención honesta y directa',
+    'Total confidencialidad',
+    'Décadas de práctica genuina',
+    'La primera llamada no tiene costo',
+  ]}
+
+  processSteps={processSteps}
+
+  faqs={[
+    {
+      question: '¿Qué es el mal de ojo y cómo se contagia?',
+      answer:
+        'El mal de ojo es energía negativa que se queda pegada cuando alguien mira a otra persona con envidia, admiración cargada o sentimientos pesados — muchas veces sin intención de hacer daño. En la tradición curanderil mexicana se considera distinto de la brujería: la brujería es daño intencional trabajado, el mal de ojo es contagio energético. Personas con logros visibles, mujeres embarazadas, niños y bebés son especialmente vulnerables.',
+    },
+    {
+      question: '¿Cómo sé si tengo mal de ojo o es otra cosa?',
+      answer:
+        'Algunas señales reconocibles: cambios bruscos de suerte después de logros visibles, cansancio inexplicable tras visitas o reuniones, dolor de cabeza al frente sin razón médica, niños con llanto sin causa, pesadez emocional súbita, sensación de mirada pesada. En la consulta personal, Don Jacinto realiza un diagnóstico con huevo según la tradición de Catemaco antes de cualquier trabajo, y te explica con honestidad si lo que tienes es mal de ojo u otra cosa.',
+    },
+    {
+      question: '¿Pueden los niños y bebés tener mal de ojo?',
+      answer:
+        'Sí — y son los más vulnerables. En la tradición curanderil, los niños y bebés son especialmente sensibles al mal de ojo porque su energía está abierta y en formación. Las señales clásicas: llanto sin causa que los padres no logran calmar, fiebre que aparece de golpe sin explicación médica, problemas para dormir después de visitas, malestar repentino. Don Jacinto trabaja limpias específicas para niños con métodos suaves de la tradición de Catemaco.',
+    },
+    {
+      question: '¿Cómo trabaja Don Jacinto las limpias de mal de ojo?',
+      answer:
+        'Don Jacinto trabaja con las herramientas tradicionales de Catemaco: limpia con huevo (diagnóstico para identificar dónde está la energía instalada), limpia con hierbas (ruda, albahaca, romero) para arrastrar lo que se quedó pegado, limpia con velas para purificación energética, rezos y oraciones específicas para el ojo, y protección posterior para evitar recaídas. El proceso varía según cada caso.',
+    },
+    {
+      question: '¿Se garantizan resultados?',
+      answer:
+        'No. Don Jacinto Nahual no garantiza resultados específicos. Cada caso de mal de ojo es diferente — algunos son leves y se liberan con una limpia, otros requieren varias sesiones y protección continua. Lo que sí garantiza: atención honesta, total confidencialidad y décadas de práctica genuina en la tradición de Catemaco.',
+    },
+    {
+      question: '¿Cómo puedo agendar una limpia con Don Jacinto?',
+      answer:
+        'Llama al (213) 598-1928 o escribe por WhatsApp al mismo número. Te orientarán sobre disponibilidad y el centro espiritual más cercano a tu ciudad. La primera llamada no tiene costo.',
+    },
+  ]}
+
+  cities={cities}
+  gallery={gallery}
+
+  finalCtaTitle="¿Llevas tiempo sintiendo que la envidia bloquea tu camino?"
+  finalCtaParagraph="Don Jacinto Nahual ha acompañado a cientos de personas en el sur de California con casos de mal de ojo, envidia trabajada y bloqueos espirituales que parecían no tener explicación. Habla con él hoy mismo."
+
+  whatsappPrefilledMessage="Hola, vi su anuncio de mal de ojo en Google y quiero una consulta"
+/>
