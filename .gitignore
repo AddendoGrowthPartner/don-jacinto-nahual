@@ -28,3 +28,6 @@ pnpm-debug.log*
 
 # Imágenes descargadas del Drive (Personaje B) - decisión visual pendiente, no versionar
 images-drive/
+
+# Respaldos automáticos del proyecto - no versionar
+.backups/
