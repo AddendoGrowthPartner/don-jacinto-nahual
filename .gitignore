@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # Vercel CLI artifacts (contains production secrets)
 .vercel/
+
+# Imágenes descargadas del Drive (Personaje B) - decisión visual pendiente, no versionar
+images-drive/
