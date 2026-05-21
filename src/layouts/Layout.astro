@@ -159,6 +159,16 @@ const personSchema = {
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-S0TWXE71XF');
+
+      document.addEventListener('click', function (e) {
+        var t = e.target;
+        var link = t && t.closest ? t.closest('[data-wa-track]') : null;
+        if (!link) return;
+        if (typeof window.gtag !== 'function') return;
+        window.gtag('event', 'whatsapp_click', {
+          wa_context: link.getAttribute('data-wa-context') || 'generic'
+        });
+      });
     </script>
   </head>
   <body class="bg-bg text-text font-body antialiased" style="padding-top: 72px;">

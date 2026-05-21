@@ -1,11 +1,12 @@
 ---
 const phone = '12135981928';
 const DEFAULT_MESSAGE = 'Hola, vi su anuncio en Google y quiero una consulta';
+const DEFAULT_CONTEXT = 'generic';
 
-const { prefilledMessage = DEFAULT_MESSAGE, ...rest } = Astro.props;
+const { prefilledMessage = DEFAULT_MESSAGE, context = DEFAULT_CONTEXT, ...rest } = Astro.props;
 
 const href = `https://wa.me/${phone}?text=${encodeURIComponent(prefilledMessage)}`;
 ---
-<a href={href} target="_blank" rel="noopener" {...rest}>
+<a href={href} target="_blank" rel="noopener" data-wa-track data-wa-context={context} {...rest}>
   <slot />
 </a>
