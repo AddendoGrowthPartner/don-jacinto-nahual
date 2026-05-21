@@ -229,7 +229,7 @@ const serviceSchema = {
       fetchpriority="high"
       style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;"
     />
-    <div class="absolute inset-0 bg-black/75" style="z-index:1;"></div>
+    <div class={`absolute inset-0 ${s.slug === 'proteccion-espiritual' ? 'bg-black/55' : 'bg-black/75'}`} style="z-index:1;"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-bg/40 via-transparent to-bg" style="z-index:1;"></div>
 
     <div class="relative z-10 max-w-3xl mx-auto px-6 py-24 text-center">
