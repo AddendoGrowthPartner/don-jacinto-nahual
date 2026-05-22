@@ -1,0 +1,233 @@
+---
+import ServiceLandingV2 from '../../components/ServiceLandingV2.astro';
+
+const cities = [
+  { name: 'Los Ángeles', slug: 'los-angeles' },
+  { name: 'Santa Mónica', slug: 'santa-monica' },
+  { name: 'Inglewood', slug: 'inglewood' },
+  { name: 'East LA', slug: 'east-la' },
+  { name: 'Huntington Park', slug: 'huntington-park' },
+  { name: 'Monterey Park', slug: 'monterey-park' },
+  { name: 'Montebello', slug: 'montebello' },
+  { name: 'Downey', slug: 'downey' },
+  { name: 'Compton', slug: 'compton' },
+  { name: 'Long Beach', slug: 'long-beach' },
+  { name: 'San Pedro', slug: 'san-pedro' },
+  { name: 'Gardena', slug: 'gardena' },
+  { name: 'South Gate', slug: 'south-gate' },
+  { name: 'Commerce', slug: 'commerce' },
+  { name: 'Ontario', slug: 'ontario' },
+  { name: 'San Fernando', slug: 'san-fernando' },
+  { name: 'Covina', slug: 'covina' },
+  { name: 'San Bernardino', slug: 'san-bernardino' },
+  { name: 'Santa Ana', slug: 'santa-ana' },
+  { name: 'Irvine', slug: 'irvine' },
+  { name: 'Anaheim', slug: 'anaheim' },
+  { name: 'Fullerton', slug: 'fullerton' },
+  { name: 'Garden Grove', slug: 'garden-grove' },
+  { name: 'Mission Viejo', slug: 'mission-viejo' },
+  { name: 'San Clemente', slug: 'san-clemente' },
+  { name: 'Laguna Beach', slug: 'laguna-beach' },
+  { name: 'Buena Park', slug: 'buena-park' },
+];
+
+const processSteps = [
+  {
+    number: '01',
+    title: 'Contacto Inicial',
+    description:
+      'Llama o escribe por WhatsApp. Cuéntale brevemente lo que estás viviendo. Sin juicios, sin preguntas incómodas. Don Jacinto solo escucha.',
+  },
+  {
+    number: '02',
+    title: 'Identifica el Daño',
+    description:
+      'Don Jacinto evalúa el tipo y origen del trabajo espiritual con las herramientas tradicionales de Catemaco. No todos los daños son iguales — entender qué fue puesto es el primer paso real.',
+  },
+  {
+    number: '03',
+    title: 'Trabajo Espiritual',
+    description:
+      'Rezo, oración, imposición de manos, invocación y hierbas tradicionales para soltar lo que se quedó instalado. El proceso es presencial, pausado y respetuoso de tu intimidad.',
+  },
+  {
+    number: '04',
+    title: 'Blindaje y Protección',
+    description:
+      'Una vez liberado el daño, Don Jacinto cierra los caminos por donde entró y te orienta sobre cómo cuidarte para que la envidia ajena no vuelva a alcanzarte.',
+  },
+];
+
+const gallery = [
+  {
+    src: '/images/don-jacinto-invocacion.webp',
+    caption: 'Invocación espiritual · Tradición de Catemaco',
+    alt: 'Don Jacinto Nahual invocación espiritual protección contra brujería Catemaco Los Ángeles',
+  },
+  {
+    src: '/images/altar-espiritual.webp',
+    caption: 'Altar de protección espiritual',
+    alt: 'Altar espiritual de protección tradición de Catemaco Veracruz Don Jacinto Nahual Los Ángeles',
+  },
+  {
+    src: '/images/ritual-fuego.webp',
+    caption: 'Ritual de fuego · Liberación de daño puesto',
+    alt: 'Ritual de fuego liberación de daño puesto tradición Catemaco Don Jacinto Nahual',
+  },
+  {
+    src: '/images/don-jacinto-ritual.webp',
+    caption: 'Trabajo de blindaje con hierbas y oración',
+    alt: 'Don Jacinto Nahual trabajo de blindaje espiritual hierbas oración curandero Catemaco Los Ángeles',
+  },
+];
+
+// Testimonios reales provistos por el cliente (nombres cambiados
+// para proteger la privacidad — disclaimer renderizado al pie del
+// bloque por ServiceLandingV2). Texto literal, no modificar.
+const testimonials = [
+  {
+    quote:
+      'Durante más de tres años pasé por problemas de salud y visité muchos médicos sin encontrar la tranquilidad que necesitaba. Hace unos meses llegué al templo de Don Jacinto Nahual. Él me orientó espiritualmente y me recomendó realizar limpias, baños y un proceso de acompañamiento espiritual. Después de varias semanas, sentí un cambio muy positivo en mi salud, mi energía y mi bienestar. Hoy le doy gracias a Don Jacinto Nahual por su guía y apoyo en un momento tan difícil de mi vida.',
+    name: 'María Carmen D.',
+  },
+  {
+    quote:
+      'Llegué al templo de Don Jacinto Nahual después de mucho tiempo sintiéndome sin energía y con mucha preocupación por mi salud. Él me orientó espiritualmente y me recomendó limpias, baños y un proceso de acompañamiento. Con el paso de las semanas, sentí más tranquilidad, fuerza y bienestar. Le agradezco por su guía en un momento difícil de mi vida.',
+    name: 'Ana Lucía M.',
+    meta: '42 años',
+  },
+  {
+    quote:
+      'Durante meses sentí que nada avanzaba en mi trabajo. Tenía entrevistas, oportunidades y proyectos, pero todo se bloqueaba. Al visitar a Don Jacinto Nahual, recibí orientación espiritual y realicé las limpias que me recomendó. Poco a poco empecé a sentir más claridad, confianza y mejores movimientos en mi camino laboral. Gracias por su apoyo y acompañamiento.',
+    name: 'Carlos M.',
+    meta: '35 años',
+  },
+  {
+    quote:
+      'Pasé por una etapa muy difícil económicamente. Sentía que el dinero no rendía y que cada intento por mejorar se detenía. Don Jacinto Nahual me orientó espiritualmente y me ayudó con limpias y baños para abrir caminos. Después de varias semanas, sentí más paz, más orden y nuevas oportunidades para avanzar. Le agradezco profundamente por su guía.',
+    name: 'Rosa Elena V.',
+    meta: '55 años',
+  },
+  {
+    quote:
+      'Llegué donde Don Jacinto Nahual en un momento de mucha tristeza por problemas de pareja. Sentía confusión, distancia y mucho dolor emocional. Él me brindó orientación espiritual y me recomendó un proceso de limpias y baños. Con el tiempo, recuperé la calma, pude pensar con más claridad y sentí un cambio positivo en mi vida sentimental. Gracias por su ayuda.',
+    name: 'Miguel Ángel T.',
+    meta: '46 años',
+  },
+  {
+    quote:
+      'Durante mucho tiempo sentí que todo me salía mal: problemas, discusiones, cansancio y caminos cerrados. Cuando visité a Don Jacinto Nahual, me explicó que podía estar cargando energías negativas y me recomendó un proceso espiritual. Después de seguir sus indicaciones, sentí más tranquilidad, protección y un cambio positivo en mi energía. Estoy muy agradecida por su acompañamiento.',
+    name: 'Patricia S.',
+    meta: '29 años',
+  },
+];
+---
+
+<ServiceLandingV2
+  pageTitle="Protección Espiritual en Los Ángeles · Don Jacinto Nahual · Catemaco"
+  pageDescription="Don Jacinto Nahual, curandero de Catemaco, Veracruz, atiende casos de brujería, mal puesto, envidia trabajada y daño espiritual en Los Ángeles y el sur de California. Diagnóstico, limpia y blindaje. Más de 30 años de práctica. Llama: (213) 598-1928"
+  badge="✦ Protección Espiritual · Tradición de Catemaco, Veracruz · +30 Años ✦"
+  h1="Protección Espiritual en Los Ángeles"
+  h2="Don Jacinto Nahual · Identificar, Limpiar y Blindar"
+  heroUSP="Cuando todo lo que construiste empieza a derrumbarse sin razón, cuando la pesadez no se va y sientes que una mirada cargada de envidia está bloqueando tu vida — la tradición curanderil mexicana tiene una respuesta. Don Jacinto Nahual, curandero de Catemaco, trabaja la protección espiritual desde la raíz: identifica el daño puesto, lo neutraliza y blinda tu camino para que no vuelva a ser alcanzado."
+  heroImage="/images/don-jacinto-invocacion.webp"
+  heroImageAlt="Don Jacinto Nahual curandero de Catemaco realizando invocación de protección espiritual contra brujería y mal puesto en Los Ángeles California"
+  geoCities="Atención presencial en Los Ángeles · Ontario · San Fernando · Santa Ana"
+
+  problemTitle="¿Sientes que alguien te desea el mal?"
+  problemParagraphs={[
+    'La envidia y el mal puesto son fuerzas reales en la tradición curanderil mexicana — algo que se siente antes de que se entienda. <span class="text-gold-light">Negocios que se vienen abajo sin explicación lógica</span>, familias que se destruyen desde adentro, salud que se deteriora sin causa médica, suerte que desaparece de golpe después de un logro visible.',
+    'Cuando estos patrones se repiten y todo lo que intentas fracasa misteriosamente, no es paranoia. En la tradición de Catemaco esto tiene nombre: <span class="text-gold-light">mal puesto, brujería, envidia trabajada, daño espiritual, camino cerrado</span>. Y aunque cuesta admitirlo en voz alta, muchas personas en Los Ángeles llegan con esta sospecha — y se van con respuestas.',
+    'Don Jacinto Nahual ha acompañado a cientos de personas en el sur de California que sentían que algo invisible las estaba bloqueando. La protección espiritual de Catemaco trabaja en dos tiempos: <span class="text-gold-light">primero limpia lo que ya fue puesto, después blinda</span> para que no vuelva a ocurrir.',
+  ]}
+  problemSignals={[
+    'Tu vida cambió drásticamente sin razón aparente',
+    'Sueños perturbadores o presencias que se repiten',
+    'Pierdes todo lo que construyes sin explicación',
+    'Hay personas cercanas que claramente te desean el mal',
+    'Sientes una energía pesada en tu casa o tu negocio',
+    'Accidentes, enfermedades o problemas en cadena que no logras detener',
+  ]}
+
+  solutionTitle="Identificar, limpiar y blindar"
+  solutionDescription="Don Jacinto trabaja la protección espiritual con las herramientas que la tradición de Catemaco transmite desde hace generaciones: <span class='text-gold-light'>rezo, oración, imposición de manos, invocación espiritual y hierbas tradicionales</span>. El trabajo siempre empieza por un diagnóstico — no todos los daños son iguales y no todos requieren el mismo trabajo. Una vez identificado el origen del daño puesto, viene la <span class='text-gold-light'>limpia</span> para soltar lo instalado y la <span class='text-gold-light'>protección posterior</span> para cerrar los caminos por donde entró. El objetivo no es solo quitar lo que ya está — es dejar a la persona blindada espiritualmente."
+  solutionVariability="No hay dos casos iguales — cada daño puesto y cada camino requiere un trabajo distinto."
+
+  credentialsImage="/images/don-jacinto-curandero.webp"
+  credentialsImageMobile="/images/don-jacinto-curandero-sm.webp"
+  credentialsImageAlt="Don Jacinto Nahual curandero de Catemaco Veracruz especialista en protección espiritual contra brujería y mal puesto en Los Ángeles California"
+  credentialsTitle="El Curandero que la Comunidad Latina Busca para Casos de Brujería y Mal Puesto"
+  credentialsManifesto={[
+    'Don Jacinto Nahual es un curandero y guía espiritual con décadas de práctica en la tradición ancestral de Catemaco, Veracruz — la tierra reconocida en todo México y Latinoamérica como la cuna de la curanderil mexicana.',
+    'Hoy atiende a la comunidad latina en Los Ángeles y el sur de California, llevando consigo el conocimiento de sus maestros y la fuerza de una práctica espiritual genuina: rezo, oración, imposición de manos, invocación e hierbas tradicionales para casos de envidia trabajada, mal puesto, brujería y daño espiritual.',
+    'Si sospechas que alguien te hizo un daño espiritual, que hay una energía oscura dirigida hacia ti o tu familia, o que necesitas <strong class="text-gold-light">blindar tu vida para que la envidia ajena no vuelva a alcanzarte</strong> — Don Jacinto Nahual puede orientarte.',
+  ]}
+  credentialsMetrics={[
+    { value: '+30', label: 'Años de Experiencia' },
+    { value: '4', label: 'Áreas de Trabajo' },
+    { value: '4+', label: 'Ciudades en CA' },
+    { value: '100%', label: 'Confidencial' },
+  ]}
+
+  honestyTitle="Lo que Don Jacinto no te va a prometer"
+  honestyParagraphs={[
+    'Cualquier curandero que te asegure que un mal puesto se quita en una sola sesión, o que prometa resultados específicos sin conocer tu caso, te está mintiendo. La protección espiritual es un proceso — depende del tipo de daño, de cuánto tiempo lleva instalado y de la disposición de la persona.',
+    'Si después de escucharte siente que tu caso no requiere su trabajo, o que está fuera de su alcance, te lo va a decir directamente. Es parte de su tradición — y de su honestidad.',
+  ]}
+  honestyGuarantees={[
+    'Atención honesta y directa',
+    'Total confidencialidad',
+    'Décadas de práctica genuina',
+    'La primera llamada no tiene costo',
+  ]}
+
+  processSteps={processSteps}
+
+  faqs={[
+    {
+      question: '¿Qué es exactamente la protección espiritual?',
+      answer:
+        'En la tradición curanderil de Catemaco, la protección espiritual es un trabajo en dos partes: primero se identifica y se limpia el daño que ya fue puesto (envidia trabajada, mal puesto, brujería) y después se blinda a la persona para cerrar los caminos por donde entró. No es un ritual único — es un proceso que combina rezo, oración, imposición de manos, invocación e hierbas tradicionales, adaptado a lo que cada caso requiere.',
+    },
+    {
+      question: '¿Las consultas son presenciales o por WhatsApp?',
+      answer:
+        'Don Jacinto atiende las consultas y el trabajo espiritual de manera presencial en su centro espiritual en Los Ángeles (1208 Venice Blvd). El teléfono y WhatsApp se usan para escuchar brevemente tu caso, orientarte y agendar. El trabajo de protección serio se realiza siempre en persona.',
+    },
+    {
+      question: '¿Es confidencial lo que comparto con Don Jacinto?',
+      answer:
+        'Sí, totalmente. Don Jacinto trabaja desde la tradición curanderil mexicana, donde la confianza con la persona es parte del trabajo espiritual. Lo que compartes en consulta queda entre tú y él. Sin juicios. Sin preguntas innecesarias. Sin compartir tu caso con nadie.',
+    },
+    {
+      question: '¿Cuánto cuesta la consulta?',
+      answer:
+        'La primera llamada no tiene costo — sirve para que Don Jacinto te escuche y evalúe si puede ayudarte. Si el caso requiere consulta presencial y trabajo espiritual, el costo se conversa con honestidad antes de proceder. Sin sorpresas ni cobros adicionales no acordados.',
+    },
+    {
+      question: '¿En qué ciudades atiende Don Jacinto?',
+      answer:
+        'Don Jacinto atiende a la comunidad latina de toda el área metropolitana de Los Ángeles y el sur de California — con presencia principal en Los Ángeles, Ontario, San Fernando y Santa Ana. Muchas personas viajan desde San Bernardino, Anaheim, Long Beach y otras ciudades cercanas para una consulta personal.',
+    },
+    {
+      question: '¿Cuánto tarda el trabajo de protección?',
+      answer:
+        'Depende del caso. Algunos daños leves se trabajan en una o dos sesiones; otros, especialmente los que llevan años instalados o los que tienen mucha fuerza detrás, requieren un acompañamiento más largo con varias sesiones y blindaje continuo. En la consulta inicial Don Jacinto te dice con honestidad qué tipo de proceso considera necesario para tu caso.',
+    },
+    {
+      question: '¿Se garantizan resultados?',
+      answer:
+        'No. Don Jacinto Nahual no garantiza resultados específicos en ningún caso. El trabajo espiritual no funciona como una máquina — depende de muchas variables. Lo que sí garantiza: atención honesta, total confidencialidad y décadas de práctica genuina en la tradición de Catemaco.',
+    },
+  ]}
+
+  cities={cities}
+  gallery={gallery}
+  testimonials={testimonials}
+
+  finalCtaTitle="¿Llevas tiempo sintiendo que algo invisible bloquea tu vida?"
+  finalCtaParagraph="Don Jacinto Nahual ha acompañado a cientos de personas en el sur de California con casos de brujería, mal puesto, envidia trabajada y daño espiritual que parecían no tener explicación. Habla con él hoy mismo — la primera llamada no tiene costo."
+
+  whatsappPrefilledMessage="Hola, vi su anuncio de protección espiritual en Google y quiero una consulta"
+  heroCtaLabel="Necesito Protección"
+/>
