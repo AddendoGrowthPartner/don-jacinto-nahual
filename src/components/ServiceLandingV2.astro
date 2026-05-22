@@ -55,6 +55,7 @@ export interface ServiceLandingV2Props {
 
   heroCtaLabel?: string;
   heroOverlayClass?: string;
+  heroTagline?: string;
 }
 
 const props = Astro.props as ServiceLandingV2Props;
@@ -94,6 +95,7 @@ const {
   whatsappPrefilledMessage,
   heroCtaLabel = 'WhatsApp',
   heroOverlayClass = 'bg-black/30',
+  heroTagline,
 } = props;
 
 const phone = '(213) 598-1928';
@@ -149,9 +151,18 @@ const faqSchema = {
       <h1 class="font-display text-5xl sm:text-6xl md:text-7xl font-bold mb-3 text-text">
         {h1}
       </h1>
-      <h2 class="font-display italic text-2xl sm:text-3xl md:text-4xl text-gold mb-8">
+      <h2 class:list={[
+        "font-display italic text-2xl sm:text-3xl md:text-4xl text-gold",
+        heroTagline ? "mb-3" : "mb-8"
+      ]}>
         {h2}
       </h2>
+
+      {heroTagline && (
+        <p class="text-sm sm:text-base md:text-lg text-text/70 mb-10 max-w-xl mx-auto leading-snug tracking-wide">
+          {heroTagline}
+        </p>
+      )}
 
       <p class="text-lg sm:text-xl text-text/85 max-w-3xl mx-auto leading-relaxed mb-10">
         {heroUSP}
