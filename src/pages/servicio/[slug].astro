@@ -6,7 +6,6 @@ const phone = '(213) 598-1928';
 const phoneHref = 'tel:+12135981928';
 
 const waMessagesBySlug: Record<string, string> = {
-  'limpias-espirituales': 'Hola, vi su anuncio de limpia espiritual en Google y quiero una consulta',
   'ayuda-espiritual-amor': 'Hola, vi su anuncio de ayuda espiritual de amor en Google y quiero una consulta',
   'curaciones-espirituales': 'Hola, vi su anuncio de curación espiritual en Google y quiero una consulta',
   'mal-de-ojo': 'Hola, vi su anuncio de mal de ojo en Google y quiero una consulta',
@@ -14,39 +13,6 @@ const waMessagesBySlug: Record<string, string> = {
 
 export async function getStaticPaths() {
   const servicios = [
-    {
-      slug: 'limpias-espirituales',
-      title: 'Limpias Espirituales en Los Ángeles',
-      description:
-        'Don Jacinto Nahual realiza limpias espirituales en Los Ángeles y sur de California. Liberación de energías negativas, males puestos y cargas espirituales. Llama: (213) 598-1928',
-      heroImg: '/images/limpia-velas.webp',
-      heroAlt:
-        'Limpia espiritual con velas Don Jacinto Nahual brujo curandero de Catemaco Los Ángeles',
-      h1: 'Limpias Espirituales',
-      h2Subtitle: 'El primer paso hacia la sanación',
-      intro: [
-        'La limpia espiritual es el fundamento de la tradición curanderil mexicana. Antes de cualquier trabajo, Don Jacinto evalúa si hay energías negativas, males puestos o cargas espirituales que estén afectando tu vida. La limpia es el primer paso — el que abre el camino para todo lo demás.',
-        'En la tradición de Catemaco, Veracruz, la limpia no es un ritual superficial. Es un proceso profundo de identificación y liberación de lo que está bloqueando tu energía vital — ya sea envidia de personas cercanas, un mal puesto deliberado, o cargas acumuladas a lo largo de los años.',
-        'Hay personas que sienten un peso invisible que no pueden explicar. El cansancio no se va con descanso, la tristeza aparece sin motivo, los problemas se acumulan uno tras otro como si algo invisible los atrajera. Cuando la medicina no encuentra respuesta y la vida no fluye, muchas veces la raíz es espiritual. Don Jacinto realiza limpias espirituales y despojos con hierbas sagradas, copal y oración ancestral de Catemaco — la tradición más reconocida de México para eliminar energías negativas, males puestos y cargas acumuladas. Si sientes que algo te está bloqueando en Los Ángeles o el sur de California, una limpia espiritual puede ser el primer paso hacia la sanación.',
-      ],
-      listSection: {
-        h2: '¿Cuándo necesitas una limpia espiritual?',
-        items: [
-          'Sientes una pesadez constante que no desaparece',
-          'Tu vida cambió drásticamente sin razón aparente',
-          'Tienes mala suerte en todo lo que intentas',
-          'Sientes presencias extrañas o energías en tu hogar',
-          'Los médicos no encuentran la causa de tu malestar',
-          'Tus relaciones se destruyen una tras otra',
-        ],
-      },
-      paragraphSection: {
-        h2: 'Cómo trabaja Don Jacinto',
-        text: 'Don Jacinto Nahual realiza la limpia con los elementos de la tradición de Catemaco: hierbas, velas, rezos e imposición de manos. El proceso varía según cada caso — no hay dos limpias iguales porque no hay dos personas iguales. Después de la limpia, Don Jacinto evalúa si se requiere trabajo adicional y te lo comunica con total honestidad.',
-      },
-      ctaText:
-        '¿Sientes que necesitas una limpia espiritual? La primera consulta no tiene costo. Don Jacinto te escucha y evalúa tu caso antes de cualquier compromiso.',
-    },
     {
       slug: 'ayuda-espiritual-amor',
       title: 'Ayuda Espiritual para el Amor',

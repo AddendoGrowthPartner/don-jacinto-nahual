@@ -1,0 +1,234 @@
+---
+import ServiceLandingV2 from '../../components/ServiceLandingV2.astro';
+
+const cities = [
+  { name: 'Los Ángeles', slug: 'los-angeles' },
+  { name: 'Santa Mónica', slug: 'santa-monica' },
+  { name: 'Inglewood', slug: 'inglewood' },
+  { name: 'East LA', slug: 'east-la' },
+  { name: 'Huntington Park', slug: 'huntington-park' },
+  { name: 'Monterey Park', slug: 'monterey-park' },
+  { name: 'Montebello', slug: 'montebello' },
+  { name: 'Downey', slug: 'downey' },
+  { name: 'Compton', slug: 'compton' },
+  { name: 'Long Beach', slug: 'long-beach' },
+  { name: 'San Pedro', slug: 'san-pedro' },
+  { name: 'Gardena', slug: 'gardena' },
+  { name: 'South Gate', slug: 'south-gate' },
+  { name: 'Commerce', slug: 'commerce' },
+  { name: 'Ontario', slug: 'ontario' },
+  { name: 'San Fernando', slug: 'san-fernando' },
+  { name: 'Covina', slug: 'covina' },
+  { name: 'San Bernardino', slug: 'san-bernardino' },
+  { name: 'Santa Ana', slug: 'santa-ana' },
+  { name: 'Irvine', slug: 'irvine' },
+  { name: 'Anaheim', slug: 'anaheim' },
+  { name: 'Fullerton', slug: 'fullerton' },
+  { name: 'Garden Grove', slug: 'garden-grove' },
+  { name: 'Mission Viejo', slug: 'mission-viejo' },
+  { name: 'San Clemente', slug: 'san-clemente' },
+  { name: 'Laguna Beach', slug: 'laguna-beach' },
+  { name: 'Buena Park', slug: 'buena-park' },
+];
+
+const processSteps = [
+  {
+    number: '01',
+    title: 'Contacto',
+    description:
+      'Escríbenos por WhatsApp y cuéntanos qué estás viviendo. La primera consulta es sin costo.',
+  },
+  {
+    number: '02',
+    title: 'Orientación',
+    description:
+      'Don Jacinto Nahual escucha tu caso y te orienta espiritualmente sobre lo que estás cargando.',
+  },
+  {
+    number: '03',
+    title: 'La limpia',
+    description:
+      'Según tu situación, realiza las limpias y baños que tu caso necesite.',
+  },
+  {
+    number: '04',
+    title: 'Acompañamiento',
+    description:
+      'Te da recomendaciones y seguimiento para ayudarte a mantener tu bienestar.',
+  },
+];
+
+const gallery = [
+  {
+    src: '/images/don-jacinto-invocacion.webp',
+    caption: 'Invocación espiritual · Tradición de Catemaco',
+    alt: 'Don Jacinto Nahual invocación espiritual protección contra brujería Catemaco Los Ángeles',
+  },
+  {
+    src: '/images/altar-espiritual.webp',
+    caption: 'Altar de protección espiritual',
+    alt: 'Altar espiritual de protección tradición de Catemaco Veracruz Don Jacinto Nahual Los Ángeles',
+  },
+  {
+    src: '/images/ritual-fuego.webp',
+    caption: 'Ritual de fuego · Liberación de daño puesto',
+    alt: 'Ritual de fuego liberación de daño puesto tradición Catemaco Don Jacinto Nahual',
+  },
+  {
+    src: '/images/don-jacinto-ritual.webp',
+    caption: 'Trabajo de blindaje con hierbas y oración',
+    alt: 'Don Jacinto Nahual trabajo de blindaje espiritual hierbas oración curandero Catemaco Los Ángeles',
+  },
+];
+
+// Testimonios reales provistos por el cliente (nombres cambiados
+// para proteger la privacidad — disclaimer renderizado al pie del
+// bloque por ServiceLandingV2). Texto literal, no modificar.
+const testimonials = [
+  {
+    quote:
+      'Durante más de tres años pasé por problemas de salud y visité muchos médicos sin encontrar la tranquilidad que necesitaba. Hace unos meses llegué al templo de Don Jacinto Nahual. Él me orientó espiritualmente y me recomendó realizar limpias, baños y un proceso de acompañamiento espiritual. Después de varias semanas, sentí un cambio muy positivo en mi salud, mi energía y mi bienestar. Hoy le doy gracias a Don Jacinto Nahual por su guía y apoyo en un momento tan difícil de mi vida.',
+    name: 'María Carmen D.',
+  },
+  {
+    quote:
+      'Llegué al templo de Don Jacinto Nahual después de mucho tiempo sintiéndome sin energía y con mucha preocupación por mi salud. Él me orientó espiritualmente y me recomendó limpias, baños y un proceso de acompañamiento. Con el paso de las semanas, sentí más tranquilidad, fuerza y bienestar. Le agradezco por su guía en un momento difícil de mi vida.',
+    name: 'Ana Lucía M.',
+    meta: '42 años',
+  },
+  {
+    quote:
+      'Durante meses sentí que nada avanzaba en mi trabajo. Tenía entrevistas, oportunidades y proyectos, pero todo se bloqueaba. Al visitar a Don Jacinto Nahual, recibí orientación espiritual y realicé las limpias que me recomendó. Poco a poco empecé a sentir más claridad, confianza y mejores movimientos en mi camino laboral. Gracias por su apoyo y acompañamiento.',
+    name: 'Carlos M.',
+    meta: '35 años',
+  },
+  {
+    quote:
+      'Pasé por una etapa muy difícil económicamente. Sentía que el dinero no rendía y que cada intento por mejorar se detenía. Don Jacinto Nahual me orientó espiritualmente y me ayudó con limpias y baños para abrir caminos. Después de varias semanas, sentí más paz, más orden y nuevas oportunidades para avanzar. Le agradezco profundamente por su guía.',
+    name: 'Rosa Elena V.',
+    meta: '55 años',
+  },
+  {
+    quote:
+      'Llegué donde Don Jacinto Nahual en un momento de mucha tristeza por problemas de pareja. Sentía confusión, distancia y mucho dolor emocional. Él me brindó orientación espiritual y me recomendó un proceso de limpias y baños. Con el tiempo, recuperé la calma, pude pensar con más claridad y sentí un cambio positivo en mi vida sentimental. Gracias por su ayuda.',
+    name: 'Miguel Ángel T.',
+    meta: '46 años',
+  },
+  {
+    quote:
+      'Durante mucho tiempo sentí que todo me salía mal: problemas, discusiones, cansancio y caminos cerrados. Cuando visité a Don Jacinto Nahual, me explicó que podía estar cargando energías negativas y me recomendó un proceso espiritual. Después de seguir sus indicaciones, sentí más tranquilidad, protección y un cambio positivo en mi energía. Estoy muy agradecida por su acompañamiento.',
+    name: 'Patricia S.',
+    meta: '29 años',
+  },
+];
+---
+
+<ServiceLandingV2
+  pageTitle="Limpia Espiritual con Don Jacinto Nahual | Sur de California"
+  pageDescription="Limpias y baños espirituales para liberar energías pesadas, bloqueos y mala racha. Orientación personalizada. Primera consulta sin costo. Atención en el sur de California."
+  badge="Limpia Espiritual"
+  h1="Limpia Espiritual con Don Jacinto Nahual"
+  h2="Cuando sientes la energía pesada, los caminos cerrados y una mala racha que no se va, una limpia espiritual te ayuda a soltar esas cargas y recuperar tu tranquilidad."
+  heroTagline="Primera consulta sin costo · Atención en todo el sur de California"
+  heroUSP="Tradición, respeto y acompañamiento espiritual personalizado."
+  heroImage="/images/limpia-velas.webp"
+  heroImageAlt="Velas encendidas durante una limpia espiritual con Don Jacinto Nahual"
+  heroOverlayClass="bg-black/65"
+  geoCities="Atención presencial en Los Ángeles · Ontario · San Fernando · Santa Ana"
+
+  problemTitle="¿Sientes que algo no está bien y no encuentras la causa?"
+  problemParagraphs={[
+    'Hay épocas en que todo parece bloquearse al mismo tiempo: el ánimo cae, el dinero no rinde, las relaciones se tensan y la mala racha se vuelve constante.',
+    'A veces no es casualidad. Puede ser energía pesada acumulada que se queda contigo, en tu casa y en tu camino, y que no se va por sí sola.',
+  ]}
+  problemSignals={[
+    'Cansancio y desánimo sin razón aparente',
+    'Bloqueos en el trabajo, el dinero o las oportunidades',
+    'Discusiones constantes y mal ambiente en casa o en pareja',
+    'Sensación de energía pesada en tu hogar o en tu cuerpo',
+    'Una mala racha que empezó de golpe y no se va',
+    'Intranquilidad, insomnio o pesadillas sin causa clara',
+  ]}
+
+  solutionTitle="Qué es una limpia espiritual y cómo te ayuda"
+  solutionDescription="Una limpia espiritual es un trabajo de limpieza de las energías negativas que cargas. Don Jacinto Nahual te escucha, te orienta y, según tu caso, recomienda limpias y baños para ayudarte a soltar lo pesado y abrir tus caminos."
+  solutionVariability="Cada persona y cada caso es diferente. Don Jacinto valora tu situación antes de recomendarte cualquier proceso."
+
+  credentialsImage="/images/don-jacinto-curandero.webp"
+  credentialsImageMobile="/images/don-jacinto-curandero-sm.webp"
+  credentialsImageAlt="Don Jacinto Nahual curandero de Catemaco Veracruz realizando limpias y baños espirituales para liberar energías pesadas en Los Ángeles California"
+  credentialsTitle="El Curandero de Catemaco al que la Comunidad Latina Acude para Limpias y Baños Espirituales"
+  credentialsManifesto={[
+    'Don Jacinto Nahual es un curandero y guía espiritual con décadas de práctica en la tradición ancestral de Catemaco, Veracruz — la tierra reconocida en todo México y Latinoamérica como la cuna de la curanderil mexicana.',
+    'Hoy atiende a la comunidad latina en Los Ángeles y el sur de California con las herramientas que aprendió de sus maestros: limpias y baños con hierbas, copal, oración, imposición de manos e invocación espiritual — los mismos elementos que en los pueblos del sureste mexicano se usan para soltar lo pesado y abrir caminos.',
+    'Si sientes una pesadez que no se va, una mala racha que se repite o energías que no logras explicar, una <strong class="text-gold-light">limpia espiritual puede ser el primer paso para liberar esas cargas</strong> — Don Jacinto Nahual te escucha y te orienta sin compromiso.',
+  ]}
+  credentialsMetrics={[
+    { value: '+30', label: 'Años de Experiencia' },
+    { value: '4', label: 'Áreas de Trabajo' },
+    { value: '4+', label: 'Ciudades en CA' },
+    { value: '100%', label: 'Confidencial' },
+  ]}
+
+  honestyTitle="Lo que sí y lo que no te prometemos"
+  honestyParagraphs={[
+    'La sanación espiritual es un acompañamiento, no una promesa. No garantizamos resultados ni milagros.',
+    'Una limpia espiritual no sustituye la atención médica, psicológica o legal que puedas necesitar. Si atraviesas una situación seria, busca también ayuda profesional.',
+  ]}
+  honestyGuarantees={[
+    'Primera consulta sin costo y sin compromiso',
+    'Trato respetuoso y confidencial',
+    'Te explicamos el proceso antes de empezar',
+    'Nunca prometemos resultados garantizados',
+  ]}
+
+  processSteps={processSteps}
+
+  faqs={[
+    {
+      question: '¿Qué es exactamente una limpia espiritual?',
+      answer:
+        'Es un trabajo de limpieza de las energías negativas que una persona puede cargar. Don Jacinto Nahual utiliza limpias y baños tradicionales, junto con orientación espiritual, para ayudarte a soltar esas cargas.',
+    },
+    {
+      question: '¿Cómo sé si necesito una limpia?',
+      answer:
+        'Muchas personas la buscan cuando sienten cansancio sin razón, bloqueos constantes, mal ambiente en casa o una mala racha que no se va. En la primera consulta, sin costo, Don Jacinto valora tu caso y te orienta.',
+    },
+    {
+      question: '¿Garantizan resultados?',
+      answer:
+        'No. La sanación espiritual es un acompañamiento y cada caso es diferente. No prometemos resultados ni milagros.',
+    },
+    {
+      question: '¿Cuánto cuesta?',
+      answer:
+        'La primera consulta es sin costo y sin compromiso. El trabajo que se recomiende depende de cada caso y siempre se conversa contigo antes de comenzar.',
+    },
+    {
+      question: '¿Atienden en mi ciudad?',
+      answer:
+        'Don Jacinto Nahual atiende a personas de todo el sur de California. Escríbenos por WhatsApp y te indicamos cómo coordinar tu consulta.',
+    },
+    {
+      question: '¿Es confidencial?',
+      answer:
+        'Sí. Todo lo que compartas se trata con respeto y de forma confidencial.',
+    },
+    {
+      question: '¿Reemplaza un tratamiento médico?',
+      answer:
+        'No. Es un acompañamiento espiritual y no sustituye la atención médica, psicológica o legal que puedas necesitar.',
+    },
+  ]}
+
+  cities={cities}
+  gallery={gallery}
+  testimonials={testimonials}
+
+  finalCtaTitle="Da el primer paso hacia tu tranquilidad"
+  finalCtaParagraph="Si sientes que cargas algo que no te deja avanzar, escríbenos. La primera consulta es sin costo y sin compromiso."
+
+  whatsappPrefilledMessage="Hola, vi su anuncio de limpia espiritual en Google y quiero una consulta"
+  heroCtaLabel="Necesito una Limpia"
+/>
