@@ -1,0 +1,193 @@
+---
+import ServiceLandingV2 from '../../components/ServiceLandingV2.astro';
+
+const cities = [
+  { name: 'Los Ángeles', slug: 'los-angeles' },
+  { name: 'Santa Mónica', slug: 'santa-monica' },
+  { name: 'Inglewood', slug: 'inglewood' },
+  { name: 'East LA', slug: 'east-la' },
+  { name: 'Huntington Park', slug: 'huntington-park' },
+  { name: 'Monterey Park', slug: 'monterey-park' },
+  { name: 'Montebello', slug: 'montebello' },
+  { name: 'Downey', slug: 'downey' },
+  { name: 'Compton', slug: 'compton' },
+  { name: 'Long Beach', slug: 'long-beach' },
+  { name: 'San Pedro', slug: 'san-pedro' },
+  { name: 'Gardena', slug: 'gardena' },
+  { name: 'South Gate', slug: 'south-gate' },
+  { name: 'Commerce', slug: 'commerce' },
+  { name: 'Ontario', slug: 'ontario' },
+  { name: 'San Fernando', slug: 'san-fernando' },
+  { name: 'Covina', slug: 'covina' },
+  { name: 'San Bernardino', slug: 'san-bernardino' },
+  { name: 'Santa Ana', slug: 'santa-ana' },
+  { name: 'Irvine', slug: 'irvine' },
+  { name: 'Anaheim', slug: 'anaheim' },
+  { name: 'Fullerton', slug: 'fullerton' },
+  { name: 'Garden Grove', slug: 'garden-grove' },
+  { name: 'Mission Viejo', slug: 'mission-viejo' },
+  { name: 'San Clemente', slug: 'san-clemente' },
+  { name: 'Laguna Beach', slug: 'laguna-beach' },
+  { name: 'Buena Park', slug: 'buena-park' },
+];
+
+const processSteps = [
+  {
+    number: '01',
+    title: 'Contacto',
+    description:
+      'Escríbenos por WhatsApp y cuéntanos qué está pasando con tu pareja o la persona que amas. Don Jacinto te escucha.',
+  },
+  {
+    number: '02',
+    title: 'Orientación',
+    description:
+      'Don Jacinto Nahual escucha tu caso y te orienta espiritualmente sobre la situación de tu relación.',
+  },
+  {
+    number: '03',
+    title: 'El trabajo',
+    description:
+      'Según tu situación, realiza el amarre, endulzamiento o baño que tu caso necesite.',
+  },
+  {
+    number: '04',
+    title: 'Acompañamiento',
+    description:
+      'Te da recomendaciones y seguimiento para acompañarte mientras tu situación se acomoda.',
+  },
+];
+
+const gallery = [
+  {
+    src: '/images/amarre-corazon-rosas-detalle.webp',
+    caption: 'Corazón de rosas · Trabajo de amor',
+    alt: 'Corazón de rosas rojas y blancas con velas, primer plano de un trabajo de amor de Don Jacinto Nahual tradición de Catemaco Los Ángeles',
+  },
+  {
+    src: '/images/ritual-fuego.webp',
+    caption: 'Fuego sagrado · Trabajo espiritual',
+    alt: 'Don Jacinto Nahual ante el fuego sagrado realizando un trabajo espiritual tradición de Catemaco Los Ángeles',
+  },
+  {
+    src: '/images/amor-pareja.webp',
+    caption: 'El amor que se reúne',
+    alt: 'Pareja formando un corazón con las manos al atardecer tras un trabajo de amor con Don Jacinto Nahual',
+  },
+  {
+    src: '/images/limpia-pareja.webp',
+    caption: 'Sahumerio de unión a la pareja',
+    alt: 'Don Jacinto Nahual de pie haciendo un sahumerio de unión a una pareja en el bosque tradición de Catemaco Los Ángeles',
+  },
+];
+---
+
+<ServiceLandingV2
+  pageTitle="Amarres y Endulzamientos de Amor con Don Jacinto Nahual | Sur de California"
+  pageDescription="Amarres y endulzamientos de amor para recuperar a tu pareja, reavivar la pasión y unir corazones. Orientación personalizada. Atención en el sur de California."
+  badge="Amarres y Endulzamientos"
+  h1="Amarres y Endulzamientos de Amor con Don Jacinto Nahual"
+  h2="Cuando el amor se enfría, la persona que amas se aleja o un tercero se interpone, un amarre o endulzamiento puede ayudar a reavivar el sentimiento y reunir lo que la distancia separó."
+  heroTagline="Atención personal y respetuosa en todo el sur de California"
+  heroUSP="Tradición, respeto y acompañamiento espiritual personalizado."
+  heroImage="/images/amarre-pareja-corazon.webp"
+  heroImageMobile="/images/amarre-pareja-corazon-sm.webp"
+  heroImageAlt="Don Jacinto Nahual realizando un trabajo de amor para una pareja, con un corazón de rosas entre velas"
+  heroOverlayClass="bg-black/60"
+  geoCities="Atención presencial en Los Ángeles · Ontario · San Fernando · Santa Ana"
+  heroCtaLabel="Quiero un Amarre"
+
+  problemTitle="¿La persona que amas se alejó y sientes que la estás perdiendo?"
+  problemParagraphs={[
+    'Hay relaciones que se enfrían de un día para otro: la persona que amas se vuelve distante, fría o indiferente, y por más que lo intentas, sientes que se aleja sin explicación.',
+    'A veces el amor sigue ahí, pero algo lo bloquea. Un amarre o un endulzamiento es un trabajo espiritual para reavivar ese sentimiento, endulzar el trato y ayudar a reunir lo que la distancia separó.',
+  ]}
+  problemSignals={[
+    'Indiferencia y frialdad que aparecieron de repente',
+    'Distancia o alejamiento sin una explicación clara',
+    'La presencia de una tercera persona en la relación',
+    'Una ruptura reciente que no logras superar',
+    'Discusiones constantes que desgastan la relación',
+    'La pasión y el deseo que se apagaron entre ustedes',
+  ]}
+
+  solutionTitle="Qué es un amarre o endulzamiento y cómo te ayuda"
+  solutionDescription="Un amarre es un trabajo espiritual para unir y reavivar el sentimiento entre dos personas; un endulzamiento busca suavizar el trato, calmar los pleitos y endulzar la relación. Don Jacinto Nahual te escucha, te orienta y, según tu caso, recomienda el amarre, endulzamiento o baños que tu situación necesite."
+  solutionVariability="Cada persona y cada relación es diferente. Don Jacinto valora tu situación antes de recomendarte cualquier trabajo."
+
+  credentialsImage="/images/don-jacinto-curandero.webp"
+  credentialsImageMobile="/images/don-jacinto-curandero-sm.webp"
+  credentialsImageAlt="Don Jacinto Nahual curandero de Catemaco Veracruz realizando amarres y endulzamientos de amor para unir y reconciliar parejas en Los Ángeles California"
+  credentialsTitle="El Curandero de Catemaco al que la Comunidad Latina Acude para Trabajos de Amor"
+  credentialsManifesto={[
+    'Don Jacinto Nahual es un curandero y guía espiritual con décadas de práctica en la tradición ancestral de Catemaco, Veracruz — la tierra reconocida en todo México y Latinoamérica como la cuna de la curanderil mexicana.',
+    'Hoy atiende a la comunidad latina en Los Ángeles y el sur de California con las herramientas que aprendió de sus maestros: amarres, endulzamientos, baños con hierbas, veladoras, copal, oración e invocación espiritual — los mismos elementos que en los pueblos del sureste mexicano se usan para reunir parejas y reavivar el amor.',
+    'Si la persona que amas se alejó, sientes que un tercero se interpuso o que el amor entre ustedes se enfrió, un <strong class="text-gold-light">amarre o endulzamiento puede ser el primer paso para reavivar ese sentimiento</strong> — Don Jacinto Nahual te escucha y te orienta sin compromiso.',
+  ]}
+  credentialsMetrics={[
+    { value: '+30', label: 'Años de Experiencia' },
+    { value: '4', label: 'Áreas de Trabajo' },
+    { value: '4+', label: 'Ciudades en CA' },
+    { value: '100%', label: 'Confidencial' },
+  ]}
+
+  honestyTitle="Lo que sí y lo que no te prometemos"
+  honestyParagraphs={[
+    'El trabajo espiritual es un acompañamiento, no una promesa. No garantizamos resultados, ni que una persona regrese, ni milagros.',
+    'Un amarre o endulzamiento no sustituye la comunicación, la terapia de pareja ni la ayuda profesional que tu relación pueda necesitar. Si atraviesas una situación seria, busca también ayuda profesional.',
+  ]}
+  honestyGuarantees={[
+    'Te escuchamos con respeto y sin compromiso',
+    'Trato respetuoso y confidencial',
+    'Te explicamos el proceso antes de empezar',
+    'Nunca prometemos resultados garantizados',
+  ]}
+
+  processSteps={processSteps}
+
+  faqs={[
+    {
+      question: '¿Qué es exactamente un amarre de amor?',
+      answer:
+        'Es un trabajo espiritual que busca unir y reavivar el sentimiento entre dos personas. Don Jacinto Nahual utiliza la tradición de Catemaco — oración, veladoras, baños y trabajos de amor — junto con orientación espiritual, según tu caso.',
+    },
+    {
+      question: '¿Cuál es la diferencia entre un amarre y un endulzamiento?',
+      answer:
+        'Un amarre busca unir y reavivar el sentimiento entre dos personas. Un endulzamiento busca suavizar el trato, calmar los pleitos y endulzar la relación. Don Jacinto te orienta sobre cuál se ajusta mejor a tu situación.',
+    },
+    {
+      question: '¿En cuánto tiempo se ven cambios?',
+      answer:
+        'Cada caso y cada relación es diferente. Algunos sienten cambios en poco tiempo y otros necesitan más acompañamiento. Don Jacinto no promete tiempos ni resultados; te orienta con honestidad sobre tu caso.',
+    },
+    {
+      question: '¿Garantizan que la persona regrese?',
+      answer:
+        'No. El trabajo espiritual es un acompañamiento y cada caso es diferente. No prometemos que una persona regrese, ni resultados, ni milagros.',
+    },
+    {
+      question: '¿Cuánto cuesta?',
+      answer:
+        'Cada caso es diferente. Don Jacinto valora tu situación y te explica el trabajo recomendado antes de comenzar, para que decidas con tranquilidad.',
+    },
+    {
+      question: '¿Es confidencial?',
+      answer:
+        'Sí. Todo lo que compartas sobre tu relación se trata con respeto y de forma confidencial.',
+    },
+    {
+      question: '¿Funciona si la persona vive en otra ciudad o país?',
+      answer:
+        'Don Jacinto Nahual atiende a personas de todo el sur de California y trabaja casos aunque la otra persona esté lejos. Escríbenos por WhatsApp y te indicamos cómo coordinar tu consulta.',
+    },
+  ]}
+
+  cities={cities}
+  gallery={gallery}
+
+  finalCtaTitle="Si quieres recuperar ese amor, escríbele a Don Jacinto"
+  finalCtaParagraph="Si sientes que estás perdiendo a la persona que amas, no estás solo. Don Jacinto Nahual está para escucharte y orientarte — escríbele y cuéntale lo que estás viviendo en tu relación."
+
+  whatsappPrefilledMessage="Hola, vi su anuncio de amarres de amor en Google y quiero una consulta"
+/>
