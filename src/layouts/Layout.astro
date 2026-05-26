@@ -159,6 +159,7 @@ const personSchema = {
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-S0TWXE71XF');
+      gtag('config', 'AW-18149613715');
 
       document.addEventListener('click', function (e) {
         var t = e.target;
@@ -167,6 +168,11 @@ const personSchema = {
         if (typeof window.gtag !== 'function') return;
         window.gtag('event', 'whatsapp_click', {
           wa_context: link.getAttribute('data-wa-context') || 'generic'
+        });
+        window.gtag('event', 'conversion', {
+          'send_to': 'AW-18149613715/OYo8CPPS97McEJPBtM5D',
+          'value': 1.0,
+          'currency': 'USD'
         });
       });
     </script>
