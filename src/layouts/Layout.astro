@@ -175,6 +175,21 @@ const personSchema = {
           'currency': 'USD'
         });
       });
+
+      document.addEventListener('click', function (e) {
+        var t = e.target;
+        var link = t && t.closest ? t.closest('a[href^="tel:"]') : null;
+        if (!link) return;
+        if (typeof window.gtag !== 'function') return;
+        window.gtag('event', 'call_click', {
+          call_context: link.getAttribute('data-call-context') || 'generic'
+        });
+        window.gtag('event', 'conversion', {
+          'send_to': 'AW-18149613715/4B_2CJagi7QcEJPBtM5D',
+          'value': 1.0,
+          'currency': 'USD'
+        });
+      });
     </script>
   </head>
   <body class="bg-bg text-text font-body antialiased" style="padding-top: 72px;">
