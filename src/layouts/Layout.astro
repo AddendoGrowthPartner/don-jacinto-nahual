@@ -181,14 +181,25 @@ const personSchema = {
         var link = t && t.closest ? t.closest('a[href^="tel:"]') : null;
         if (!link) return;
         if (typeof window.gtag !== 'function') return;
+        // Movil: demoramos la navegacion al dialer hasta enviar la conversion.
+        e.preventDefault();
+        var navigated = false;
+        var go = function () {
+          if (navigated) return;
+          navigated = true;
+          window.location = link.href;
+        };
         window.gtag('event', 'call_click', {
           call_context: link.getAttribute('data-call-context') || 'generic'
         });
         window.gtag('event', 'conversion', {
           'send_to': 'AW-18149613715/4B_2CJagi7QcEJPBtM5D',
           'value': 1.0,
-          'currency': 'USD'
+          'currency': 'USD',
+          'event_callback': go
         });
+        // Fallback: navega igual si el callback no dispara, para no bloquear la llamada.
+        setTimeout(go, 800);
       });
     </script>
   </head>
