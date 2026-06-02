@@ -25,6 +25,7 @@ export interface ServiceLandingV2Props {
   credentialsImage: string;
   credentialsImageAlt: string;
   credentialsImageMobile?: string;
+  credentialsImageOverlay?: string;
   credentialsTitle: string;
   credentialsManifesto: string[];
   credentialsMetrics: { label: string; value: string }[];
@@ -47,6 +48,8 @@ export interface ServiceLandingV2Props {
   cities: { name: string; slug: string }[];
 
   gallery?: { src: string; caption: string; alt: string }[];
+  // Galería con imágenes completas (object-contain) y leyendas como títulos.
+  galleryContain?: boolean;
 
   finalCtaTitle: string;
   finalCtaParagraph: string;
@@ -104,6 +107,7 @@ const {
   credentialsImage,
   credentialsImageAlt,
   credentialsImageMobile,
+  credentialsImageOverlay,
   credentialsTitle,
   credentialsManifesto,
   credentialsMetrics,
@@ -115,6 +119,7 @@ const {
   faqs,
   cities,
   gallery,
+  galleryContain = false,
   finalCtaTitle,
   finalCtaParagraph,
   whatsappPrefilledMessage,
@@ -346,10 +351,12 @@ const faqSchema = {
                   class="block w-full h-auto"
                 />
               </picture>
+              <!-- filtro muy sutil (tinte cálido) -->
+              <div aria-hidden="true" class="absolute inset-0 bg-[#2a1605]/15 pointer-events-none mix-blend-multiply"></div>
               {heroHook.imageOverlay && (
                 <>
-                  <div aria-hidden="true" class="absolute inset-x-0 top-0 h-3/4 bg-gradient-to-b from-black/85 via-black/40 to-transparent"></div>
-                  <div class="absolute inset-x-0 top-0 p-5 sm:p-7 text-left drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]" set:html={heroHook.imageOverlay}></div>
+                  <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-4/5 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+                  <div class="absolute inset-x-0 bottom-0 p-5 sm:p-7 text-left drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]" set:html={heroHook.imageOverlay}></div>
                 </>
               )}
             </div>
@@ -485,20 +492,28 @@ const faqSchema = {
 
         <div class="relative">
           <div class="absolute -inset-4 border border-gold/30 rounded-lg"></div>
-          <picture>
-            {credentialsImageMobile && (
-              <source media="(max-width: 1024px)" srcset={credentialsImageMobile} type="image/webp" width="637" height="956" />
+          <div class="relative rounded-lg overflow-hidden shadow-2xl">
+            <picture>
+              {credentialsImageMobile && (
+                <source media="(max-width: 1024px)" srcset={credentialsImageMobile} type="image/webp" width="637" height="956" />
+              )}
+              <img
+                src={credentialsImage}
+                alt={credentialsImageAlt}
+                width="875"
+                height="1313"
+                class="block w-full h-auto"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+            {credentialsImageOverlay && (
+              <>
+                <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-black/92 via-black/60 to-black/20"></div>
+                <div class="absolute inset-x-0 bottom-0 p-5 sm:p-7 text-left drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" set:html={credentialsImageOverlay}></div>
+              </>
             )}
-            <img
-              src={credentialsImage}
-              alt={credentialsImageAlt}
-              width="875"
-              height="1313"
-              class="relative w-full h-auto rounded-lg shadow-2xl"
-              loading="lazy"
-              decoding="async"
-            />
-          </picture>
+          </div>
         </div>
       </div>
     </div>
@@ -573,18 +588,30 @@ const faqSchema = {
         </div>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
           {gallery!.map((g) => (
-            <div class="group relative aspect-square overflow-hidden rounded-lg">
+            <div class:list={["group relative aspect-square overflow-hidden rounded-lg", galleryContain && "bg-black/20"]}>
               <img
                 src={g.src}
                 alt={g.alt}
                 width="400"
                 height="400"
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                class:list={[
+                  "w-full h-full transition-transform duration-700",
+                  galleryContain ? "object-contain" : "object-cover group-hover:scale-110",
+                ]}
                 loading="lazy"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-bg via-bg/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+              <div class:list={[
+                "absolute inset-0 transition-opacity",
+                galleryContain
+                  ? "bg-gradient-to-t from-black/65 via-transparent to-transparent"
+                  : "bg-gradient-to-t from-bg via-bg/40 to-transparent opacity-80 group-hover:opacity-100",
+              ]}></div>
               <div class="absolute bottom-0 left-0 right-0 p-3">
-                <p class="text-text text-xs sm:text-sm leading-tight">{g.caption}</p>
+                <p class:list={[
+                  galleryContain
+                    ? "font-display text-gold-light text-sm sm:text-base font-semibold leading-tight"
+                    : "text-text text-xs sm:text-sm leading-tight",
+                ]}>{g.caption}</p>
               </div>
             </div>
           ))}

@@ -60,24 +60,24 @@ const processSteps = [
 
 const gallery = [
   {
-    src: '/images/amarre-corazon-rosas-detalle.webp',
-    caption: 'Corazón de rosas · Trabajo de amor',
-    alt: 'Corazón de rosas rojas y blancas con velas, primer plano de un trabajo de amor de Don Jacinto Nahual tradición de Catemaco Los Ángeles',
+    src: '/images/amarre-muneco-velas.webp',
+    caption: 'Amarre y dominio de amor',
+    alt: 'Muñeco de amarre con alfileres en un corazón rojo y velas encendidas, ritual de amarre y dominio de amor de Don Jacinto Nahual en Los Ángeles California',
   },
   {
     src: '/images/ritual-fuego.webp',
     caption: 'Fuego sagrado · Trabajo espiritual',
-    alt: 'Don Jacinto Nahual ante el fuego sagrado realizando un trabajo espiritual tradición de Catemaco Los Ángeles',
+    alt: 'Don Jacinto Nahual ante el fuego sagrado en un trabajo espiritual de amor, tradición de Catemaco, para parejas en el sur de California',
   },
   {
     src: '/images/amor-pareja.webp',
     caption: 'El amor que se reúne',
-    alt: 'Pareja formando un corazón con las manos al atardecer tras un trabajo de amor con Don Jacinto Nahual',
+    alt: 'Pareja formando un corazón con las manos al atardecer tras un amarre y endulzamiento de amor con Don Jacinto Nahual en California',
   },
   {
     src: '/images/limpia-pareja.webp',
     caption: 'Sahumerio de unión a la pareja',
-    alt: 'Don Jacinto Nahual de pie haciendo un sahumerio de unión a una pareja en el bosque tradición de Catemaco Los Ángeles',
+    alt: 'Don Jacinto Nahual haciendo un sahumerio de unión a una pareja, endulzamiento de amor tradición de Catemaco en Los Ángeles California',
   },
 ];
 ---
@@ -102,12 +102,12 @@ const gallery = [
   heroVideo={{
     poster: 'https://customer-iabj1352jwro2v5p.cloudflarestream.com/576ba0d7acc4c9c5a29eee38e3b91477/thumbnails/thumbnail.jpg?height=800',
     iframeSrc: 'https://customer-iabj1352jwro2v5p.cloudflarestream.com/576ba0d7acc4c9c5a29eee38e3b91477/iframe?autoplay=true&muted=false&controls=true&primaryColor=%230D5C2E',
-    alt: 'Don Jacinto Nahual hablando sobre los amarres y endulzamientos de amor — video vertical',
+    alt: 'Video de Don Jacinto Nahual, curandero de Catemaco, explicando los amarres y endulzamientos de amor en Los Ángeles y el sur de California',
   }}
   heroHook={{
     image: '/images/male-kissing-girlfriend.webp',
-    imageAlt: 'Pareja feliz y enamorada abrazándose, el hombre besa a su novia tras reavivar su amor',
-    imageOverlay: '<span class="block font-display italic text-base sm:text-lg text-white/90 mb-1">Vuelve a sentir la</span><span class="block font-display font-bold text-6xl sm:text-7xl md:text-8xl text-gold leading-[0.95] mb-2">felicidad</span><span class="block font-display italic text-lg sm:text-2xl text-white leading-snug">de estar con quien amas.</span>',
+    imageAlt: 'Pareja feliz y enamorada abrazándose tras recuperar su relación con un amarre o endulzamiento de amor de Don Jacinto Nahual en el sur de California',
+    imageOverlay: '<span class="block font-display italic text-xl sm:text-2xl text-amber-50 leading-snug mb-1">¿Te gustaría volver a sentir la</span><span class="block font-display font-bold text-6xl sm:text-7xl text-gold leading-[0.95] mb-1">felicidad</span><span class="block font-display italic text-xl sm:text-2xl text-amber-50 leading-snug mb-4">de estar de nuevo con la persona que amas?</span><span class="block text-white font-bold text-lg sm:text-2xl leading-snug">📞 Llámame o 💬 envíame un mensaje</span>',
     title: 'Recupera el amor de tu pareja <span class="text-gold">hoy mismo</span>',
     subtitle: 'A través de un amarre o endulzamiento de amor. Escríbele a Don Jacinto y cuéntale tu caso, sin compromiso.',
     bullets: [
@@ -136,7 +136,18 @@ const gallery = [
   solutionVariability="Cada persona y cada relación es diferente. Don Jacinto valora tu situación antes de recomendarte cualquier trabajo."
 
   credentialsImage="/images/don-jacinto-amarres-credenciales.webp"
-  credentialsImageAlt="Don Jacinto Nahual, curandero de Catemaco, realizando un ritual espiritual entre velas y copal en el bosque, con la mano alzada en señal de bendición"
+  credentialsImageAlt="Don Jacinto Nahual, curandero de Catemaco, realizando un ritual de amarre de amor entre velas y copal — atiende amarres y endulzamientos en Los Ángeles, California"
+  credentialsImageOverlay={`
+    <p class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-gold-light leading-[1.05] mb-4">Rituales que realiza Don Jacinto</p>
+    <ul class="font-display text-white text-lg sm:text-2xl leading-snug space-y-2">
+      <li class="flex gap-2"><span class="text-gold">›</span> Endulzamientos de pareja</li>
+      <li class="flex gap-2"><span class="text-gold">›</span> Amarres de amor</li>
+      <li class="flex gap-2"><span class="text-gold">›</span> Hechizos para atraer</li>
+      <li class="flex gap-2"><span class="text-gold">›</span> Regresiones de pareja</li>
+      <li class="flex gap-2"><span class="text-gold">›</span> Separación de terceros</li>
+    </ul>
+    <p class="mt-4 text-gold font-semibold text-base sm:text-xl">Consulta tu caso, sin compromiso →</p>
+  `}
   credentialsTitle="El Curandero de Catemaco al que la Comunidad Latina Acude para Trabajos de Amor"
   credentialsManifesto={[
     'Don Jacinto Nahual es un curandero y guía espiritual con décadas de práctica en la tradición ancestral de Catemaco, Veracruz — la tierra reconocida en todo México y Latinoamérica como la cuna de la curanderil mexicana.',
@@ -204,6 +215,7 @@ const gallery = [
 
   cities={cities}
   gallery={gallery}
+  galleryContain
 
   finalCtaTitle="Si quieres recuperar ese amor, escríbele a Don Jacinto"
   finalCtaParagraph="Si sientes que estás perdiendo a la persona que amas, no estás solo. Don Jacinto Nahual está para escucharte y orientarte — escríbele y cuéntale lo que estás viviendo en tu relación."
