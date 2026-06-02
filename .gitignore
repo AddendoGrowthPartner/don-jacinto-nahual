@@ -31,3 +31,6 @@ images-drive/
 
 # Respaldos automáticos del proyecto - no versionar
 .backups/
+
+# Videos locales optimizados - el video del hero vive en Cloudflare Stream, no versionar
+public/videos/

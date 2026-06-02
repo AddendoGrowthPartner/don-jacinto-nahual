@@ -56,6 +56,31 @@ export interface ServiceLandingV2Props {
   heroCtaLabel?: string;
   heroOverlayClass?: string;
   heroTagline?: string;
+
+  // Video opcional para el hero (facade con carga diferida).
+  // Solo se renderiza en las páginas que pasen esta prop (p. ej. amarres-de-amor).
+  heroVideo?: {
+    poster: string;
+    iframeSrc: string;
+    alt: string;
+  };
+  // Subtítulo corto (1 línea) para el hero limpio con video.
+  heroSubtitle?: string;
+  // Línea de confianza bajo los botones del hero con video.
+  heroTrust?: string;
+  // Sección "hook" opcional debajo del hero (imagen + texto + CTA).
+  // Solo se renderiza cuando se pasa (p. ej. amarres-de-amor).
+  heroHook?: {
+    image: string;
+    imageMobile?: string;
+    imageAlt: string;
+    imageOverlay?: string;
+    title: string;
+    subtitle?: string;
+    bullets?: string[];
+  };
+  // Oculta la sección "Honestidad ante todo" (solo en páginas que lo pidan).
+  hideHonesty?: boolean;
 }
 
 const props = Astro.props as ServiceLandingV2Props;
@@ -96,7 +121,15 @@ const {
   heroCtaLabel = 'WhatsApp',
   heroOverlayClass = 'bg-black/30',
   heroTagline,
+  heroVideo,
+  heroSubtitle,
+  heroTrust,
+  heroHook,
+  hideHonesty = false,
 } = props;
+
+const hasHeroVideo = !!heroVideo;
+const hasHeroHook = !!heroHook;
 
 const phone = '(213) 598-1928';
 const phoneHref = 'tel:+12135981928';
@@ -118,77 +151,261 @@ const faqSchema = {
 };
 ---
 
-<Layout title={pageTitle} description={pageDescription} preloadHero={heroImage}>
+<Layout title={pageTitle} description={pageDescription} preloadHero={hasHeroVideo ? undefined : heroImage}>
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <!-- ============ SECCIÓN 1 — HERO ============ -->
-  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <picture style="position:absolute;inset:0;width:100%;height:100%;z-index:0;">
-      {heroImageMobile && (
-        <source media="(max-width: 768px)" srcset={heroImageMobile} type="image/webp" width="800" height="450" />
-      )}
-      <img
-        src={heroImage}
-        alt={heroImageAlt}
-        width="1920"
-        height="1080"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-        style="width:100%;height:100%;object-fit:cover;object-position:center;"
-      />
-    </picture>
-    <div class:list={["absolute inset-0", heroOverlayClass]} style="z-index:1;"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-bg/40 via-transparent to-bg" style="z-index:1;"></div>
+  {hasHeroVideo ? (
+    <!-- HERO LIMPIO (mobile-first, una sola columna) — fondo oscuro sólido, sin foto -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0D0D0D]">
+      <div class="absolute inset-0 bg-gradient-to-b from-black via-[#0D0D0D] to-black" style="z-index:0;"></div>
+      <div class="absolute inset-0" style="z-index:0;background:radial-gradient(60% 45% at 50% 0%, rgba(212,175,55,0.07), transparent 70%);"></div>
 
-    <div class="relative z-10 max-w-4xl mx-auto px-6 py-24 text-center">
-      <div class="inline-block mb-6 px-5 py-2 border border-gold/40 rounded-full">
-        <span class="text-gold-light text-xs sm:text-sm tracking-[0.2em] uppercase">
-          {badge}
-        </span>
+      <div class="relative z-10 w-full max-w-xl mx-auto px-6 py-14 sm:py-16 flex flex-col items-center text-center">
+        <!-- a) kicker -->
+        <div class="mb-5 px-5 py-2 border border-gold/40 rounded-full">
+          <span class="text-gold-light text-xs sm:text-sm tracking-[0.2em] uppercase">{badge}</span>
+        </div>
+
+        <!-- b) H1 (conserva keywords SEO) -->
+        <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-text leading-tight mb-3">
+          {h1}
+        </h1>
+
+        <!-- c) subtítulo corto -->
+        {heroSubtitle && (
+          <p class="font-display italic text-lg sm:text-xl text-gold mb-8 max-w-md">
+            {heroSubtitle}
+          </p>
+        )}
+
+        <!-- d) VIDEO (protagonista) · facade con carga diferida -->
+        <div class="w-full flex justify-center mb-8">
+          <div class="hero-video-facade relative aspect-[9/16] w-[min(70vw,300px)] md:w-auto md:h-[78vh] md:max-h-[680px] rounded-2xl overflow-hidden bg-black shadow-2xl shadow-black/60 ring-1 ring-gold/40 border border-gold/20">
+            <button
+              type="button"
+              class="hero-video-play group absolute inset-0 w-full h-full cursor-pointer focus:outline-none"
+              aria-label="Reproducir video de Don Jacinto"
+              data-iframe-src={heroVideo.iframeSrc}
+            >
+              <img
+                src={heroVideo.poster}
+                alt={heroVideo.alt}
+                width="450"
+                height="800"
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 w-full h-full object-cover"
+              />
+              <span aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-black/25"></span>
+              <span aria-hidden="true" class="absolute inset-0 flex items-center justify-center">
+                <span class="flex items-center justify-center w-20 h-20 rounded-full bg-gold/95 text-bg shadow-lg shadow-black/40 ring-2 ring-white/30 transition-transform duration-300 group-hover:scale-110 group-focus-visible:scale-110 group-focus-visible:ring-4 group-focus-visible:ring-gold-light">
+                  <svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor" class="ml-1"><path d="M8 5v14l11-7z"/></svg>
+                </span>
+              </span>
+            </button>
+            <!-- Respaldo SIN JS: enlace (cero iframes en el HTML inicial → nada se reproduce solo) -->
+            <noscript>
+              <a
+                href={heroVideo.iframeSrc}
+                target="_blank"
+                rel="noopener"
+                class="absolute inset-0 flex items-center justify-center text-gold-light font-semibold underline"
+              >
+                ▶ Ver video de Don Jacinto
+              </a>
+            </noscript>
+          </div>
+        </div>
+
+        <!-- e) botones (full width en móvil, táctiles ≥48px) -->
+        <div class="w-full max-w-md flex flex-col sm:flex-row gap-3 justify-center mb-6">
+          <a
+            href={phoneHref}
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[48px] no-underline bg-gold hover:bg-gold-light text-bg font-semibold px-7 py-3.5 rounded-full transition-all hover:scale-[1.02] shadow-lg shadow-gold/20"
+          >
+            📞 Llamar: {phone}
+          </a>
+          <WhatsAppLink
+            prefilledMessage={whatsappPrefilledMessage}
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[48px] no-underline bg-[#0D5C2E] hover:bg-[#0a4a25] text-white font-semibold px-7 py-3.5 rounded-full transition-all"
+          >
+            <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            💬 {heroCtaLabel}
+          </WhatsAppLink>
+        </div>
+
+        <!-- f) línea de confianza (atención presencial, destacada) -->
+        {heroTrust && (
+          <p class="flex items-center justify-center gap-2 text-base sm:text-lg text-gold-light font-medium tracking-wide">
+            <span aria-hidden="true">📍</span>
+            <span>{heroTrust}</span>
+          </p>
+        )}
       </div>
+    </section>
+  ) : (
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <picture style="position:absolute;inset:0;width:100%;height:100%;z-index:0;">
+        {heroImageMobile && (
+          <source media="(max-width: 768px)" srcset={heroImageMobile} type="image/webp" width="800" height="450" />
+        )}
+        <img
+          src={heroImage}
+          alt={heroImageAlt}
+          width="1920"
+          height="1080"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          style="width:100%;height:100%;object-fit:cover;object-position:center;"
+        />
+      </picture>
+      <div class:list={["absolute inset-0", heroOverlayClass]} style="z-index:1;"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-bg/40 via-transparent to-bg" style="z-index:1;"></div>
 
-      <h1 class="font-display text-5xl sm:text-6xl md:text-7xl font-bold mb-3 text-text">
-        {h1}
-      </h1>
-      <h2 class:list={[
-        "font-display italic text-2xl sm:text-3xl md:text-4xl text-gold",
-        heroTagline ? "mb-3" : "mb-8"
-      ]}>
-        {h2}
-      </h2>
+      <div class="relative z-10 max-w-4xl mx-auto px-6 py-24 text-center">
+        <div class="inline-block mb-6 px-5 py-2 border border-gold/40 rounded-full">
+          <span class="text-gold-light text-xs sm:text-sm tracking-[0.2em] uppercase">
+            {badge}
+          </span>
+        </div>
 
-      {heroTagline && (
-        <p class="text-sm sm:text-base md:text-lg text-text/70 mb-10 max-w-xl mx-auto leading-snug tracking-wide">
-          {heroTagline}
+        <h1 class="font-display text-5xl sm:text-6xl md:text-7xl font-bold mb-3 text-text">
+          {h1}
+        </h1>
+        <h2 class:list={[
+          "font-display italic text-2xl sm:text-3xl md:text-4xl text-gold",
+          heroTagline ? "mb-3" : "mb-8"
+        ]}>
+          {h2}
+        </h2>
+
+        {heroTagline && (
+          <p class="text-sm sm:text-base md:text-lg text-text/70 mb-10 max-w-xl mx-auto leading-snug tracking-wide">
+            {heroTagline}
+          </p>
+        )}
+
+        <p class="text-lg sm:text-xl text-text/85 max-w-3xl mx-auto leading-relaxed mb-10">
+          {heroUSP}
         </p>
-      )}
 
-      <p class="text-lg sm:text-xl text-text/85 max-w-3xl mx-auto leading-relaxed mb-10">
-        {heroUSP}
-      </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <a
+            href={phoneHref}
+            class="bg-gold hover:bg-gold-light text-bg font-semibold px-8 py-4 rounded-full transition-all hover:scale-105 shadow-lg shadow-gold/20"
+          >
+            📞 Llamar: {phone}
+          </a>
+          <WhatsAppLink
+            prefilledMessage={whatsappPrefilledMessage}
+            style="display:inline-flex;align-items:center;gap:0.5rem;background:#0D5C2E;color:white;font-weight:600;font-size:0.875rem;padding:0.75rem 1.5rem;border-radius:9999px;text-decoration:none;"
+          >
+            <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            💬 {heroCtaLabel}
+          </WhatsAppLink>
+        </div>
 
-      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-        <a
-          href={phoneHref}
-          class="bg-gold hover:bg-gold-light text-bg font-semibold px-8 py-4 rounded-full transition-all hover:scale-105 shadow-lg shadow-gold/20"
-        >
-          📞 Llamar: {phone}
-        </a>
-        <WhatsAppLink
-          prefilledMessage={whatsappPrefilledMessage}
-          style="display:inline-flex;align-items:center;gap:0.5rem;background:#0D5C2E;color:white;font-weight:600;font-size:0.875rem;padding:0.75rem 1.5rem;border-radius:9999px;text-decoration:none;"
-        >
-          <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          💬 {heroCtaLabel}
-        </WhatsAppLink>
+        <p class="text-xs sm:text-sm text-muted tracking-widest">
+          ✦ {geoCities} ✦
+        </p>
       </div>
+    </section>
+  )}
 
-      <p class="text-xs sm:text-sm text-muted tracking-widest">
-        ✦ {geoCities} ✦
-      </p>
-    </div>
-  </section>
+  {hasHeroHook && (
+    <!-- ============ SECCIÓN HOOK (imagen + texto bajado del hero) ============ -->
+    <section class="bg-bg py-16 sm:py-24 border-t border-gold/10">
+      <div class="max-w-5xl mx-auto px-6">
+        <!-- Encabezado CTA -->
+        <div class="text-center mb-10 sm:mb-14">
+          <h2 class="font-display text-3xl sm:text-4xl md:text-5xl leading-tight mb-4" set:html={heroHook.title} />
+          {heroHook.subtitle && (
+            <p class="text-gold-light text-lg sm:text-xl max-w-2xl mx-auto leading-snug">
+              {heroHook.subtitle}
+            </p>
+          )}
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-10 lg:gap-14 items-center">
+          <div class="relative">
+            <div class="absolute -inset-3 border border-gold/25 rounded-xl"></div>
+            <div class="relative rounded-xl overflow-hidden shadow-2xl">
+              <picture>
+                {heroHook.imageMobile && (
+                  <source media="(max-width: 768px)" srcset={heroHook.imageMobile} type="image/webp" />
+                )}
+                <img
+                  src={heroHook.image}
+                  alt={heroHook.imageAlt}
+                  width="1080"
+                  height="1620"
+                  loading="lazy"
+                  decoding="async"
+                  class="block w-full h-auto"
+                />
+              </picture>
+              {heroHook.imageOverlay && (
+                <>
+                  <div aria-hidden="true" class="absolute inset-x-0 top-0 h-3/4 bg-gradient-to-b from-black/85 via-black/40 to-transparent"></div>
+                  <div class="absolute inset-x-0 top-0 p-5 sm:p-7 text-left drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]" set:html={heroHook.imageOverlay}></div>
+                </>
+              )}
+            </div>
+          </div>
+          <div class="text-center md:text-left">
+            {heroHook.bullets && (
+              <ul class="space-y-4 mb-8 inline-block text-left">
+                {heroHook.bullets.map((b) => (
+                  <li class="flex gap-3 items-start text-text/90 text-lg sm:text-xl">
+                    <span class="text-gold text-xl mt-0.5 flex-shrink-0">✦</span>
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start max-w-md mx-auto md:mx-0">
+            <a
+              href={phoneHref}
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[48px] no-underline bg-gold hover:bg-gold-light text-bg font-semibold px-7 py-3.5 rounded-full transition-all hover:scale-[1.02] shadow-lg shadow-gold/20"
+            >
+              📞 Llamar: {phone}
+            </a>
+            <WhatsAppLink
+              prefilledMessage={whatsappPrefilledMessage}
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[48px] no-underline bg-[#0D5C2E] hover:bg-[#0a4a25] text-white font-semibold px-7 py-3.5 rounded-full transition-all"
+            >
+              <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              💬 {heroCtaLabel}
+            </WhatsAppLink>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+  )}
+
+  {hasHeroVideo && (
+    <script is:inline>
+      (function () {
+        var btn = document.querySelector('.hero-video-play');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          var wrap = btn.closest('.hero-video-facade');
+          if (!wrap) return;
+          var iframe = document.createElement('iframe');
+          iframe.src = btn.getAttribute('data-iframe-src');
+          iframe.title = 'Video de Don Jacinto';
+          iframe.setAttribute('allow', 'accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;');
+          iframe.setAttribute('allowfullscreen', 'true');
+          iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+          wrap.innerHTML = '';
+          wrap.appendChild(iframe);
+        });
+      })();
+    </script>
+  )}
 
   <!-- ============ SECCIÓN 2 — PROBLEMA ============ -->
   <section class="bg-bg py-20 sm:py-28 border-t border-gold/10">
@@ -318,31 +535,33 @@ const faqSchema = {
     </div>
   </section>
 
-  <!-- ============ SECCIÓN 6 — HONESTIDAD ANTE TODO ============ -->
-  <section class="py-20 sm:py-28">
-    <div class="max-w-3xl mx-auto px-6">
-      <div class="border border-gold/30 rounded-lg p-10 sm:p-14 bg-bg-alt/50 relative">
-        <div class="absolute -top-4 left-10 bg-bg px-4 text-gold text-xs tracking-[0.25em] uppercase">
-          ✦ Honestidad ante todo ✦
-        </div>
-        <h2 class="font-display text-2xl sm:text-3xl md:text-4xl mb-6 text-gold-light leading-tight">
-          {honestyTitle}
-        </h2>
-        <div class="space-y-4 text-text/85 text-base sm:text-lg leading-relaxed">
-          {honestyParagraphs.map((p) => <p set:html={p} />)}
-        </div>
+  {!hideHonesty && (
+    <!-- ============ SECCIÓN 6 — HONESTIDAD ANTE TODO ============ -->
+    <section class="py-20 sm:py-28">
+      <div class="max-w-3xl mx-auto px-6">
+        <div class="border border-gold/30 rounded-lg p-10 sm:p-14 bg-bg-alt/50 relative">
+          <div class="absolute -top-4 left-10 bg-bg px-4 text-gold text-xs tracking-[0.25em] uppercase">
+            ✦ Honestidad ante todo ✦
+          </div>
+          <h2 class="font-display text-2xl sm:text-3xl md:text-4xl mb-6 text-gold-light leading-tight">
+            {honestyTitle}
+          </h2>
+          <div class="space-y-4 text-text/85 text-base sm:text-lg leading-relaxed">
+            {honestyParagraphs.map((p) => <p set:html={p} />)}
+          </div>
 
-        <ul class="mt-8 grid sm:grid-cols-2 gap-3">
-          {honestyGuarantees.map((g) => (
-            <li class="flex gap-3 items-start text-gold-light">
-              <span class="text-gold mt-1">✓</span>
-              <span>{g}</span>
-            </li>
-          ))}
-        </ul>
+          <ul class="mt-8 grid sm:grid-cols-2 gap-3">
+            {honestyGuarantees.map((g) => (
+              <li class="flex gap-3 items-start text-gold-light">
+                <span class="text-gold mt-1">✓</span>
+                <span>{g}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   {hasGallery && (
     <!-- ============ SECCIÓN 7 — GALERÍA (opcional) ============ -->
@@ -537,6 +756,17 @@ const faqSchema = {
       </p>
     </div>
   </section>
+
+  {hideHonesty && (
+    <!-- Descargo discreto (cuando se oculta la sección de Honestidad) -->
+    <section class="bg-bg pb-10">
+      <div class="max-w-3xl mx-auto px-6">
+        <p class="text-muted/60 text-xs leading-relaxed text-center">
+          {honestyParagraphs.join(' ')}
+        </p>
+      </div>
+    </section>
+  )}
 </Layout>
 
 <script is:inline>
