@@ -55,6 +55,7 @@ export interface ServiceLandingV2Props {
 
   finalCtaTitle: string;
   finalCtaParagraph: string;
+  finalCtaOverlayClass?: string;
 
   whatsappPrefilledMessage: string;
 
@@ -126,6 +127,7 @@ const {
   galleryWide = false,
   finalCtaTitle,
   finalCtaParagraph,
+  finalCtaOverlayClass = 'bg-bg/90',
   whatsappPrefilledMessage,
   heroCtaLabel = 'WhatsApp',
   heroOverlayClass = 'bg-black/30',
@@ -846,13 +848,13 @@ const faqSchema = {
       style="background-image: url('/images/altar-espiritual.webp');"
     >
     </div>
-    <div class="absolute inset-0 bg-bg/90"></div>
+    <div class:list={["absolute inset-0", finalCtaOverlayClass]}></div>
     <div class="relative max-w-3xl mx-auto px-6 text-center">
-      <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">✦ Contacto ✦</p>
-      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-6 text-text leading-tight">
+      <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">✦ Contacto ✦</p>
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-6 text-text leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
         {finalCtaTitle}
       </h2>
-      <p class="text-text/85 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
+      <p class="text-text/85 text-lg leading-relaxed mb-10 max-w-2xl mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
         {finalCtaParagraph}
       </p>
 
