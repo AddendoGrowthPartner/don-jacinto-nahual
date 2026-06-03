@@ -156,7 +156,12 @@ const faqSchema = {
 };
 ---
 
-<Layout title={pageTitle} description={pageDescription} preloadHero={hasHeroVideo ? heroVideo.poster : heroImage}>
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  preloadHero={hasHeroVideo ? heroVideo.poster : heroImage}
+  preconnect={hasHeroVideo ? ['https://customer-iabj1352jwro2v5p.cloudflarestream.com'] : []}
+>
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <!-- ============ SECCIÓN 1 — HERO ============ -->
