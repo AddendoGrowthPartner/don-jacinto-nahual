@@ -60,24 +60,14 @@ const processSteps = [
 
 const gallery = [
   {
-    src: '/images/don-jacinto-retrato.webp',
-    caption: 'Don Jacinto Nahual · Chamán de Catemaco',
-    alt: 'Don Jacinto Nahual brujo curandero de Catemaco Veracruz chamán mexicano Los Ángeles California',
+    src: '/images/brujo-galeria-1.webp',
+    caption: 'Trabajo espiritual de pareja · Catemaco',
+    alt: 'Don Jacinto Nahual brujo curandero de Catemaco realizando un trabajo espiritual a una pareja entre velas y copal en Los Ángeles California',
   },
   {
-    src: '/images/ritual-fuego.webp',
-    caption: 'Ritual de fuego · Tradición ancestral',
-    alt: 'Ritual de fuego sagrado tradición curanderil Catemaco Veracruz Don Jacinto Nahual',
-  },
-  {
-    src: '/images/altar-espiritual.webp',
-    caption: 'Altar espiritual de Catemaco',
-    alt: 'Altar espiritual tradición de Catemaco Veracruz brujo curandero Don Jacinto Nahual Los Ángeles',
-  },
-  {
-    src: '/images/don-jacinto-ritual.webp',
-    caption: 'Trabajo espiritual con hierbas y oración',
-    alt: 'Don Jacinto Nahual trabajo espiritual hierbas oracion curandero Catemaco Los Angeles',
+    src: '/images/brujo-galeria-2.webp',
+    caption: 'Limpia con copal y sahumerio',
+    alt: 'Don Jacinto Nahual brujo curandero de Catemaco haciendo una limpia con copal y sahumerio a dos personas en Los Ángeles California',
   },
 ];
 ---
@@ -92,6 +82,27 @@ const gallery = [
   heroImage="/images/don-jacinto-invocacion.webp"
   heroImageAlt="Don Jacinto Nahual brujo curandero de Catemaco Veracruz invocación espiritual Los Ángeles California"
   geoCities="Atención presencial en Los Ángeles · Ontario · San Fernando · Santa Ana"
+  heroVideo={{
+    poster: '/images/don-jacinto-brujo-poster.webp',
+    iframeSrc: 'https://customer-iabj1352jwro2v5p.cloudflarestream.com/d3200842df3119c484155fe56f81f89f/iframe?autoplay=true&muted=false&controls=true&primaryColor=%230D5C2E',
+    alt: 'Don Jacinto Nahual, brujo curandero de Catemaco, frente a su mesa de trabajo con velas, cartas y hierbas — limpias y protección espiritual en Los Ángeles',
+    fullscreen: true,
+  }}
+  heroSubtitle="Si te hicieron un daño o sientes que algo bloquea tu vida, Don Jacinto puede ayudarte."
+  heroTrust="Atención presencial en Los Ángeles, Santa Ana y Ontario"
+  hideHonesty
+  heroHook={{
+    image: '/images/don-jacinto-brujo-hook.webp',
+    imageAlt: 'Don Jacinto Nahual, brujo curandero de Catemaco, realizando una limpia espiritual con hierbas, fuego y velas para romper el daño y la brujería en Los Ángeles California',
+    imageOverlay: '<span class="block font-display italic text-xl sm:text-2xl text-amber-50 leading-snug mb-1">Recupera tu</span><span class="block font-display font-bold text-6xl sm:text-7xl text-gold leading-[0.95] mb-1">paz</span><span class="block font-display italic text-xl sm:text-2xl text-amber-50 leading-snug mb-4">y rompe el daño que te pusieron</span><span class="block text-white font-bold text-lg sm:text-2xl leading-snug">📞 Llámame o 💬 envíame un mensaje</span>',
+    title: 'Libérate del daño y <span class="text-gold">recupera tu camino</span>',
+    subtitle: 'Si sientes un peso que no elegiste, un mal puesto o envidia trabajada en tu contra, escríbele a Don Jacinto y cuéntale tu caso, sin compromiso.',
+    bullets: [
+      'Limpia el mal puesto y la brujería',
+      'Aleja la envidia y las malas energías',
+      'Abre los caminos que se cerraron',
+    ],
+  }}
 
   problemTitle="¿Sientes que algo no te deja avanzar?"
   problemParagraphs={[
@@ -115,6 +126,17 @@ const gallery = [
   credentialsImage="/images/don-jacinto-curandero.webp"
   credentialsImageMobile="/images/don-jacinto-curandero-sm.webp"
   credentialsImageAlt="Don Jacinto Nahual brujo curandero de Catemaco Veracruz atendiendo consulta espiritual en Los Ángeles California"
+  credentialsImageOverlay={`
+    <p class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-gold-light leading-[1.05] mb-4">Trabajos que realiza Don Jacinto</p>
+    <ul class="font-display text-white text-lg sm:text-2xl leading-snug space-y-2">
+      <li class="flex gap-2"><span class="text-gold">›</span> Limpias espirituales</li>
+      <li class="flex gap-2"><span class="text-gold">›</span> Protección contra el daño</li>
+      <li class="flex gap-2"><span class="text-gold">›</span> Romper brujería y mal puesto</li>
+      <li class="flex gap-2"><span class="text-gold">›</span> Quitar la envidia</li>
+      <li class="flex gap-2"><span class="text-gold">›</span> Abrir caminos cerrados</li>
+    </ul>
+    <p class="mt-4 text-gold font-semibold text-base sm:text-xl">Consulta tu caso, sin compromiso →</p>
+  `}
   credentialsTitle="El Brujo Curandero que la Comunidad Latina Busca en el Sur de California"
   credentialsManifesto={[
     'Don Jacinto Nahual es un brujo curandero y guía espiritual con décadas de práctica en la tradición ancestral de Catemaco, Veracruz — la tierra reconocida en todo México y Latinoamérica como la cuna de la curanderil mexicana.',
@@ -177,6 +199,7 @@ const gallery = [
 
   cities={cities}
   gallery={gallery}
+  galleryWide
 
   finalCtaTitle="¿Llevas tiempo sintiendo que algo está mal y no encuentras respuesta?"
   finalCtaParagraph="Don Jacinto Nahual ha acompañado a cientos de personas en el sur de California con casos de brujería, mal puesto, envidia y daño espiritual que parecían imposibles. Habla con él hoy mismo."
