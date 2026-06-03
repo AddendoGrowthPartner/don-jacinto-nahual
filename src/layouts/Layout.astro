@@ -160,8 +160,25 @@ const personSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S0TWXE71XF"></script>
+    <!-- Google Analytics 4 + Ads — librería diferida (1ª interacción o ~3.5s) para mejorar rendimiento.
+         El shim gtag() encola en dataLayer al instante, así no se pierden conversiones. -->
+    <script is:inline>
+      (function () {
+        var loaded = false;
+        function loadGA() {
+          if (loaded) return;
+          loaded = true;
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-S0TWXE71XF';
+          document.head.appendChild(s);
+        }
+        ['scroll', 'pointerdown', 'touchstart', 'keydown', 'mousemove'].forEach(function (ev) {
+          window.addEventListener(ev, loadGA, { once: true, passive: true });
+        });
+        setTimeout(loadGA, 3500);
+      })();
+    </script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
