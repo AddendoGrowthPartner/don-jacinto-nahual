@@ -146,7 +146,7 @@ const personSchema = {
     <link rel="icon" href="/favicon.ico" />
 
     {preloadHero && <link rel="preload" as="image" href={preloadHero} fetchpriority="high" />}
-    <link rel="preload" as="image" href="/images/don-jacinto-rezo.webp" fetchpriority="high">
+    {!preloadHero && <link rel="preload" as="image" href="/images/don-jacinto-rezo.webp" fetchpriority="high" />}
 
     <!-- Schema.org -->
     <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
