@@ -2,98 +2,243 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "donjacintonahual.com" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "donjacintonahual.com"
+        }
+      ],
       "destination": "https://www.donjacintonahual.com/$1",
       "permanent": true
     },
     {
-      "source": "/blog/lectura-de-cartas-2026-04-19",
-      "destination": "/blog/lectura-de-cartas",
-      "permanent": true
-    },
-    {
-      "source": "/blog/lectura-de-cartas-2026-04-27",
-      "destination": "/blog/lectura-de-cartas",
-      "permanent": true
-    },
-    {
-      "source": "/blog/hechizos-de-amor-2026-04-20",
-      "destination": "/blog/hechizos-de-amor",
-      "permanent": true
-    },
-    {
-      "source": "/blog/hechizos-de-amor-2026-04-28",
-      "destination": "/blog/hechizos-de-amor",
-      "permanent": true
-    },
-    {
-      "source": "/blog/brujo-cerca-de-mi-2026-04-18",
-      "destination": "/blog/brujo-cerca-de-mi",
-      "permanent": true
-    },
-    {
-      "source": "/blog/brujo-cerca-de-mi-2026-04-26",
-      "destination": "/blog/brujo-cerca-de-mi",
-      "permanent": true
-    },
-    {
-      "source": "/blog/limpia-espiritual-2026-04-17",
-      "destination": "/blog/limpia-espiritual",
-      "permanent": true
-    },
-    {
-      "source": "/blog/limpia-espiritual-2026-04-25",
-      "destination": "/blog/limpia-espiritual",
-      "permanent": true
-    },
-    {
-      "source": "/blog/que-es-una-limpia-espiritual",
-      "destination": "/blog/limpia-espiritual",
-      "permanent": true
-    },
-    {
       "source": "/blog/amarres-de-amor-2026-04-16",
-      "destination": "/blog/amarres-de-amor",
+      "destination": "/blog/amarres-de-amor/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/amarres-de-amor-2026-04-16/",
+      "destination": "/blog/amarres-de-amor/",
       "permanent": true
     },
     {
       "source": "/blog/amarres-de-amor-2026-04-24",
-      "destination": "/blog/amarres-de-amor",
+      "destination": "/blog/amarres-de-amor/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/amarres-de-amor-2026-04-24/",
+      "destination": "/blog/amarres-de-amor/",
       "permanent": true
     },
     {
       "source": "/blog/amarres-de-amor-2026-05-01",
-      "destination": "/blog/amarres-de-amor",
+      "destination": "/blog/amarres-de-amor/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/amarres-de-amor-2026-05-01/",
+      "destination": "/blog/amarres-de-amor/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/como-hacer-un-amarre-de-amor-2026-05-13",
+      "destination": "/blog/amarres-de-amor/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/como-hacer-un-amarre-de-amor-2026-05-13/",
+      "destination": "/blog/amarres-de-amor/",
       "permanent": true
     },
     {
       "source": "/blog/brujeria-2026-04-15",
-      "destination": "/blog/brujeria",
+      "destination": "/blog/brujeria/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/brujeria-2026-04-15/",
+      "destination": "/blog/brujeria/",
       "permanent": true
     },
     {
       "source": "/blog/brujeria-2026-04-23",
-      "destination": "/blog/brujeria",
+      "destination": "/blog/brujeria/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/brujeria-2026-04-23/",
+      "destination": "/blog/brujeria/",
       "permanent": true
     },
     {
       "source": "/blog/brujeria-2026-04-30",
-      "destination": "/blog/brujeria",
+      "destination": "/blog/brujeria/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/brujeria-2026-04-30/",
+      "destination": "/blog/brujeria/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/como-saber-si-me-hicieron-brujeria-2026-05-13",
+      "destination": "/blog/brujeria/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/como-saber-si-me-hicieron-brujeria-2026-05-13/",
+      "destination": "/blog/brujeria/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/brujo-cerca-de-mi-2026-04-18",
+      "destination": "/blog/brujo-cerca-de-mi/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/brujo-cerca-de-mi-2026-04-18/",
+      "destination": "/blog/brujo-cerca-de-mi/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/brujo-cerca-de-mi-2026-04-26",
+      "destination": "/blog/brujo-cerca-de-mi/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/brujo-cerca-de-mi-2026-04-26/",
+      "destination": "/blog/brujo-cerca-de-mi/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/curandero-cerca-de-mi-2026-05-13",
+      "destination": "/blog/brujo-cerca-de-mi/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/curandero-cerca-de-mi-2026-05-13/",
+      "destination": "/blog/brujo-cerca-de-mi/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/curandero-cerca-de-mi-2026-05-15",
+      "destination": "/blog/brujo-cerca-de-mi/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/curandero-cerca-de-mi-2026-05-15/",
+      "destination": "/blog/brujo-cerca-de-mi/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/hechizos-de-amor-2026-04-20",
+      "destination": "/blog/hechizos-de-amor/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/hechizos-de-amor-2026-04-20/",
+      "destination": "/blog/hechizos-de-amor/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/hechizos-de-amor-2026-04-28",
+      "destination": "/blog/hechizos-de-amor/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/hechizos-de-amor-2026-04-28/",
+      "destination": "/blog/hechizos-de-amor/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/lectura-de-cartas-2026-04-19",
+      "destination": "/blog/lectura-de-cartas/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/lectura-de-cartas-2026-04-19/",
+      "destination": "/blog/lectura-de-cartas/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/lectura-de-cartas-2026-04-27",
+      "destination": "/blog/lectura-de-cartas/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/lectura-de-cartas-2026-04-27/",
+      "destination": "/blog/lectura-de-cartas/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/limpia-espiritual-2026-04-17",
+      "destination": "/blog/limpia-espiritual/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/limpia-espiritual-2026-04-17/",
+      "destination": "/blog/limpia-espiritual/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/limpia-espiritual-2026-04-25",
+      "destination": "/blog/limpia-espiritual/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/limpia-espiritual-2026-04-25/",
+      "destination": "/blog/limpia-espiritual/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/que-es-una-limpia-espiritual",
+      "destination": "/blog/limpia-espiritual/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/que-es-una-limpia-espiritual/",
+      "destination": "/blog/limpia-espiritual/",
       "permanent": true
     },
     {
       "source": "/blog/santeria-2026-04-15",
-      "destination": "/blog/santeria",
+      "destination": "/blog/santeria/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/santeria-2026-04-15/",
+      "destination": "/blog/santeria/",
       "permanent": true
     },
     {
       "source": "/blog/santeria-2026-04-22",
-      "destination": "/blog/santeria",
+      "destination": "/blog/santeria/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/santeria-2026-04-22/",
+      "destination": "/blog/santeria/",
       "permanent": true
     },
     {
       "source": "/blog/santeria-2026-04-29",
-      "destination": "/blog/santeria",
+      "destination": "/blog/santeria/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/santeria-2026-04-29/",
+      "destination": "/blog/santeria/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/santeria-2026-05-16",
+      "destination": "/blog/santeria/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/santeria-2026-05-16/",
+      "destination": "/blog/santeria/",
       "permanent": true
     }
   ]
