@@ -477,7 +477,10 @@ const faqSchema = {
             var originalHTML = wrap.innerHTML; // portada + botón (estado de diseño)
             btn.addEventListener('click', function () {
               var iframe = document.createElement('iframe');
-              iframe.src = btn.getAttribute('data-iframe-src');
+              // Inyectar SIEMPRE como muted=true: garantiza que arranque a UN solo toque
+              // (los navegadores bloquean el autoplay con sonido y mostrarían un 2º botón).
+              // Luego intentamos activar el sonido vía SDK (funciona en escritorio/Android).
+              iframe.src = btn.getAttribute('data-iframe-src').replace('muted=false', 'muted=true');
               iframe.title = 'Video de Don Jacinto';
               iframe.setAttribute('allow', 'autoplay; fullscreen; encrypted-media; picture-in-picture; accelerometer; gyroscope;');
               iframe.setAttribute('allowfullscreen', 'true');
