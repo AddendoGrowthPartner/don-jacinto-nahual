@@ -240,6 +240,56 @@
       "source": "/blog/santeria-2026-05-16/",
       "destination": "/blog/santeria/",
       "permanent": true
+    },
+    {
+      "source": "/blog/agua-bendita-2026-05-25",
+      "destination": "/blog/agua-bendita-2026-06-03/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/agua-bendita-2026-05-25/",
+      "destination": "/blog/agua-bendita-2026-06-03/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/horoscopo-2026-05-22",
+      "destination": "/blog/horoscopo-2026-06-01/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/horoscopo-2026-05-22/",
+      "destination": "/blog/horoscopo-2026-06-01/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/magia-negra-2026-04-21",
+      "destination": "/blog/magia-negra-2026-05-13/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/magia-negra-2026-04-21/",
+      "destination": "/blog/magia-negra-2026-05-13/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/ofrenda-2026-05-20",
+      "destination": "/blog/ofrenda-2026-05-29/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/ofrenda-2026-05-20/",
+      "destination": "/blog/ofrenda-2026-05-29/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/palo-santo-2026-05-18",
+      "destination": "/blog/palo-santo-2026-05-27/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/palo-santo-2026-05-18/",
+      "destination": "/blog/palo-santo-2026-05-27/",
+      "permanent": true
     }
   ]
 }
