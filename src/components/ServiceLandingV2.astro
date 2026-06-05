@@ -192,7 +192,7 @@ const faqSchema = {
 
       <button
         type="button"
-        class="hero-video-play group absolute inset-0 z-10 flex items-center justify-center focus:outline-none"
+        class:list={["hero-video-play group absolute inset-0 z-10 flex justify-center focus:outline-none", heroOffer ? "items-start pt-[26vh]" : "items-center"]}
         aria-label="Reproducir video de Don Jacinto"
         data-iframe-src={heroVideo.iframeSrc}
       >
@@ -208,10 +208,7 @@ const faqSchema = {
         {heroSubtitle && (
           <p class="text-sm sm:text-base text-text/90 mb-5 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] max-w-md mx-auto">{heroSubtitle}</p>
         )}
-        {heroOffer && (
-          <div class="mb-6 flex justify-center" set:html={heroOffer}></div>
-        )}
-        <div class="w-full max-w-md mx-auto flex flex-col sm:flex-row gap-3 justify-center mb-4 pointer-events-auto">
+        <div class="w-full max-w-md mx-auto flex flex-col sm:flex-row gap-3 justify-center mb-5 pointer-events-auto">
           <a
             href={phoneHref}
             class="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[48px] no-underline bg-gold hover:bg-gold-light text-bg font-semibold px-7 py-3.5 rounded-full transition-all hover:scale-[1.02] shadow-lg shadow-black/40"
@@ -226,6 +223,9 @@ const faqSchema = {
             💬 {heroCtaLabel}
           </WhatsAppLink>
         </div>
+        {heroOffer && (
+          <div class="mb-5 flex justify-center" set:html={heroOffer}></div>
+        )}
         {heroTrust && (
           <p class="flex items-center justify-center gap-2 text-xs sm:text-sm text-gold-light font-medium tracking-wide drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
             <span aria-hidden="true">📍</span><span>{heroTrust}</span>
