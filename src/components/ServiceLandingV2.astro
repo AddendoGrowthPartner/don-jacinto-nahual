@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import WhatsAppLink from './WhatsAppLink.astro';
+import { servicios, blogsDestacados } from '../data/links.js';
 
 export interface ServiceLandingV2Props {
   pageTitle: string;
@@ -154,6 +155,11 @@ const phoneHref = 'tel:+12135981928';
 
 const hasTestimonials = Array.isArray(testimonials) && testimonials.length > 0;
 const hasGallery = Array.isArray(gallery) && gallery.length > 0;
+
+// Enlazado interno: otros servicios (excluye el actual) + blogs.
+const currentServiceSlug = Astro.url.pathname.replace(/^\/servicio\//, '').replace(/\/$/, '');
+const otrosServicios = servicios.filter((s) => s.slug !== currentServiceSlug);
+const blogsServicio = blogsDestacados.slice(0, 6);
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -861,6 +867,41 @@ const faqSchema = {
             <div class="faq-answer px-6 text-muted leading-relaxed">{f.answer}</div>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ENLACES INTERNOS: otros servicios + blog ============ -->
+  <section class="bg-bg-alt border-t border-gold/10 py-16 sm:py-20">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+      <div>
+        <h2 class="font-display text-2xl sm:text-3xl mb-5 text-gold-light">Otros servicios de Don Jacinto</h2>
+        <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-3">
+          {otrosServicios.map((s) => (
+            <li>
+              <a href={`/servicio/${s.slug}/`} class="group flex items-start gap-3 text-text/80 hover:text-gold-light transition-colors">
+                <span class="text-gold mt-1 flex-shrink-0">→</span>
+                <span class="leading-snug">{s.name}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h2 class="font-display text-2xl sm:text-3xl mb-5 text-gold-light">Del blog</h2>
+        <ul class="space-y-3">
+          {blogsServicio.map((b) => (
+            <li>
+              <a href={`/blog/${b.slug}/`} class="group flex items-start gap-3 text-text/80 hover:text-gold-light transition-colors">
+                <span class="text-gold mt-1 flex-shrink-0">→</span>
+                <span class="leading-snug">{b.name}</span>
+              </a>
+            </li>
+          ))}
+          <li>
+            <a href="/blog/" class="inline-block mt-2 text-gold text-sm hover:text-gold-light transition-colors">Ver todo el blog →</a>
+          </li>
+        </ul>
       </div>
     </div>
   </section>

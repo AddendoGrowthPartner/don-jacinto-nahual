@@ -1,6 +1,7 @@
 ---
 import Layout from './Layout.astro';
 import WhatsAppLink from '../components/WhatsAppLink.astro';
+import { servicios, blogsDestacados } from '../data/links.js';
 
 export interface Props {
   title: string;
@@ -36,6 +37,10 @@ function toISODate(d: string | undefined): string | undefined {
 }
 const isoDate = toISODate(date);
 const absUrl = new URL(Astro.url.pathname, Astro.site).href;
+
+// Slug actual del post (para no enlazarlo a sí mismo en "Más del blog").
+const currentSlug = Astro.url.pathname.replace(/^\/blog\//, '').replace(/\/$/, '');
+const otrosPosts = blogsDestacados.filter((b) => b.slug !== currentSlug).slice(0, 5);
 const absImg = heroImg ? new URL(heroImg, Astro.site).href : undefined;
 
 const blogPostingSchema = {
@@ -97,6 +102,45 @@ const blogPostingSchema = {
       <slot />
     </div>
   </article>
+
+  <!-- ============ ENLACES INTERNOS RELACIONADOS ============ -->
+  <section class="bg-bg-alt border-t border-gold/10 py-16 sm:py-20">
+    <div class="max-w-[820px] mx-auto px-6 grid sm:grid-cols-2 gap-12">
+      <div>
+        <h2 class="font-display text-2xl text-gold-light mb-5">Servicios de Don Jacinto</h2>
+        <ul class="space-y-3">
+          {servicios.map((s) => (
+            <li>
+              <a href={`/servicio/${s.slug}/`} class="group flex items-start gap-3 text-text/80 hover:text-gold-light transition-colors">
+                <span class="text-gold mt-1 flex-shrink-0">→</span>
+                <span class="leading-snug">{s.name}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h2 class="font-display text-2xl text-gold-light mb-5">Más del blog</h2>
+        <ul class="space-y-3">
+          {otrosPosts.map((b) => (
+            <li>
+              <a href={`/blog/${b.slug}/`} class="group flex items-start gap-3 text-text/80 hover:text-gold-light transition-colors">
+                <span class="text-gold mt-1 flex-shrink-0">→</span>
+                <span class="leading-snug">{b.name}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p class="text-muted text-sm leading-relaxed mt-8">
+          Don Jacinto atiende de forma presencial en
+          <a href="/ciudad/los-angeles/" class="text-gold hover:text-gold-light">Los Ángeles</a>,
+          <a href="/ciudad/santa-ana/" class="text-gold hover:text-gold-light">Santa Ana</a>,
+          <a href="/ciudad/ontario/" class="text-gold hover:text-gold-light">Ontario</a> y todo el
+          <a href="/" class="text-gold hover:text-gold-light">sur de California</a>.
+        </p>
+      </div>
+    </div>
+  </section>
 
   <!-- ============ WHATSAPP FLOTANTE ============ -->
   <WhatsAppLink

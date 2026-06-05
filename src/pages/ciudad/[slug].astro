@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import WhatsAppLink from '../../components/WhatsAppLink.astro';
 import { ciudades, areasTrabajo, heroPool, sidePool, ctaPool } from '../../data/ciudades.js';
+import { areaServicio, blogsCiudad } from '../../data/links.js';
 
 const phone = '(213) 598-1928';
 const phoneHref = 'tel:+12135981928';
@@ -33,6 +34,11 @@ const {
 const heroImg = heroPool[i % heroPool.length];
 const sideImg = sidePool[i % sidePool.length];
 const ctaImg = ctaPool[i % ctaPool.length];
+
+// Ciudades cercanas (misma región, si no hay suficientes se completa con otras).
+const mismaRegion = ciudades.filter((x) => x.region === region && x.slug !== c.slug);
+const otras = ciudades.filter((x) => x.region !== region && x.slug !== c.slug);
+const ciudadesCercanas = [...mismaRegion, ...otras].slice(0, 6);
 
 const title = metaTitle || `Brujo Curandero en ${ciudad} · Don Jacinto Nahual`;
 const description =
@@ -212,12 +218,16 @@ const breadcrumbSchema = {
         <p class="text-muted max-w-2xl mx-auto">{areasIntro}</p>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {areasTrabajo.map((a) => (
-          <div class="bg-bg p-8 rounded-2xl border border-gold/10 hover:border-gold/30 transition-colors">
+        {areasTrabajo.map((a, idx) => (
+          <a
+            href={areaServicio[idx]}
+            class="group bg-bg p-8 rounded-2xl border border-gold/10 hover:border-gold/30 transition-colors block"
+          >
             <div class="text-4xl mb-4">{a.icon}</div>
             <h3 class="font-display text-xl text-gold-light mb-3">{a.title}</h3>
             <p class="text-muted text-sm leading-relaxed">{a.desc}</p>
-          </div>
+            <span class="inline-block mt-4 text-gold text-sm group-hover:text-gold-light transition-colors">Ver servicio →</span>
+          </a>
         ))}
       </div>
     </div>
@@ -242,6 +252,50 @@ const breadcrumbSchema = {
             <p class="text-text/80 leading-relaxed pb-5 -mt-1">{f.a}</p>
           </details>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ENLACES INTERNOS: ciudades cercanas + blog ============ -->
+  <section class="bg-bg-alt py-16 sm:py-20 border-t border-gold/10">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+      <div>
+        <h2 class="font-display text-2xl sm:text-3xl mb-5 text-gold-light">
+          Don Jacinto también atiende cerca de {ciudad}
+        </h2>
+        <ul class="flex flex-wrap gap-2.5">
+          {ciudadesCercanas.map((cc) => (
+            <li>
+              <a
+                href={`/ciudad/${cc.slug}/`}
+                class="inline-block text-sm text-text/80 bg-bg border border-gold/20 rounded-full px-4 py-2 hover:border-gold/50 hover:text-gold-light transition-colors"
+              >
+                {cc.ciudad}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h2 class="font-display text-2xl sm:text-3xl mb-5 text-gold-light">Lee también en el blog</h2>
+        <ul class="space-y-3">
+          {blogsCiudad.map((b) => (
+            <li>
+              <a
+                href={`/blog/${b.slug}/`}
+                class="group flex items-start gap-3 text-text/80 hover:text-gold-light transition-colors"
+              >
+                <span class="text-gold mt-1 flex-shrink-0">→</span>
+                <span class="leading-snug">{b.name}</span>
+              </a>
+            </li>
+          ))}
+          <li>
+            <a href="/blog/" class="inline-block mt-2 text-gold text-sm hover:text-gold-light transition-colors">
+              Ver todos los artículos →
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </section>

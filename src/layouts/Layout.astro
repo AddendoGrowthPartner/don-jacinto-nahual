@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 import WhatsAppLink from '../components/WhatsAppLink.astro';
 
 export interface Props {
@@ -233,6 +234,7 @@ const personSchema = {
   <body class="bg-bg text-text font-body antialiased" style="padding-top: 72px;">
     <SiteNav />
     <slot />
+    <SiteFooter />
 
     <!-- Botón flotante de WhatsApp -->
     {!hideWhatsappFloat && (
