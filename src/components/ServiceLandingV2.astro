@@ -206,10 +206,35 @@ const faqSchema = {
         aria-label="Reproducir video de Don Jacinto"
         data-iframe-src={heroVideo.iframeSrc}
       >
-        <span aria-hidden="true" class="flex items-center justify-center w-20 h-20 rounded-full bg-gold/95 text-bg shadow-lg shadow-black/50 ring-2 ring-white/30 transition-transform duration-300 group-hover:scale-110 group-focus-visible:scale-110 group-focus-visible:ring-4 group-focus-visible:ring-gold-light">
+        <span aria-hidden="true" class="hero-play-pulse relative flex items-center justify-center w-20 h-20 rounded-full bg-gold/95 text-bg shadow-lg shadow-black/50 ring-2 ring-white/40 group-focus-visible:ring-4 group-focus-visible:ring-gold-light">
           <svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor" class="ml-1"><path d="M8 5v14l11-7z"/></svg>
         </span>
       </button>
+
+      <style>
+        /* Botón de play que palpita y se ilumina para invitar al clic */
+        .hero-play-pulse { animation: heroPlayBeat 1.5s ease-in-out infinite; }
+        .hero-play-pulse::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: 9999px;
+          pointer-events: none;
+          animation: heroPlayPing 1.5s ease-out infinite;
+        }
+        @keyframes heroPlayBeat {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.09); }
+        }
+        @keyframes heroPlayPing {
+          0% { box-shadow: 0 0 0 0 rgba(232, 201, 122, 0.6); }
+          70%, 100% { box-shadow: 0 0 0 24px rgba(232, 201, 122, 0); }
+        }
+        .hero-video-play:hover .hero-play-pulse { animation-play-state: paused; transform: scale(1.12); }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-play-pulse, .hero-play-pulse::after { animation: none; }
+        }
+      </style>
 
       <div class="relative z-20 mt-auto w-full max-w-xl mx-auto px-6 pb-10 pt-24 text-center pointer-events-none">
         <h1 class="font-display text-2xl sm:text-3xl font-bold text-text leading-tight mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
