@@ -366,28 +366,28 @@ const faqSchema = {
   </section>
 
   <!-- ============ SECCIÓN 2B — SANAR EL ALMA (ángulo de salud) ============ -->
-  <section class="relative py-20 sm:py-28 overflow-hidden">
-    <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('/images/ritual-fuego.webp');"></div>
-    <div class="absolute inset-0 bg-bg/92"></div>
+  <section id="sanar" class="relative py-20 sm:py-28 overflow-hidden scroll-mt-20">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('/images/ritual-fuego.webp');filter:brightness(1.18) contrast(1.02);"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-bg/85 via-bg/55 to-bg/90"></div>
     <div class="relative max-w-4xl mx-auto px-6 text-center">
-      <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">✦ Cuando la ciencia no tiene respuesta ✦</p>
-      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-6 leading-tight text-text">
+      <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">✦ Cuando la ciencia no tiene respuesta ✦</p>
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mb-6 leading-tight text-text drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
         Cuando los médicos no encuentran respuesta,<br class="hidden sm:block" />
         <span class="text-gold">el alma pide ayuda</span>
       </h2>
-      <p class="text-text/85 text-lg leading-relaxed max-w-2xl mx-auto mb-12">
+      <p class="text-text text-lg leading-relaxed max-w-2xl mx-auto mb-12 drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
         Hay malestares que ningún análisis explica y que ningún tratamiento cura, porque su raíz
         no está en el cuerpo. En la tradición de Catemaco, muchos de estos signos tienen un origen
         espiritual — y se pueden trabajar.
       </p>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto">
         {sintomas.map((s) => (
-          <div class="bg-bg-alt/70 backdrop-blur-sm border border-gold/15 rounded-xl px-4 py-4 text-sm text-text/85 leading-snug">
+          <div class="bg-bg/85 backdrop-blur-sm border border-gold/25 rounded-xl px-4 py-4 text-sm text-text leading-snug shadow-lg shadow-black/40">
             {s}
           </div>
         ))}
       </div>
-      <p class="text-muted text-sm mt-10 max-w-2xl mx-auto">
+      <p class="text-text/90 text-sm mt-10 max-w-2xl mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
         Si te identificas con varias de estas señales, una limpia o una consulta espiritual puede
         ser el primer paso. Don Jacinto te escucha sin juicios.
       </p>
