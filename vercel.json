@@ -290,6 +290,26 @@
       "source": "/blog/palo-santo-2026-05-18/",
       "destination": "/blog/palo-santo-2026-05-27/",
       "permanent": true
+    },
+    {
+      "source": "/blog/ofrenda-2026-06-08",
+      "destination": "/blog/ofrenda-2026-05-29/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/ofrenda-2026-06-08/",
+      "destination": "/blog/ofrenda-2026-05-29/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/palo-santo-2026-06-05",
+      "destination": "/blog/palo-santo-2026-05-27/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/palo-santo-2026-06-05/",
+      "destination": "/blog/palo-santo-2026-05-27/",
+      "permanent": true
     }
   ]
 }
