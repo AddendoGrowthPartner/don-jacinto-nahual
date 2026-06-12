@@ -1,0 +1,229 @@
+---
+import ServiceLandingV2 from '../../components/ServiceLandingV2.astro';
+
+const cities = [
+  { name: 'Los Ángeles', slug: 'los-angeles' },
+  { name: 'Santa Mónica', slug: 'santa-monica' },
+  { name: 'Inglewood', slug: 'inglewood' },
+  { name: 'East LA', slug: 'east-la' },
+  { name: 'Huntington Park', slug: 'huntington-park' },
+  { name: 'Monterey Park', slug: 'monterey-park' },
+  { name: 'Montebello', slug: 'montebello' },
+  { name: 'Downey', slug: 'downey' },
+  { name: 'Compton', slug: 'compton' },
+  { name: 'Long Beach', slug: 'long-beach' },
+  { name: 'San Pedro', slug: 'san-pedro' },
+  { name: 'Gardena', slug: 'gardena' },
+  { name: 'South Gate', slug: 'south-gate' },
+  { name: 'Commerce', slug: 'commerce' },
+  { name: 'Ontario', slug: 'ontario' },
+  { name: 'San Fernando', slug: 'san-fernando' },
+  { name: 'Covina', slug: 'covina' },
+  { name: 'San Bernardino', slug: 'san-bernardino' },
+  { name: 'Santa Ana', slug: 'santa-ana' },
+  { name: 'Irvine', slug: 'irvine' },
+  { name: 'Anaheim', slug: 'anaheim' },
+  { name: 'Fullerton', slug: 'fullerton' },
+  { name: 'Garden Grove', slug: 'garden-grove' },
+  { name: 'Mission Viejo', slug: 'mission-viejo' },
+  { name: 'San Clemente', slug: 'san-clemente' },
+  { name: 'Laguna Beach', slug: 'laguna-beach' },
+  { name: 'Buena Park', slug: 'buena-park' },
+];
+
+const processSteps = [
+  {
+    number: '01',
+    title: 'Contacto',
+    description:
+      'Escríbenos por WhatsApp o llama — tu primera consulta es sin costo. Cuéntale a Don Jacinto qué pasó con tu pareja.',
+  },
+  {
+    number: '02',
+    title: 'Orientación',
+    description:
+      'Don Jacinto Nahual escucha tu historia y te orienta espiritualmente sobre el regreso y la reconciliación de tu pareja.',
+  },
+  {
+    number: '03',
+    title: 'El trabajo',
+    description:
+      'Según tu caso, realiza el trabajo de regreso de pareja, el endulzamiento o el baño que tu situación necesite.',
+  },
+  {
+    number: '04',
+    title: 'Acompañamiento',
+    description:
+      'Te da recomendaciones y seguimiento para acompañarte mientras la relación se acomoda y el cariño se reaviva.',
+  },
+];
+
+const gallery = [
+  {
+    src: '/images/amor-pareja.webp',
+    caption: 'El amor que se reúne',
+    alt: 'Pareja formando un corazón con las manos al atardecer tras un trabajo de regreso de pareja con Don Jacinto Nahual en California',
+  },
+  {
+    src: '/images/limpia-pareja.webp',
+    caption: 'Sahumerio de unión a la pareja',
+    alt: 'Don Jacinto Nahual haciendo un sahumerio de unión a una pareja, trabajo de reconciliación de pareja tradición de Catemaco en Los Ángeles',
+  },
+  {
+    src: '/images/amarre-pareja-corazon.webp',
+    caption: 'Trabajo de amor · Corazón de rosas',
+    alt: 'Corazón de rosas entre velas durante un trabajo espiritual de regreso de pareja de Don Jacinto Nahual en Los Ángeles California',
+  },
+  {
+    src: '/images/ritual-fuego.webp',
+    caption: 'Fuego sagrado · Tradición de Catemaco',
+    alt: 'Don Jacinto Nahual ante el fuego sagrado en un trabajo espiritual para el retorno de pareja, tradición de Catemaco',
+  },
+];
+---
+
+<ServiceLandingV2
+  pageTitle="Regreso y Reconciliación de Pareja | Don Jacinto · Los Ángeles"
+  pageDescription="Trabajos espirituales para el regreso de pareja: recuperar el amor de tu pareja, volver con tu ex y reconciliación, con respeto y discreción. Brujo de Catemaco con más de 30 años. Primera consulta sin costo. Atención en Los Ángeles, Ontario y Santa Ana."
+  badge="Regreso de Pareja · Reconciliación"
+  h1="Regreso y Reconciliación de Pareja en Los Ángeles"
+  h2="Si quieres recuperar el amor de tu pareja o volver con tu ex, un trabajo de regreso de pareja puede ayudar a reavivar el cariño, suavizar el trato y reunir lo que la distancia separó."
+  heroTagline="Trabajos espirituales para el regreso y la reconciliación de pareja"
+  heroUSP="Tradición, respeto y acompañamiento espiritual personalizado."
+  heroImage="/images/amarre-pareja-corazon.webp"
+  heroImageMobile="/images/amarre-hero-mobile.webp"
+  heroImageAlt="Don Jacinto Nahual realizando un trabajo espiritual de regreso de pareja con un corazón de rosas entre velas"
+  heroOverlayClass="bg-gradient-to-b from-black/25 via-black/45 to-black/75 md:bg-none md:from-transparent md:via-transparent md:to-transparent md:bg-black/45"
+  geoCities="Atención presencial en Los Ángeles · Ontario · San Fernando · Santa Ana"
+  heroCtaLabel="Consulta gratis con Don Jacinto"
+  hideHonesty
+  heroSubtitle="Recupera a la persona que amas. Trabajos para el regreso y la reconciliación de pareja, con respeto y discreción."
+  heroOffer={`<div class="w-full max-w-sm rounded-2xl border border-gold/60 bg-gradient-to-b from-gold/25 to-gold/5 backdrop-blur-sm px-6 py-3.5 shadow-xl shadow-black/50 text-center">
+    <p class="text-amber-50 text-sm sm:text-base leading-snug">Tu <strong class="text-white font-semibold">primera consulta</strong> es</p>
+    <p class="font-display font-bold text-gold leading-none mt-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)]"><span class="text-4xl sm:text-5xl">SIN COSTO</span></p>
+  </div>`}
+  heroTrust="Atención personal y confidencial · Los Ángeles, Santa Ana y Ontario"
+  heroVideo={{
+    poster: '/images/don-jacinto-regreso-poster.webp',
+    iframeSrc: 'https://customer-iabj1352jwro2v5p.cloudflarestream.com/03f3b79b0bc7eb1bc2c47758fbf6656e/iframe?autoplay=true&muted=false&controls=true&primaryColor=%230D5C2E',
+    alt: 'Video de Don Jacinto Nahual, curandero de Catemaco, hablando sobre el regreso y la reconciliación de pareja en Los Ángeles y el sur de California',
+    fullscreen: true,
+  }}
+  heroHook={{
+    image: '/images/male-kissing-girlfriend.webp',
+    imageAlt: 'Pareja feliz y reconciliada abrazándose tras un trabajo de regreso de pareja con Don Jacinto Nahual en el sur de California',
+    imageOverlay: '<span class="block font-display italic text-xl sm:text-2xl text-amber-50 leading-snug mb-1">¿Te gustaría que</span><span class="block font-display font-bold text-6xl sm:text-7xl text-gold leading-[0.95] mb-1">vuelva</span><span class="block font-display italic text-xl sm:text-2xl text-amber-50 leading-snug mb-4">la persona que amas?</span><span class="block text-white font-bold text-lg sm:text-2xl leading-snug">📞 Llámame o 💬 envíame un mensaje</span>',
+    title: 'El regreso de tu pareja <span class="text-gold">puede empezar hoy</span>',
+    subtitle: 'A través de un trabajo de regreso y reconciliación de pareja de la tradición de Catemaco. Escríbele a Don Jacinto y cuéntale tu caso — tu primera consulta es sin costo.',
+    bullets: [
+      'Trabaja el regreso y la reconciliación de pareja',
+      'Reaviva el cariño que se enfrió',
+      'Aleja la influencia de terceras personas',
+    ],
+  }}
+
+  problemTitle="¿Tu pareja se fue y no sabes cómo recuperarla?"
+  problemParagraphs={[
+    'Una ruptura duele más cuando sientes que el amor sigue ahí: piensas en volver con tu ex, repasas qué salió mal y por más que lo intentas, la distancia no se acorta.',
+    'A veces algo bloquea la reconciliación — orgullo, pleitos, un tercero que se interpuso. Un trabajo de regreso de pareja busca reavivar el cariño, suavizar el trato y ayudar a reunir lo que se separó — siempre con respeto y discreción.',
+  ]}
+  problemSignals={[
+    'Una ruptura reciente que no logras superar',
+    'Quieres volver con tu ex y no sabes por dónde empezar',
+    'La persona que amas se alejó de un día para otro',
+    'Hay una tercera persona que se interpuso',
+    'Discusiones y orgullo que impiden la reconciliación',
+    'Sientes que el cariño sigue ahí, pero algo lo bloquea',
+  ]}
+
+  solutionTitle="Qué es un trabajo de regreso de pareja y cómo te ayuda"
+  solutionDescription="Un trabajo de regreso de pareja es un trabajo espiritual de la tradición de Catemaco para ayudar a reunir a dos personas que se separaron: busca reavivar el sentimiento, suavizar el trato y abrir el camino de la reconciliación. Don Jacinto Nahual te escucha, te orienta y, según tu caso, recomienda el trabajo de regreso, el endulzamiento o el baño que tu situación necesite — con respeto y total discreción."
+  solutionVariability="Cada persona y cada relación es diferente. Don Jacinto valora tu situación antes de recomendarte cualquier trabajo."
+
+  credentialsImage="/images/don-jacinto-amarres-credenciales.webp"
+  credentialsImageAlt="Don Jacinto Nahual, curandero de Catemaco, realizando un ritual de regreso de pareja entre velas y copal — atiende reconciliaciones de pareja en Los Ángeles, California"
+  credentialsImageOverlay={`
+    <p class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-gold-light leading-[1.05] mb-4">Trabajos que realiza Don Jacinto</p>
+    <ul class="font-display text-white text-lg sm:text-2xl leading-snug space-y-2">
+      <li class="flex gap-2"><span class="text-gold">›</span> Regreso y reconciliación de pareja</li>
+      <li class="flex gap-2"><span class="text-gold">›</span> Retorno de pareja</li>
+      <li class="flex gap-2"><span class="text-gold">›</span> Endulzamientos de pareja</li>
+      <li class="flex gap-2"><span class="text-gold">›</span> Separación de terceros</li>
+      <li class="flex gap-2"><span class="text-gold">›</span> Amarres de amor</li>
+    </ul>
+    <p class="mt-4 text-gold font-semibold text-base sm:text-xl">Primera consulta sin costo →</p>
+  `}
+  credentialsTitle="El Brujo de Catemaco al que la Comunidad Latina Acude para el Regreso de Pareja"
+  credentialsManifesto={[
+    'Don Jacinto Nahual es un brujo curandero y guía espiritual con más de 30 años de práctica en la tradición ancestral de Catemaco, Veracruz — la tierra reconocida en todo México y Latinoamérica como la cuna de la curanderil mexicana.',
+    'Hoy atiende a la comunidad latina en Los Ángeles, Ontario y Santa Ana con las herramientas que aprendió de sus maestros: trabajos de regreso y reconciliación de pareja, retornos, endulzamientos, baños con hierbas, veladoras, copal y oración — los mismos elementos que en los pueblos del sureste mexicano se usan para reunir parejas.',
+    'Si tu pareja se fue, quieres volver con tu ex o sientes que un tercero se interpuso, un <strong class="text-gold-light">trabajo de regreso de pareja puede ser el primer paso para recuperar ese amor</strong> — Don Jacinto Nahual te escucha y te orienta sin compromiso. Tu primera consulta es sin costo.',
+  ]}
+  credentialsMetrics={[
+    { value: '+30', label: 'Años de Experiencia' },
+    { value: '4', label: 'Áreas de Trabajo' },
+    { value: '4+', label: 'Ciudades en CA' },
+    { value: '100%', label: 'Confidencial' },
+  ]}
+
+  honestyTitle="Lo que sí y lo que no te prometemos"
+  honestyParagraphs={[
+    'El trabajo espiritual es un acompañamiento, no una promesa. No garantizamos resultados, ni que una persona regrese, ni milagros.',
+    'Un trabajo de regreso de pareja no sustituye la comunicación, la terapia de pareja ni la ayuda profesional que tu relación pueda necesitar. Si atraviesas una situación seria, busca también ayuda profesional.',
+  ]}
+  honestyGuarantees={[
+    'Tu primera consulta es sin costo',
+    'Trato respetuoso y confidencial',
+    'Te explicamos el proceso antes de empezar',
+    'Nunca prometemos resultados garantizados',
+  ]}
+
+  processSteps={processSteps}
+
+  faqs={[
+    {
+      question: '¿La primera consulta tiene costo?',
+      answer:
+        'No. La primera consulta de orientación con Don Jacinto es sin costo: le escribes por WhatsApp o lo llamas, le cuentas qué pasó con tu pareja y él te orienta. Si tu caso necesita un trabajo de regreso de pareja, te explica en qué consiste antes de comenzar, para que decidas con tranquilidad.',
+    },
+    {
+      question: '¿Qué es exactamente un trabajo de regreso de pareja?',
+      answer:
+        'Es un trabajo espiritual de la tradición de Catemaco que busca reunir a dos personas que se separaron: reavivar el sentimiento, calmar los pleitos y abrir el camino de la reconciliación. Don Jacinto utiliza oración, veladoras, baños y trabajos de amor según tu caso.',
+    },
+    {
+      question: '¿Funciona si mi ex ya está con otra persona?',
+      answer:
+        'Cada caso es diferente. Cuando hay una tercera persona, Don Jacinto valora la situación y te orienta con honestidad sobre lo que percibe y el trabajo que recomienda — incluida la separación de terceros si aplica. Nunca promete resultados.',
+    },
+    {
+      question: '¿En cuánto tiempo se ven cambios?',
+      answer:
+        'Cada relación es distinta. Algunas personas sienten cambios en poco tiempo y otras necesitan más acompañamiento. Don Jacinto no promete tiempos ni resultados; te orienta con honestidad sobre tu caso.',
+    },
+    {
+      question: '¿Garantizan que mi pareja regrese?',
+      answer:
+        'No. El trabajo espiritual es un acompañamiento y cada caso es diferente. No prometemos que una persona regrese, ni resultados, ni milagros.',
+    },
+    {
+      question: '¿Es confidencial?',
+      answer:
+        'Sí. Todo lo que compartas sobre tu relación se trata con respeto y de forma totalmente confidencial.',
+    },
+    {
+      question: '¿Funciona si la persona vive en otra ciudad o país?',
+      answer:
+        'Don Jacinto Nahual atiende a personas de todo el sur de California y trabaja casos aunque la otra persona esté lejos. Escríbenos por WhatsApp y te indicamos cómo coordinar tu consulta.',
+    },
+  ]}
+
+  cities={cities}
+  gallery={gallery}
+  galleryContain
+
+  finalCtaTitle="Recupera a tu pareja hoy mismo · escríbele a Don Jacinto"
+  finalCtaParagraph="Trabajos espirituales para el regreso y la reconciliación de pareja con un brujo de Catemaco de más de 30 años, con respeto y discreción. Tu primera consulta es sin costo — escríbele y cuéntale lo que estás viviendo."
+
+  whatsappPrefilledMessage="Hola, quiero el regreso de mi pareja 🙏"
+/>

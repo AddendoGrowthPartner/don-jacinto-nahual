@@ -3,6 +3,7 @@
 
 export const servicios = [
   { slug: 'amarres-de-amor', name: 'Amarres de Amor' },
+  { slug: 'regreso-de-pareja', name: 'Regreso de Pareja' },
   { slug: 'ayuda-espiritual-amor', name: 'Ayuda Espiritual en el Amor' },
   { slug: 'brujo-curandero', name: 'Brujo Curandero' },
   { slug: 'limpias-espirituales', name: 'Limpias Espirituales' },
