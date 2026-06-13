@@ -532,10 +532,23 @@ const faqSchema = {
               try {
                 if (window.Stream) {
                   var player = window.Stream(iframe);
-                  // Refuerzo: asegurar volumen al máximo cuando arranque.
-                  player.addEventListener('playing', function () {
+                  // El reproductor de Cloudflare PERSISTE el volumen/mute de visitas
+                  // anteriores (localStorage) y puede auto-silenciarse si el autoplay
+                  // con sonido falla. Forzamos sonido:
+                  // 1) al cargar metadata: volumen al máximo (no requiere gesto)
+                  player.addEventListener('loadedmetadata', function () {
                     try { player.volume = 1; } catch (e) {}
                   });
+                  // 2) la PRIMERA vez que reproduce: quitar mute + volumen 1.
+                  //    (solo una vez, para no pelear si el usuario silencia a propósito)
+                  var soundForced = false;
+                  function forceSound() {
+                    if (soundForced) return;
+                    soundForced = true;
+                    try { player.muted = false; player.volume = 1; } catch (e) {}
+                  }
+                  player.addEventListener('play', forceSound);
+                  player.addEventListener('playing', forceSound);
                   // Al terminar: vuelve a la portada (evita la pantalla negra) y permite repetir.
                   player.addEventListener('ended', function () {
                     wrap.innerHTML = originalHTML;
