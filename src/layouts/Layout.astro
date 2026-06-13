@@ -94,8 +94,6 @@ const personSchema = {
 <!doctype html>
 <html lang="es">
   <head>
-    <!-- ClickCease (protección contra fraude de clicks) -->
-    <script async src="https://ob.cheekybranding.com/i/b2ddffd8505ce67f8699d24a12a03d12.js" class="ct_clicktrue"></script>
     <meta charset="UTF-8" />
     <meta name="google-site-verification" content="1Dsnhna5eAok3FJLbyB4KRixBJV2GL88fyZfjdSGqAA" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -160,6 +158,10 @@ const personSchema = {
 
     {preloadHero && <link rel="preload" as="image" href={preloadHero} fetchpriority="high" />}
     {!preloadHero && <link rel="preload" as="image" href="/images/don-jacinto-rezo.webp" fetchpriority="high" />}
+
+    <!-- ClickCease (protección contra fraude de clicks) — después de los
+         preloads críticos para no competir con el poster/fuentes del LCP -->
+    <script async src="https://ob.cheekybranding.com/i/b2ddffd8505ce67f8699d24a12a03d12.js" class="ct_clicktrue"></script>
 
     <!-- Schema.org -->
     <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
