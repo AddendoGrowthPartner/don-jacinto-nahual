@@ -234,25 +234,6 @@ const faqSchema = {
         @media (prefers-reduced-motion: reduce) {
           .hero-play-pulse, .hero-play-pulse::after { animation: none; }
         }
-        /* Overlay "toca para escuchar" — activa el sonido en móvil con un toque */
-        .hero-unmute-overlay {
-          position: absolute; inset: 0; z-index: 30;
-          display: flex; align-items: center; justify-content: center;
-          background: transparent; border: 0; cursor: pointer; padding: 0;
-          -webkit-tap-highlight-color: transparent;
-        }
-        .hero-unmute-chip {
-          display: inline-flex; align-items: center; gap: 0.45rem;
-          background: rgba(13,13,13,0.82); color: #fff;
-          font-weight: 700; font-size: 1.05rem; line-height: 1;
-          padding: 0.85rem 1.4rem; border-radius: 9999px;
-          border: 1px solid rgba(232,201,122,0.75);
-          box-shadow: 0 8px 24px rgba(0,0,0,0.55);
-          backdrop-filter: blur(4px);
-          animation: heroUnmuteBeat 1.4s ease-in-out infinite;
-        }
-        @keyframes heroUnmuteBeat { 0%,100% { transform: scale(1); } 50% { transform: scale(1.07); } }
-        @media (prefers-reduced-motion: reduce) { .hero-unmute-chip { animation: none; } }
       </style>
 
       <div class="relative z-20 mt-auto w-full max-w-xl mx-auto px-6 pb-10 pt-24 text-center pointer-events-none">
@@ -534,9 +515,13 @@ const faqSchema = {
             var originalHTML = wrap.innerHTML; // portada + botón (estado de diseño)
             btn.addEventListener('click', function () {
               var iframe = document.createElement('iframe');
-              // Arranca SIEMPRE muted=true → garantiza reproducción a UN solo toque
-              // (el autoplay CON sonido lo bloquean los navegadores y mostrarían un 2º botón).
-              iframe.src = btn.getAttribute('data-iframe-src').replace('muted=false', 'muted=true');
+              // NUNCA reproducir mudo: el iframe se inyecta con muted=false.
+              // - Android/Chrome (mayoría): el toque del usuario habilita el autoplay
+              //   CON SONIDO → un solo toque y se escucha.
+              // - iPhones/navegadores que bloquean autoplay con sonido: el reproductor
+              //   muestra su botón de play; ese toque ocurre DENTRO del reproductor,
+              //   así que reproduce con sonido garantizado en cualquier teléfono.
+              iframe.src = btn.getAttribute('data-iframe-src');
               iframe.title = 'Video de Don Jacinto';
               iframe.setAttribute('allow', 'autoplay; fullscreen; encrypted-media; picture-in-picture; accelerometer; gyroscope;');
               iframe.setAttribute('allowfullscreen', 'true');
@@ -544,47 +529,12 @@ const faqSchema = {
               wrap.innerHTML = '';
               wrap.appendChild(iframe);
 
-              var isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints || 0) > 0;
-              var player = window.Stream ? window.Stream(iframe) : null;
-
-              function doUnmute() {
-                if (!player) return;
-                try {
-                  player.muted = false;
-                  player.volume = 1;
-                  var p = player.play();
-                  if (p && p.catch) p.catch(function () {});
-                } catch (e) {}
-              }
-
-              // Overlay "🔊 Toca para escuchar": cualquier toque sobre el video activa el
-              // sonido. Al ser un GESTO directo del usuario, iOS sí permite quitar el silencio
-              // (el intento automático fallaba porque no era un gesto).
-              var soundOverlay = document.createElement('button');
-              soundOverlay.type = 'button';
-              soundOverlay.className = 'hero-unmute-overlay';
-              soundOverlay.setAttribute('aria-label', 'Activar sonido del video');
-              soundOverlay.innerHTML = '<span class="hero-unmute-chip">🔊 Toca para escuchar</span>';
-              function removeOverlay() {
-                if (soundOverlay && soundOverlay.parentNode) soundOverlay.parentNode.removeChild(soundOverlay);
-              }
-              soundOverlay.addEventListener('click', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                doUnmute();
-                removeOverlay();
-              });
-              wrap.appendChild(soundOverlay);
-
               try {
-                if (player) {
-                  // Escritorio/Android: intenta activar sonido solo; el overlay queda de respaldo.
-                  player.addEventListener('loadedmetadata', function () {
-                    if (!isTouch) doUnmute();
-                  });
-                  // Si el sonido quedó activo por cualquier vía, quita el overlay.
-                  player.addEventListener('volumechange', function () {
-                    try { if (!player.muted && player.volume > 0) removeOverlay(); } catch (e) {}
+                if (window.Stream) {
+                  var player = window.Stream(iframe);
+                  // Refuerzo: asegurar volumen al máximo cuando arranque.
+                  player.addEventListener('playing', function () {
+                    try { player.volume = 1; } catch (e) {}
                   });
                   // Al terminar: vuelve a la portada (evita la pantalla negra) y permite repetir.
                   player.addEventListener('ended', function () {
