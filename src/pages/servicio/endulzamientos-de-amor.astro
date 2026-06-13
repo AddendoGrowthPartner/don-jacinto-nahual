@@ -1,0 +1,229 @@
+---
+import ServiceLandingV2 from '../../components/ServiceLandingV2.astro';
+
+const cities = [
+  { name: 'Los Ángeles', slug: 'los-angeles' },
+  { name: 'Santa Mónica', slug: 'santa-monica' },
+  { name: 'Inglewood', slug: 'inglewood' },
+  { name: 'East LA', slug: 'east-la' },
+  { name: 'Huntington Park', slug: 'huntington-park' },
+  { name: 'Monterey Park', slug: 'monterey-park' },
+  { name: 'Montebello', slug: 'montebello' },
+  { name: 'Downey', slug: 'downey' },
+  { name: 'Compton', slug: 'compton' },
+  { name: 'Long Beach', slug: 'long-beach' },
+  { name: 'San Pedro', slug: 'san-pedro' },
+  { name: 'Gardena', slug: 'gardena' },
+  { name: 'South Gate', slug: 'south-gate' },
+  { name: 'Commerce', slug: 'commerce' },
+  { name: 'Ontario', slug: 'ontario' },
+  { name: 'San Fernando', slug: 'san-fernando' },
+  { name: 'Covina', slug: 'covina' },
+  { name: 'San Bernardino', slug: 'san-bernardino' },
+  { name: 'Santa Ana', slug: 'santa-ana' },
+  { name: 'Irvine', slug: 'irvine' },
+  { name: 'Anaheim', slug: 'anaheim' },
+  { name: 'Fullerton', slug: 'fullerton' },
+  { name: 'Garden Grove', slug: 'garden-grove' },
+  { name: 'Mission Viejo', slug: 'mission-viejo' },
+  { name: 'San Clemente', slug: 'san-clemente' },
+  { name: 'Laguna Beach', slug: 'laguna-beach' },
+  { name: 'Buena Park', slug: 'buena-park' },
+];
+
+const processSteps = [
+  {
+    number: '01',
+    title: 'Contacto',
+    description:
+      'Escríbenos por WhatsApp o llama — tu primera consulta es sin costo. Cuéntale a Don Jacinto cómo está el trato con tu pareja.',
+  },
+  {
+    number: '02',
+    title: 'Orientación',
+    description:
+      'Don Jacinto Nahual escucha tu caso y te orienta espiritualmente sobre el endulzamiento que tu relación necesita.',
+  },
+  {
+    number: '03',
+    title: 'El endulzamiento',
+    description:
+      'Según tu situación, realiza el endulzamiento de amor con miel, canela, veladoras y oración de la tradición de Catemaco.',
+  },
+  {
+    number: '04',
+    title: 'Acompañamiento',
+    description:
+      'Te da recomendaciones y seguimiento para acompañarte mientras el trato se suaviza y el cariño se reaviva.',
+  },
+];
+
+const gallery = [
+  {
+    src: '/images/limpia-pareja.webp',
+    caption: 'Sahumerio de unión a la pareja',
+    alt: 'Don Jacinto Nahual haciendo un sahumerio de unión a una pareja durante un endulzamiento de amor, tradición de Catemaco en Los Ángeles',
+  },
+  {
+    src: '/images/amarre-pareja-corazon.webp',
+    caption: 'Endulzamiento · Corazón de rosas y velas',
+    alt: 'Corazón de rosas entre velas durante un endulzamiento de amor de Don Jacinto Nahual en Los Ángeles California',
+  },
+  {
+    src: '/images/amor-pareja.webp',
+    caption: 'El cariño que se reaviva',
+    alt: 'Pareja feliz formando un corazón con las manos tras un endulzamiento de pareja con Don Jacinto Nahual en California',
+  },
+  {
+    src: '/images/ritual-fuego.webp',
+    caption: 'Fuego sagrado · Tradición de Catemaco',
+    alt: 'Don Jacinto Nahual ante el fuego sagrado en un trabajo de endulzamiento de amor, tradición de Catemaco',
+  },
+];
+---
+
+<ServiceLandingV2
+  pageTitle="Endulzamientos de Amor | Don Jacinto · Los Ángeles"
+  pageDescription="Endulzamientos de amor y de pareja para reavivar el cariño, suavizar el trato y calmar los pleitos, con respeto y discreción. Brujo de Catemaco con más de 30 años. Primera consulta sin costo. Atención en Los Ángeles, Ontario y Santa Ana."
+  badge="Endulzamientos de Amor · Tradición de Catemaco"
+  h1="Endulzamientos de Amor en Los Ángeles"
+  h2="Cuando el trato se vuelve frío, los pleitos no paran o el cariño se apagó, un endulzamiento de amor ayuda a suavizar el corazón de la persona que amas, endulzar la relación y reavivar el cariño."
+  heroTagline="Endulzamientos de amor para reavivar el cariño en la pareja"
+  heroUSP="Tradición, respeto y acompañamiento espiritual personalizado."
+  heroImage="/images/amarre-pareja-corazon.webp"
+  heroImageMobile="/images/amarre-hero-mobile.webp"
+  heroImageAlt="Don Jacinto Nahual realizando un endulzamiento de amor con un corazón de rosas entre velas"
+  heroOverlayClass="bg-gradient-to-b from-black/25 via-black/45 to-black/75 md:bg-none md:from-transparent md:via-transparent md:to-transparent md:bg-black/45"
+  geoCities="Atención presencial en Los Ángeles · Ontario · San Fernando · Santa Ana"
+  heroCtaLabel="Consulta gratis con Don Jacinto"
+  hideHonesty
+  heroSubtitle="Reaviva el cariño de la persona que amas. Endulzamientos de amor con respeto y discreción — cada caso es diferente."
+  heroOffer={`<div class="w-full max-w-sm rounded-2xl border border-gold/60 bg-gradient-to-b from-gold/25 to-gold/5 backdrop-blur-sm px-6 py-3.5 shadow-xl shadow-black/50 text-center">
+    <p class="text-amber-50 text-sm sm:text-base leading-snug">Tu <strong class="text-white font-semibold">primera consulta</strong> es</p>
+    <p class="font-display font-bold text-gold leading-none mt-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)]"><span class="text-4xl sm:text-5xl">SIN COSTO</span></p>
+  </div>`}
+  heroTrust="Atención personal y confidencial · Los Ángeles, Santa Ana y Ontario"
+  heroVideo={{
+    poster: '/images/don-jacinto-amarres-poster.webp',
+    iframeSrc: 'https://customer-iabj1352jwro2v5p.cloudflarestream.com/05329854d620f4465d9da932d3279700/iframe?autoplay=true&muted=false&controls=true&primaryColor=%230D5C2E',
+    alt: 'Video de Don Jacinto Nahual, curandero de Catemaco, hablando sobre los endulzamientos de amor en Los Ángeles y el sur de California',
+    fullscreen: true,
+  }}
+  heroHook={{
+    image: '/images/male-kissing-girlfriend.webp',
+    imageAlt: 'Pareja feliz y cariñosa abrazándose tras un endulzamiento de amor con Don Jacinto Nahual en el sur de California',
+    imageOverlay: '<span class="block font-display italic text-xl sm:text-2xl text-amber-50 leading-snug mb-1">¿Extrañas el</span><span class="block font-display font-bold text-6xl sm:text-7xl text-gold leading-[0.95] mb-1">cariño</span><span class="block font-display italic text-xl sm:text-2xl text-amber-50 leading-snug mb-4">de la persona que amas?</span><span class="block text-white font-bold text-lg sm:text-2xl leading-snug">📞 Llámame o 💬 envíame un mensaje</span>',
+    title: 'Endulza la relación y <span class="text-gold">reaviva el cariño</span>',
+    subtitle: 'A través de un endulzamiento de amor de la tradición de Catemaco. Escríbele a Don Jacinto y cuéntale tu caso — tu primera consulta es sin costo.',
+    bullets: [
+      'Suaviza el trato y calma los pleitos',
+      'Reaviva el cariño que se enfrió',
+      'Endulza el corazón de la persona que amas',
+    ],
+  }}
+
+  problemTitle="¿La relación se volvió fría y los pleitos no paran?"
+  problemParagraphs={[
+    'Hay parejas que siguen juntas pero el trato se volvió áspero: discusiones por todo, indiferencia, palabras que hieren — y el cariño que un día existió parece apagado.',
+    'Un endulzamiento de amor es un trabajo espiritual de la tradición de Catemaco para suavizar el corazón de la persona, calmar los pleitos y endulzar la relación — siempre con respeto y discreción.',
+  ]}
+  problemSignals={[
+    'Discusiones constantes que desgastan la relación',
+    'El trato se volvió frío, cortante o indiferente',
+    'El cariño y los detalles que se apagaron',
+    'Palabras hirientes y falta de paciencia entre ustedes',
+    'Sientes que la persona se endureció contigo',
+    'Quieres recuperar la armonía sin separarte',
+  ]}
+
+  solutionTitle="Qué es un endulzamiento de amor y cómo te ayuda"
+  solutionDescription="Un endulzamiento de amor es un trabajo espiritual que busca suavizar el trato, calmar los pleitos y endulzar la relación — tradicionalmente con miel, canela, azúcar, veladoras y oración de la tradición de Catemaco. A diferencia del amarre (que busca unir), el endulzamiento de pareja trabaja el cariño y la dulzura en el trato diario. Don Jacinto Nahual te escucha, te orienta y, según tu caso, recomienda el endulzamiento de amor, el baño o el trabajo que tu situación necesite."
+  solutionVariability="Cada persona y cada relación es diferente. Don Jacinto valora tu situación antes de recomendarte cualquier trabajo."
+
+  credentialsImage="/images/don-jacinto-amarres-credenciales.webp"
+  credentialsImageAlt="Don Jacinto Nahual, curandero de Catemaco, realizando un endulzamiento de amor entre velas y copal — atiende endulzamientos de pareja en Los Ángeles, California"
+  credentialsImageOverlay={`
+    <p class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-gold-light leading-[1.05] mb-4">Trabajos que realiza Don Jacinto</p>
+    <ul class="font-display text-white text-lg sm:text-2xl leading-snug space-y-2">
+      <li class="flex gap-2"><span class="text-gold">›</span> Endulzamientos de amor</li>
+      <li class="flex gap-2"><span class="text-gold">›</span> Endulzamiento de pareja</li>
+      <li class="flex gap-2"><span class="text-gold">›</span> Endulzamiento con miel y canela</li>
+      <li class="flex gap-2"><span class="text-gold">›</span> Reavivar el cariño en la pareja</li>
+      <li class="flex gap-2"><span class="text-gold">›</span> Amarres y regresos de pareja</li>
+    </ul>
+    <p class="mt-4 text-gold font-semibold text-base sm:text-xl">Primera consulta sin costo →</p>
+  `}
+  credentialsTitle="El Brujo de Catemaco al que la Comunidad Latina Acude para Endulzamientos de Amor"
+  credentialsManifesto={[
+    'Don Jacinto Nahual es un brujo curandero y guía espiritual con más de 30 años de práctica en la tradición ancestral de Catemaco, Veracruz — la tierra reconocida en todo México y Latinoamérica como la cuna de la curanderil mexicana.',
+    'Hoy atiende a la comunidad latina en Los Ángeles, Ontario y Santa Ana con las herramientas que aprendió de sus maestros: endulzamientos de amor con miel, canela y azúcar, veladoras, baños con hierbas, copal y oración — los mismos elementos que en los pueblos del sureste mexicano se usan para endulzar la relación y reavivar el cariño.',
+    'Si el trato con tu pareja se volvió frío, los pleitos no paran o sientes que el cariño se apagó, un <strong class="text-gold-light">endulzamiento de amor puede ser el primer paso para endulzar la relación</strong> — Don Jacinto Nahual te escucha y te orienta sin compromiso. Tu primera consulta es sin costo.',
+  ]}
+  credentialsMetrics={[
+    { value: '+30', label: 'Años de Experiencia' },
+    { value: '4', label: 'Áreas de Trabajo' },
+    { value: '4+', label: 'Ciudades en CA' },
+    { value: '100%', label: 'Confidencial' },
+  ]}
+
+  honestyTitle="Lo que sí y lo que no te prometemos"
+  honestyParagraphs={[
+    'El trabajo espiritual es un acompañamiento, no una promesa. No garantizamos resultados, ni cambios en una persona, ni milagros.',
+    'Un endulzamiento de amor no sustituye la comunicación, la terapia de pareja ni la ayuda profesional que tu relación pueda necesitar. Si atraviesas una situación seria, busca también ayuda profesional.',
+  ]}
+  honestyGuarantees={[
+    'Tu primera consulta es sin costo',
+    'Trato respetuoso y confidencial',
+    'Te explicamos el proceso antes de empezar',
+    'Nunca prometemos resultados garantizados',
+  ]}
+
+  processSteps={processSteps}
+
+  faqs={[
+    {
+      question: '¿La primera consulta tiene costo?',
+      answer:
+        'No. La primera consulta de orientación con Don Jacinto es sin costo: le escribes por WhatsApp o lo llamas, le cuentas cómo está tu relación y él te orienta. Si tu caso necesita un endulzamiento de amor, te explica en qué consiste antes de comenzar, para que decidas con tranquilidad.',
+    },
+    {
+      question: '¿Qué es exactamente un endulzamiento de amor?',
+      answer:
+        'Es un trabajo espiritual de la tradición de Catemaco que busca suavizar el trato entre dos personas, calmar los pleitos y endulzar la relación. Tradicionalmente se realiza con miel, canela, azúcar, veladoras y oración, según el caso.',
+    },
+    {
+      question: '¿Cuál es la diferencia entre un endulzamiento y un amarre?',
+      answer:
+        'Un amarre busca unir y reavivar el sentimiento entre dos personas que se distanciaron. Un endulzamiento de amor busca suavizar el trato, calmar los pleitos y endulzar el cariño — ideal cuando siguen juntos pero la relación se volvió fría o áspera. Don Jacinto te orienta sobre cuál se ajusta a tu situación.',
+    },
+    {
+      question: '¿Sirve si seguimos juntos pero peleamos mucho?',
+      answer:
+        'Ese es justamente el caso más común del endulzamiento de pareja: cuando la relación existe pero el trato se volvió difícil. El endulzamiento busca devolver la dulzura y la paciencia en el trato diario.',
+    },
+    {
+      question: '¿En cuánto tiempo se ven cambios?',
+      answer:
+        'Cada relación es distinta. Algunas personas sienten cambios en poco tiempo y otras necesitan más acompañamiento. Don Jacinto no promete tiempos ni resultados; te orienta con honestidad sobre tu caso.',
+    },
+    {
+      question: '¿Garantizan resultados?',
+      answer:
+        'No. El trabajo espiritual es un acompañamiento y cada caso es diferente. No prometemos cambios en una persona, ni resultados, ni milagros.',
+    },
+    {
+      question: '¿Es confidencial?',
+      answer:
+        'Sí. Todo lo que compartas sobre tu relación se trata con respeto y de forma totalmente confidencial.',
+    },
+  ]}
+
+  cities={cities}
+  gallery={gallery}
+  galleryContain
+
+  finalCtaTitle="Endulza tu relación y reaviva el cariño · escríbele a Don Jacinto"
+  finalCtaParagraph="Endulzamientos de amor con un brujo de Catemaco de más de 30 años, con respeto y discreción. Tu primera consulta es sin costo — escríbele y cuéntale cómo está el trato con tu pareja."
+
+  whatsappPrefilledMessage="Hola, quiero un endulzamiento de amor 🙏"
+/>
