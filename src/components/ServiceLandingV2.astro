@@ -234,6 +234,36 @@ const faqSchema = {
         @media (prefers-reduced-motion: reduce) {
           .hero-play-pulse, .hero-play-pulse::after { animation: none; }
         }
+        /* Guía cuando el navegador bloquea el autoplay (iPhone): anillo pulsante
+           alrededor del play del reproductor + texto. pointer-events:none deja
+           pasar el toque directo al reproductor. */
+        .hero-play-hint {
+          position: absolute; inset: 0; z-index: 25;
+          pointer-events: none;
+          display: flex; flex-direction: column;
+          align-items: center; justify-content: center;
+        }
+        .hero-play-hint-ring {
+          width: 110px; height: 110px; border-radius: 9999px;
+          border: 3px solid rgba(232, 201, 122, 0.9);
+          animation: heroHintPing 1.3s ease-out infinite;
+        }
+        .hero-play-hint-text {
+          margin-top: 18px;
+          background: rgba(13,13,13,0.85); color: #fff;
+          font-weight: 700; font-size: 1.05rem; line-height: 1;
+          padding: 0.8rem 1.3rem; border-radius: 9999px;
+          border: 1px solid rgba(232,201,122,0.75);
+          box-shadow: 0 8px 24px rgba(0,0,0,0.55);
+          animation: heroPlayBeat 1.3s ease-in-out infinite;
+        }
+        @keyframes heroHintPing {
+          0% { transform: scale(0.85); opacity: 1; box-shadow: 0 0 0 0 rgba(232,201,122,0.55); }
+          100% { transform: scale(1.25); opacity: 0.25; box-shadow: 0 0 0 26px rgba(232,201,122,0); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-play-hint-ring, .hero-play-hint-text { animation: none; }
+        }
       </style>
 
       <div class="relative z-20 mt-auto w-full max-w-xl mx-auto px-6 pb-10 pt-24 text-center pointer-events-none">
@@ -514,14 +544,41 @@ const faqSchema = {
             if (!wrap) return;
             var originalHTML = wrap.innerHTML; // portada + botón (estado de diseño)
             btn.addEventListener('click', function () {
+              var src = btn.getAttribute('data-iframe-src');
+
+              // iPhone/Safari: reproductor NATIVO de Apple con el video HLS de
+              // Cloudflare. Al vivir el video en NUESTRA página (no en un iframe),
+              // el toque del botón dorado es un gesto válido → play() CON SONIDO
+              // a UN solo toque. Safari soporta HLS de forma nativa.
+              var probe = document.createElement('video');
+              if (probe.canPlayType('application/vnd.apple.mpegurl')) {
+                var posterImg = wrap.querySelector('img');
+                var v = document.createElement('video');
+                v.src = src.split('/iframe')[0] + '/manifest/video.m3u8';
+                if (posterImg) v.poster = posterImg.getAttribute('src');
+                v.setAttribute('playsinline', '');
+                v.controls = true;
+                v.preload = 'auto';
+                v.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;';
+                wrap.innerHTML = '';
+                wrap.appendChild(v);
+                v.muted = false;
+                v.volume = 1;
+                var pr = v.play();
+                if (pr && pr.catch) pr.catch(function () {});
+                v.addEventListener('ended', function () {
+                  wrap.innerHTML = originalHTML;
+                  initPlay();
+                });
+                return;
+              }
+
               var iframe = document.createElement('iframe');
-              // NUNCA reproducir mudo: el iframe se inyecta con muted=false.
-              // - Android/Chrome (mayoría): el toque del usuario habilita el autoplay
-              //   CON SONIDO → un solo toque y se escucha.
-              // - iPhones/navegadores que bloquean autoplay con sonido: el reproductor
-              //   muestra su botón de play; ese toque ocurre DENTRO del reproductor,
-              //   así que reproduce con sonido garantizado en cualquier teléfono.
-              iframe.src = btn.getAttribute('data-iframe-src');
+              // Android/Chrome y demás: iframe de Cloudflare con muted=false.
+              // El toque del usuario habilita el autoplay CON SONIDO → un solo
+              // toque y se escucha. Si algún navegador lo bloquea, el reproductor
+              // muestra su play y la guía animada indica dónde tocar.
+              iframe.src = src;
               iframe.title = 'Video de Don Jacinto';
               iframe.setAttribute('allow', 'autoplay; fullscreen; encrypted-media; picture-in-picture; accelerometer; gyroscope;');
               iframe.setAttribute('allowfullscreen', 'true');
@@ -547,8 +604,26 @@ const faqSchema = {
                     soundForced = true;
                     try { player.muted = false; player.volume = 1; } catch (e) {}
                   }
-                  player.addEventListener('play', forceSound);
-                  player.addEventListener('playing', forceSound);
+                  // Guía visual si el navegador bloqueó el autoplay (iPhone):
+                  // anillo + "Toca para ver el video" apuntando al play del reproductor.
+                  var hint = null;
+                  function showHint() {
+                    if (hint) return;
+                    hint = document.createElement('div');
+                    hint.className = 'hero-play-hint';
+                    hint.setAttribute('aria-hidden', 'true');
+                    hint.innerHTML = '<span class="hero-play-hint-ring"></span><span class="hero-play-hint-text">▶ Toca para ver el video</span>';
+                    wrap.appendChild(hint);
+                  }
+                  function hideHint() {
+                    if (hint && hint.parentNode) hint.parentNode.removeChild(hint);
+                    hint = null;
+                  }
+                  player.addEventListener('play', function () { hideHint(); forceSound(); });
+                  player.addEventListener('playing', function () { hideHint(); forceSound(); });
+                  setTimeout(function () {
+                    try { if (player.paused) showHint(); } catch (e) {}
+                  }, 1200);
                   // Al terminar: vuelve a la portada (evita la pantalla negra) y permite repetir.
                   player.addEventListener('ended', function () {
                     wrap.innerHTML = originalHTML;
