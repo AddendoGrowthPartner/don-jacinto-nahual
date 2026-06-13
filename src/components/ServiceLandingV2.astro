@@ -537,103 +537,129 @@ const faqSchema = {
       <script is:inline defer src="https://embed.cloudflarestream.com/embed/sdk.latest.js"></script>
       <script is:inline>
         (function () {
-          function initPlay() {
-            var btn = document.querySelector('.hero-video-play');
-            if (!btn) return;
-            var wrap = btn.closest('.hero-video-facade');
-            if (!wrap) return;
-            var originalHTML = wrap.innerHTML; // portada + botón (estado de diseño)
-            btn.addEventListener('click', function () {
-              var src = btn.getAttribute('data-iframe-src');
+          var btn = document.querySelector('.hero-video-play');
+          if (!btn) return;
+          var wrap = btn.closest('.hero-video-facade');
+          if (!wrap) return;
 
-              // iPhone/Safari: reproductor NATIVO de Apple con el video HLS de
-              // Cloudflare. Al vivir el video en NUESTRA página (no en un iframe),
-              // el toque del botón dorado es un gesto válido → play() CON SONIDO
-              // a UN solo toque. Safari soporta HLS de forma nativa.
-              var probe = document.createElement('video');
-              if (probe.canPlayType('application/vnd.apple.mpegurl')) {
-                var posterImg = wrap.querySelector('img');
-                var v = document.createElement('video');
-                v.src = src.split('/iframe')[0] + '/manifest/video.m3u8';
-                if (posterImg) v.poster = posterImg.getAttribute('src');
-                v.setAttribute('playsinline', '');
-                v.controls = true;
-                v.preload = 'auto';
-                v.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;';
-                wrap.innerHTML = '';
-                wrap.appendChild(v);
-                v.muted = false;
-                v.volume = 1;
-                var pr = v.play();
-                if (pr && pr.catch) pr.catch(function () {});
-                v.addEventListener('ended', function () {
-                  wrap.innerHTML = originalHTML;
-                  initPlay();
-                });
-                return;
-              }
+          var src = btn.getAttribute('data-iframe-src');
+          var probe = document.createElement('video');
+          var nativeHls = !!probe.canPlayType('application/vnd.apple.mpegurl');
 
-              var iframe = document.createElement('iframe');
-              // Android/Chrome y demás: iframe de Cloudflare con muted=false.
-              // El toque del usuario habilita el autoplay CON SONIDO → un solo
-              // toque y se escucha. Si algún navegador lo bloquea, el reproductor
-              // muestra su play y la guía animada indica dónde tocar.
-              iframe.src = src;
-              iframe.title = 'Video de Don Jacinto';
-              iframe.setAttribute('allow', 'autoplay; fullscreen; encrypted-media; picture-in-picture; accelerometer; gyroscope;');
-              iframe.setAttribute('allowfullscreen', 'true');
-              iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
-              wrap.innerHTML = '';
-              wrap.appendChild(iframe);
+          // Elementos de la portada (poster + degradado + botón + textos).
+          var facadeEls = Array.prototype.slice.call(wrap.children);
+          var media = null;   // <video> nativo (iPhone/Safari) o <iframe> (Android/otros)
+          var player = null;  // SDK de Cloudflare (solo iframe)
+          var soundForced = false;
 
+          function showFacade(show) {
+            for (var i = 0; i < facadeEls.length; i++) facadeEls[i].style.display = show ? '' : 'none';
+            if (media) media.style.visibility = show ? 'hidden' : 'visible';
+          }
+
+          // Guía si algún navegador bloquea la reproducción.
+          var hint = null;
+          function showHint() {
+            if (hint) return;
+            hint = document.createElement('div');
+            hint.className = 'hero-play-hint';
+            hint.setAttribute('aria-hidden', 'true');
+            hint.innerHTML = '<span class="hero-play-hint-ring"></span><span class="hero-play-hint-text">▶ Toca para ver el video</span>';
+            wrap.appendChild(hint);
+          }
+          function hideHint() {
+            if (hint && hint.parentNode) hint.parentNode.removeChild(hint);
+            hint = null;
+          }
+          function forceSound(p) {
+            if (soundForced) return;
+            soundForced = true;
+            try { p.muted = false; p.volume = 1; } catch (e) {}
+          }
+
+          // PRE-CALENTAMIENTO: el reproductor se carga OCULTO detrás de la
+          // portada cuando la página ya terminó de cargar (o al primer gesto
+          // del usuario). Así, al tocar el botón el video arranca casi al
+          // instante en vez de tardar 2-3 segundos descargando el reproductor.
+          function prewarm() {
+            if (media) return;
+            if (nativeHls) {
+              // iPhone/Safari: <video> nativo con el HLS de Cloudflare.
+              var posterImg = wrap.querySelector('img');
+              var v = document.createElement('video');
+              v.src = src.split('/iframe')[0] + '/manifest/video.m3u8';
+              if (posterImg) v.poster = posterImg.getAttribute('src');
+              v.setAttribute('playsinline', '');
+              v.controls = true;
+              v.preload = 'auto';
+              v.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;visibility:hidden;';
+              v.addEventListener('playing', function () { hideHint(); forceSound(v); });
+              v.addEventListener('ended', function () {
+                try { v.pause(); v.currentTime = 0; } catch (e) {}
+                showFacade(true);
+              });
+              media = v;
+              wrap.insertBefore(v, wrap.firstChild);
+            } else {
+              // Android/otros: iframe de Cloudflare con autoplay=false —
+              // la reproducción la disparamos nosotros con el toque.
+              var f = document.createElement('iframe');
+              f.src = src.replace('autoplay=true', 'autoplay=false') + '&preload=auto';
+              f.title = 'Video de Don Jacinto';
+              f.setAttribute('allow', 'autoplay; fullscreen; encrypted-media; picture-in-picture; accelerometer; gyroscope;');
+              f.setAttribute('allowfullscreen', 'true');
+              f.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;visibility:hidden;';
+              media = f;
+              wrap.insertBefore(f, wrap.firstChild);
               try {
                 if (window.Stream) {
-                  var player = window.Stream(iframe);
-                  // El reproductor de Cloudflare PERSISTE el volumen/mute de visitas
-                  // anteriores (localStorage) y puede auto-silenciarse si el autoplay
-                  // con sonido falla. Forzamos sonido:
-                  // 1) al cargar metadata: volumen al máximo (no requiere gesto)
+                  player = window.Stream(f);
+                  // Pisa el volumen/mute persistido de visitas anteriores.
                   player.addEventListener('loadedmetadata', function () {
                     try { player.volume = 1; } catch (e) {}
                   });
-                  // 2) la PRIMERA vez que reproduce: quitar mute + volumen 1.
-                  //    (solo una vez, para no pelear si el usuario silencia a propósito)
-                  var soundForced = false;
-                  function forceSound() {
-                    if (soundForced) return;
-                    soundForced = true;
-                    try { player.muted = false; player.volume = 1; } catch (e) {}
-                  }
-                  // Guía visual si el navegador bloqueó el autoplay (iPhone):
-                  // anillo + "Toca para ver el video" apuntando al play del reproductor.
-                  var hint = null;
-                  function showHint() {
-                    if (hint) return;
-                    hint = document.createElement('div');
-                    hint.className = 'hero-play-hint';
-                    hint.setAttribute('aria-hidden', 'true');
-                    hint.innerHTML = '<span class="hero-play-hint-ring"></span><span class="hero-play-hint-text">▶ Toca para ver el video</span>';
-                    wrap.appendChild(hint);
-                  }
-                  function hideHint() {
-                    if (hint && hint.parentNode) hint.parentNode.removeChild(hint);
-                    hint = null;
-                  }
-                  player.addEventListener('play', function () { hideHint(); forceSound(); });
-                  player.addEventListener('playing', function () { hideHint(); forceSound(); });
-                  setTimeout(function () {
-                    try { if (player.paused) showHint(); } catch (e) {}
-                  }, 1200);
-                  // Al terminar: vuelve a la portada (evita la pantalla negra) y permite repetir.
+                  player.addEventListener('play', function () { hideHint(); forceSound(player); });
+                  player.addEventListener('playing', function () { hideHint(); forceSound(player); });
                   player.addEventListener('ended', function () {
-                    wrap.innerHTML = originalHTML;
-                    initPlay();
+                    try { player.pause(); player.currentTime = 0; } catch (e) {}
+                    showFacade(true);
                   });
                 }
               } catch (e) {}
-            }, { once: true });
+            }
           }
-          initPlay();
+          if (document.readyState === 'complete') setTimeout(prewarm, 1200);
+          else window.addEventListener('load', function () { setTimeout(prewarm, 1200); });
+          ['touchstart', 'scroll', 'mousemove'].forEach(function (ev) {
+            window.addEventListener(ev, function warmOnce() {
+              window.removeEventListener(ev, warmOnce);
+              prewarm();
+            }, { passive: true, once: true });
+          });
+
+          btn.addEventListener('click', function () {
+            prewarm(); // por si el toque llega antes del precalentamiento
+            showFacade(false);
+            hideHint();
+            try {
+              if (nativeHls) {
+                // play() dentro del gesto → CON sonido a un toque.
+                media.muted = false;
+                media.volume = 1;
+                var p1 = media.play();
+                if (p1 && p1.catch) p1.catch(function () {});
+              } else if (player) {
+                // El reproductor ya está cargado; el gesto habilita el sonido.
+                player.muted = false;
+                player.volume = 1;
+                var p2 = player.play();
+                if (p2 && p2.catch) p2.catch(function () {});
+                setTimeout(function () {
+                  try { if (player.paused) showHint(); } catch (e) {}
+                }, 1200);
+              }
+            } catch (e) {}
+          });
         })();
       </script>
     </>
