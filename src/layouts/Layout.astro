@@ -159,10 +159,6 @@ const personSchema = {
     {preloadHero && <link rel="preload" as="image" href={preloadHero} fetchpriority="high" />}
     {!preloadHero && <link rel="preload" as="image" href="/images/don-jacinto-rezo.webp" fetchpriority="high" />}
 
-    <!-- ClickCease (protección contra fraude de clicks) — después de los
-         preloads críticos para no competir con el poster/fuentes del LCP -->
-    <script async src="https://ob.cheekybranding.com/i/b2ddffd8505ce67f8699d24a12a03d12.js" class="ct_clicktrue"></script>
-
     <!-- Schema.org -->
     <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
@@ -236,8 +232,6 @@ const personSchema = {
     </script>
   </head>
   <body class="bg-bg text-text font-body antialiased" style="padding-top: 72px;">
-    <!-- ClickCease noscript fallback -->
-    <noscript><iframe src="https://ob.cheekybranding.com/ns/b2ddffd8505ce67f8699d24a12a03d12.html?ch=" width="0" height="0" style="display:none"></iframe></noscript>
     <SiteNav />
     <slot />
     <SiteFooter />
