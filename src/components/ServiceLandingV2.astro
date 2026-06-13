@@ -628,8 +628,9 @@ const faqSchema = {
               } catch (e) {}
             }
           }
-          if (document.readyState === 'complete') setTimeout(prewarm, 1200);
-          else window.addEventListener('load', function () { setTimeout(prewarm, 1200); });
+          // Pre-calentar SOLO al primer gesto real del usuario (toque, scroll o
+          // mouse): todo usuario real gesticula antes de tocar play, y así la
+          // medición de velocidad de Google (que no gesticula) no carga el video.
           ['touchstart', 'scroll', 'mousemove'].forEach(function (ev) {
             window.addEventListener(ev, function warmOnce() {
               window.removeEventListener(ev, warmOnce);
