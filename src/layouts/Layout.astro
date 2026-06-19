@@ -230,6 +230,47 @@ const personSchema = {
         setTimeout(go, 800);
       });
     </script>
+
+    <!-- Captura de GCLID (Google Ads) e inyección en el mensaje de WhatsApp.
+         Permite medir LEADS REALES (mensajes recibidos), no solo el clic.
+         Sin backend: el GCLID viaja en el texto como "Ref:" y se recupera del mensaje. -->
+    <script is:inline>
+      (function () {
+        var KEY = 'dj_gclid';
+        var MAXAGE = 90 * 24 * 60 * 60 * 1000;
+        function readStored() {
+          try {
+            var o = JSON.parse(localStorage.getItem(KEY) || 'null');
+            if (!o || !o.v) return '';
+            if (Date.now() - o.t > MAXAGE) { localStorage.removeItem(KEY); return ''; }
+            return o.v;
+          } catch (e) { return ''; }
+        }
+        var p = new URLSearchParams(window.location.search);
+        var fresh = p.get('gclid') || p.get('gbraid') || p.get('wbraid') || '';
+        if (fresh) { try { localStorage.setItem(KEY, JSON.stringify({ v: fresh, t: Date.now() })); } catch (e) {} }
+        var gclid = fresh || readStored();
+        if (!gclid) return;
+        function tagLinks() {
+          var links = document.querySelectorAll('a[data-wa-track]:not([data-wa-ref])');
+          for (var i = 0; i < links.length; i++) {
+            var a = links[i];
+            try {
+              var u = new URL(a.href);
+              var text = u.searchParams.get('text') || '';
+              if (text.indexOf('Ref:') === -1) {
+                u.searchParams.set('text', text + '\n\nRef: ' + gclid);
+                a.href = u.toString();
+              }
+              a.setAttribute('data-wa-ref', '1');
+            } catch (e) {}
+          }
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', tagLinks);
+        } else { tagLinks(); }
+      })();
+    </script>
   </head>
   <body class="bg-bg text-text font-body antialiased" style="padding-top: 72px;">
     <SiteNav />
