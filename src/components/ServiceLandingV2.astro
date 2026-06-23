@@ -179,7 +179,7 @@ const faqSchema = {
   title={pageTitle}
   description={pageDescription}
   preloadHero={hasHeroVideo ? heroVideo.poster : heroImage}
-  preconnect={hasHeroVideo ? ['https://customer-iabj1352jwro2v5p.cloudflarestream.com'] : []}
+  preconnect={[]}
   hideWhatsappFloat={!!stickyOffer}
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
@@ -200,16 +200,7 @@ const faqSchema = {
       />
       <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/5 to-black/90"></div>
 
-      <button
-        type="button"
-        class:list={["hero-video-play group absolute inset-0 z-10 flex justify-center focus:outline-none", heroOffer ? "items-start pt-[26vh]" : "items-center"]}
-        aria-label="Reproducir video de Don Jacinto"
-        data-iframe-src={heroVideo.iframeSrc}
-      >
-        <span aria-hidden="true" class="hero-play-pulse relative flex items-center justify-center w-20 h-20 rounded-full bg-gold/95 text-bg shadow-lg shadow-black/50 ring-2 ring-white/40 group-focus-visible:ring-4 group-focus-visible:ring-gold-light">
-          <svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor" class="ml-1"><path d="M8 5v14l11-7z"/></svg>
-        </span>
-      </button>
+      <!-- Video eliminado: el hero ahora es imagen estática + texto + CTA (más leads). -->
 
       <style>
         /* Botón de play que palpita y se ilumina para invitar al clic */
@@ -533,7 +524,7 @@ const faqSchema = {
     </section>
   )}
 
-  {hasHeroVideo && (
+  {false && (
     <>
       <script is:inline defer src="https://embed.cloudflarestream.com/embed/sdk.latest.js"></script>
       <script is:inline>
