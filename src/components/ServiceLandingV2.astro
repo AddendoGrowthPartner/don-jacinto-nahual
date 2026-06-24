@@ -30,6 +30,13 @@ export interface ServiceLandingV2Props {
   solutionImage?: string;
   solutionImageAlt?: string;
   solutionImageCaption?: string;
+  // Sección emocional opcional (varias imágenes + contenido), p. ej. "soledad en pareja".
+  emotionalSection?: {
+    title: string;
+    subtitle?: string;
+    images: { src: string; alt: string; caption?: string }[];
+    paragraphs: string[];
+  };
 
   credentialsImage: string;
   credentialsImageAlt: string;
@@ -130,6 +137,7 @@ const {
   solutionImage,
   solutionImageAlt,
   solutionImageCaption,
+  emotionalSection,
   credentialsImage,
   credentialsImageAlt,
   credentialsImageMobile,
@@ -731,6 +739,36 @@ const faqSchema = {
       </div>
     </div>
   </section>
+
+  {emotionalSection && (
+    <!-- ============ SECCIÓN EMOCIONAL OPCIONAL (varias imágenes + contenido) ============ -->
+    <section class="bg-bg py-16 sm:py-24 border-t border-gold/10">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="text-center mb-10 sm:mb-14">
+          <h2 class="font-display text-3xl sm:text-4xl md:text-5xl leading-tight mb-4" set:html={emotionalSection.title} />
+          {emotionalSection.subtitle && (
+            <p class="text-gold-light text-lg sm:text-xl max-w-2xl mx-auto leading-snug">{emotionalSection.subtitle}</p>
+          )}
+        </div>
+        <div class="grid sm:grid-cols-2 gap-6 lg:gap-8 mb-10 sm:mb-14">
+          {emotionalSection.images.map((im) => (
+            <div class="relative rounded-xl overflow-hidden shadow-2xl ring-1 ring-gold/15">
+              <img src={im.src} alt={im.alt} width="1080" height="1080" loading="lazy" decoding="async" class="block w-full h-auto" />
+              {im.caption && (
+                <>
+                  <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                  <p class="absolute inset-x-0 bottom-0 p-4 sm:p-6 text-left font-display italic text-amber-50 text-base sm:text-xl leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]" set:html={im.caption}></p>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+        <div class="max-w-3xl mx-auto space-y-5 text-text/85 text-lg leading-relaxed text-center">
+          {emotionalSection.paragraphs.map((p) => <p set:html={p} />)}
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- ============ SECCIÓN 3 — SOLUCIÓN (CÓMO TRABAJA) ============ -->
   <section class="bg-bg-alt py-20 sm:py-28">
