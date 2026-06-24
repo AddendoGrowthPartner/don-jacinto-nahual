@@ -18,6 +18,10 @@ export interface ServiceLandingV2Props {
   problemTitle: string;
   problemParagraphs: string[];
   problemSignals: string[];
+  // Imagen opcional para la sección de problema (p. ej. pareja en conflicto) + texto encima (HTML).
+  problemImage?: string;
+  problemImageAlt?: string;
+  problemImageOverlay?: string;
 
   solutionTitle: string;
   solutionDescription: string;
@@ -113,6 +117,9 @@ const {
   problemTitle,
   problemParagraphs,
   problemSignals,
+  problemImage,
+  problemImageAlt,
+  problemImageOverlay,
   solutionTitle,
   solutionDescription,
   solutionVariability,
@@ -678,6 +685,28 @@ const faqSchema = {
           {problemTitle}
         </h2>
       </div>
+
+      {problemImage && (
+        <div class="relative rounded-xl overflow-hidden shadow-2xl ring-1 ring-gold/15 mb-12">
+          <img
+            src={problemImage}
+            alt={problemImageAlt}
+            width="1200"
+            height="800"
+            loading="lazy"
+            decoding="async"
+            class="block w-full h-auto"
+          />
+          <div aria-hidden="true" class="absolute inset-0 bg-[#0a0a0a]/25 mix-blend-multiply"></div>
+          {problemImageOverlay && (
+            <>
+              <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-4/5 bg-gradient-to-t from-black/95 via-black/55 to-transparent"></div>
+              <div class="absolute inset-x-0 bottom-0 p-5 sm:p-8 text-left drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]" set:html={problemImageOverlay}></div>
+            </>
+          )}
+        </div>
+      )}
+
       <div class="space-y-6 text-text/85 text-lg leading-relaxed">
         {problemParagraphs.map((p) => <p set:html={p} />)}
       </div>
