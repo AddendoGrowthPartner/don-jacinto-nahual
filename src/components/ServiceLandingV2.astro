@@ -26,6 +26,10 @@ export interface ServiceLandingV2Props {
   solutionTitle: string;
   solutionDescription: string;
   solutionVariability: string;
+  // Imagen opcional para la sección de solución (p. ej. altar/ritual) + caption opcional (HTML).
+  solutionImage?: string;
+  solutionImageAlt?: string;
+  solutionImageCaption?: string;
 
   credentialsImage: string;
   credentialsImageAlt: string;
@@ -123,6 +127,9 @@ const {
   solutionTitle,
   solutionDescription,
   solutionVariability,
+  solutionImage,
+  solutionImageAlt,
+  solutionImageCaption,
   credentialsImage,
   credentialsImageAlt,
   credentialsImageMobile,
@@ -738,6 +745,26 @@ const faqSchema = {
         <p set:html={solutionDescription} />
         <p class="italic text-gold-light">{solutionVariability}</p>
       </div>
+
+      {solutionImage && (
+        <div class="mt-12 relative rounded-xl overflow-hidden shadow-2xl ring-1 ring-gold/15">
+          <img
+            src={solutionImage}
+            alt={solutionImageAlt}
+            width="1200"
+            height="900"
+            loading="lazy"
+            decoding="async"
+            class="block w-full h-auto"
+          />
+          {solutionImageCaption && (
+            <>
+              <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-black/90 via-black/45 to-transparent"></div>
+              <p class="absolute inset-x-0 bottom-0 p-5 sm:p-7 text-center font-display text-gold-light text-lg sm:text-2xl leading-snug drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]" set:html={solutionImageCaption}></p>
+            </>
+          )}
+        </div>
+      )}
     </div>
   </section>
 
