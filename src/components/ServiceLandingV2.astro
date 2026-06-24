@@ -6,6 +6,7 @@ import { servicios, blogsDestacados } from '../data/links.js';
 export interface ServiceLandingV2Props {
   pageTitle: string;
   pageDescription: string;
+  ogImage?: string;
   badge: string;
   h1: string;
   h2: string;
@@ -117,6 +118,7 @@ const props = Astro.props as ServiceLandingV2Props;
 const {
   pageTitle,
   pageDescription,
+  ogImage,
   badge,
   h1,
   h2,
@@ -199,16 +201,51 @@ const faqSchema = {
     },
   })),
 };
+
+const pageUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const seoImageUrl = new URL(ogImage ?? heroImage, Astro.site).toString();
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: h1,
+  serviceType: badge,
+  description: pageDescription,
+  url: pageUrl,
+  image: seoImageUrl,
+  provider: { '@id': 'https://www.donjacintonahual.com/#business' },
+  areaServed: ['Los Ángeles', 'Santa Ana', 'Ontario', 'San Fernando', 'Anaheim', 'Long Beach', 'San Bernardino'].map((n) => ({
+    '@type': 'City',
+    name: n,
+  })),
+  availableChannel: {
+    '@type': 'ServiceChannel',
+    servicePhone: '+1-213-598-1928',
+    serviceUrl: 'https://www.donjacintonahual.com',
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://www.donjacintonahual.com/' },
+    { '@type': 'ListItem', position: 2, name: h1, item: pageUrl },
+  ],
+};
 ---
 
 <Layout
   title={pageTitle}
   description={pageDescription}
+  ogImage={ogImage}
   preloadHero={hasHeroVideo ? heroVideo.poster : heroImage}
   preconnect={[]}
   hideWhatsappFloat={!!stickyOffer}
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
   <!-- ============ SECCIÓN 1 — HERO ============ -->
   {heroVideoFullscreen ? (
