@@ -72,6 +72,9 @@ export interface ServiceLandingV2Props {
     alt: string;
     fullscreen?: boolean;
   };
+  // Gancho/pregunta destacada en la parte superior del hero a pantalla completa (HTML).
+  // Recupera el texto que traía incrustado el póster del video (p. ej. "¿Quieres recuperar a la persona que amas?").
+  heroHeadline?: string;
   // Subtítulo corto (1 línea) para el hero limpio con video.
   heroSubtitle?: string;
   // Línea de confianza bajo los botones del hero con video.
@@ -138,6 +141,7 @@ const {
   heroOverlayClass = 'bg-black/30',
   heroTagline,
   heroVideo,
+  heroHeadline,
   heroSubtitle,
   heroTrust,
   heroOffer,
@@ -256,6 +260,13 @@ const faqSchema = {
           .hero-play-hint-ring, .hero-play-hint-text { animation: none; }
         }
       </style>
+
+      {heroHeadline && (
+        <div
+          class="absolute top-0 inset-x-0 z-20 w-full max-w-2xl mx-auto px-6 pt-24 sm:pt-28 text-center pointer-events-none"
+          set:html={heroHeadline}
+        ></div>
+      )}
 
       <div class="relative z-20 mt-auto w-full max-w-xl mx-auto px-6 pb-10 pt-24 text-center pointer-events-none">
         <h1 class="font-display text-2xl sm:text-3xl font-bold text-text leading-tight mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
