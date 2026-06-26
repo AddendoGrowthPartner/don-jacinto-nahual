@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import WhatsAppLink from '../../components/WhatsAppLink.astro';
 import { ciudades, areasTrabajo, heroPool, sidePool, ctaPool } from '../../data/ciudades.js';
+import { ciudadesExtended } from '../../data/ciudadesExtended.js';
 import { areaServicio, blogsCiudad } from '../../data/links.js';
 
 const phone = '(213) 598-1928';
@@ -35,6 +36,13 @@ const heroImg = heroPool[i % heroPool.length];
 const sideImg = sidePool[i % sidePool.length];
 const ctaImg = ctaPool[i % ctaPool.length];
 
+// Enriquecimiento opcional (ciudades prioritarias). Si la ciudad no está en
+// ciudadesExtended, todo queda igual que antes (arrays vacíos).
+const ext = ciudadesExtended[c.slug] || {};
+const extendedParas = ext.extended || [];
+const allNeighborhoods = [...neighborhoods, ...(ext.extraNeighborhoods || [])];
+const allFaqs = [...faqs, ...(ext.extraFaqs || [])];
+
 // Ciudades cercanas (misma región, si no hay suficientes se completa con otras).
 const mismaRegion = ciudades.filter((x) => x.region === region && x.slug !== c.slug);
 const otras = ciudades.filter((x) => x.region !== region && x.slug !== c.slug);
@@ -51,7 +59,7 @@ const absUrl = new URL(Astro.url.pathname, Astro.site).href;
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: faqs.map((f) => ({
+  mainEntity: allFaqs.map((f) => ({
     '@type': 'Question',
     name: f.q,
     acceptedAnswer: { '@type': 'Answer', text: f.a },
@@ -143,6 +151,7 @@ const breadcrumbSchema = {
           <div class="space-y-4 text-text/85 text-base sm:text-lg leading-relaxed">
             <p>{intro2}</p>
             <p>{localAngle}</p>
+            {extendedParas.map((p) => <p>{p}</p>)}
           </div>
 
           <!-- Barrios / zonas que atiende -->
@@ -151,7 +160,7 @@ const breadcrumbSchema = {
               Zonas que atiende cerca de {ciudad}
             </p>
             <div class="flex flex-wrap gap-2">
-              {neighborhoods.map((n) => (
+              {allNeighborhoods.map((n) => (
                 <span class="text-sm text-text/80 bg-bg border border-gold/20 rounded-full px-4 py-1.5">
                   {n}
                 </span>
@@ -243,7 +252,7 @@ const breadcrumbSchema = {
         </h2>
       </div>
       <div class="space-y-4">
-        {faqs.map((f) => (
+        {allFaqs.map((f) => (
           <details class="group bg-bg-alt border border-gold/15 rounded-xl px-6 py-1 open:border-gold/35 transition-colors">
             <summary class="flex items-center justify-between gap-4 cursor-pointer list-none py-5">
               <span class="font-display text-lg text-gold-light">{f.q}</span>
