@@ -1,5 +1,6 @@
 ---
 import ServiceLandingV2 from '../../components/ServiceLandingV2.astro';
+import { whatsappTestimonials } from '../../data/testimoniosWhatsapp.js';
 
 const cities = [
   { name: 'Los Ángeles', slug: 'los-angeles' },
@@ -259,4 +260,5 @@ const gallery = [
 
   whatsappPrefilledMessage="Hola, necesito una consulta con Don Jacinto 🙏"
   heroCtaLabel="Escríbele a Don Jacinto"
+  whatsappTestimonials={whatsappTestimonials}
 />
