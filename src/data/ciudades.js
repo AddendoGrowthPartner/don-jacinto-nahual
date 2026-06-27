@@ -791,20 +791,26 @@ export const areasTrabajo = [
 export const heroPool = [
   '/images/don-jacinto-rezo.webp',
   '/images/don-jacinto-invocacion.webp',
+  '/images/ciudad-hero-curandero.webp',
   '/images/limpia-velas.webp',
+  '/images/ciudad-hero-altar.webp',
 ];
 
 export const sidePool = [
   '/images/don-jacinto-retrato.webp',
   '/images/don-jacinto-curandero.webp',
+  '/images/ciudad-side-manos.webp',
   '/images/ritual-fuego.webp',
   '/images/don-jacinto-brujo-hook.webp',
+  '/images/ciudad-side-pareja.webp',
   '/images/don-jacinto-amarres-credenciales.webp',
   '/images/don-jacinto-ritual.webp',
 ];
 
 export const ctaPool = [
   '/images/altar-espiritual.webp',
+  '/images/ciudad-hero-altar.webp',
   '/images/ritual-fuego.webp',
+  '/images/ciudad-hero-curandero.webp',
   '/images/don-jacinto-invocacion.webp',
 ];
