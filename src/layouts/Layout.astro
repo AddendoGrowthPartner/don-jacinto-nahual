@@ -233,7 +233,7 @@ const personSchema = {
 
     <!-- Captura de GCLID (Google Ads) e inyección en el mensaje de WhatsApp.
          Permite medir LEADS REALES (mensajes recibidos), no solo el clic.
-         Sin backend: el GCLID viaja en el texto como "Ref:" y se recupera del mensaje. -->
+         Sin backend: el GCLID viaja en el texto como "(ref. ...)" y se recupera del mensaje. -->
     <script is:inline>
       (function () {
         var KEY = 'dj_gclid';
@@ -258,8 +258,8 @@ const personSchema = {
             try {
               var u = new URL(a.href);
               var text = u.searchParams.get('text') || '';
-              if (text.indexOf('Ref:') === -1) {
-                u.searchParams.set('text', text + '\n\nRef: ' + gclid);
+              if (text.indexOf(gclid) === -1) {
+                u.searchParams.set('text', text + '\n\n(ref. ' + gclid + ')');
                 a.href = u.toString();
               }
               a.setAttribute('data-wa-ref', '1');
