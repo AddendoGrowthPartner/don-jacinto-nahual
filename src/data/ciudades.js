@@ -808,10 +808,13 @@ export const sidePool = [
   '/images/don-jacinto-ritual.webp',
 ];
 
+// Fondos de CTA (van bajo overlay bg-bg/58): todas cálidas/brillantes.
+// Se quitó ciudad-hero-curandero (oscura) → daba un CTA casi negro en
+// montebello/compton/long-beach/anaheim/san-clemente. La reemplaza rezo.
 export const ctaPool = [
   '/images/altar-espiritual.webp',
   '/images/ciudad-hero-altar.webp',
   '/images/ritual-fuego.webp',
-  '/images/ciudad-hero-curandero.webp',
+  '/images/don-jacinto-rezo.webp',
   '/images/don-jacinto-invocacion.webp',
 ];
