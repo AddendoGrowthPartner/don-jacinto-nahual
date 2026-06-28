@@ -83,10 +83,28 @@ import WhatsAppLink from './WhatsAppLink.astro';
     applyScrollStyle();
     window.addEventListener('scroll', applyScrollStyle, { passive: true });
 
+    const closeMenu = () => {
+      panel.style.maxHeight = '0px';
+      burger.setAttribute('aria-expanded', 'false');
+    };
+
     burger.addEventListener('click', () => {
       const open = panel.style.maxHeight && panel.style.maxHeight !== '0px';
       panel.style.maxHeight = open ? '0px' : panel.scrollHeight + 'px';
       burger.setAttribute('aria-expanded', String(!open));
+    });
+
+    // Cerrar el menú al tocar cualquier opción (incluye anclas de la misma página)
+    panel.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Cerrar al tocar fuera del menú
+    document.addEventListener('click', (e) => {
+      if (panel.style.maxHeight && panel.style.maxHeight !== '0px' &&
+          !panel.contains(e.target) && !burger.contains(e.target)) {
+        closeMenu();
+      }
     });
   })();
 </script>
