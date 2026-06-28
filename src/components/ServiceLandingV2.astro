@@ -371,7 +371,7 @@ const breadcrumbSchema = {
             {heroCtaLabel}
           </WhatsAppLink>
         </div>
-        <p class="text-xs text-text/80 mb-4 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">🔒 Te responde Don Jacinto personalmente · confidencial · sin compromiso</p>
+        <p class="text-xs text-text/80 mb-4 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]"><span class="text-gold-light font-semibold">📞 La primera llamada es gratis</span> · 🔒 te responde Don Jacinto · confidencial · sin compromiso</p>
         {heroOffer && (
           <div class="mb-5 flex justify-center" set:html={heroOffer}></div>
         )}
@@ -462,6 +462,10 @@ const breadcrumbSchema = {
             {heroCtaLabel}
           </WhatsAppLink>
         </div>
+
+        <p class="text-sm text-gold-light font-semibold mb-4 flex items-center justify-center gap-2">
+          <span aria-hidden="true">📞</span><span>La primera llamada es gratis · sin compromiso</span>
+        </p>
 
         <!-- f) línea de confianza (atención presencial, destacada) -->
         {heroTrust && (
