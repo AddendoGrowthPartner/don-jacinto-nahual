@@ -1,5 +1,6 @@
 ---
 import ServiceLandingV2 from '../../components/ServiceLandingV2.astro';
+import { whatsappTestimonials } from '../../data/testimoniosWhatsapp.js';
 
 const cities = [
   { name: 'Los Ángeles', slug: 'los-angeles' },
@@ -58,16 +59,33 @@ const processSteps = [
   },
 ];
 
-const gallery = [
+const imageStories = [
   {
-    src: '/images/limpias-galeria-1.webp',
-    caption: 'Limpia y orientación personal',
-    alt: 'Don Jacinto Nahual realizando una limpia espiritual y orientación a una pareja entre velas y copal, curandero de Catemaco en Los Ángeles California',
+    src: '/images/story-manos-vela.webp',
+    alt: 'Manos del curandero sosteniendo una vela encendida durante una limpia espiritual de la tradición de Catemaco en Los Ángeles California',
+    title: 'Qué es una limpia espiritual',
+    paragraphs: [
+      'Una limpia es un trabajo espiritual para retirar las energías pesadas que una persona carga sin darse cuenta: el cansancio sin causa, la mala racha que se repite, esa sensación de traer <em>algo encima</em>. Es una de las prácticas más antiguas y respetadas del curanderismo mexicano.',
+      'Don Jacinto realiza la limpia con velas, copal, hierbas y oración de la tradición de Catemaco. No asusta ni inventa males: escucha tu caso y trabaja con honestidad lo que ve que se puede trabajar.',
+    ],
   },
   {
-    src: '/images/limpias-galeria-2.webp',
-    caption: 'Ceremonia de limpia · apertura de caminos',
-    alt: 'Don Jacinto Nahual realizando una ceremonia de limpia espiritual a varias personas alrededor de un círculo ritual, tradición de Catemaco en Los Ángeles',
+    src: '/images/story-curandero-ritual.webp',
+    alt: 'Curandero de Catemaco realizando una limpia con humo de copal y hierbas para purificar a la persona en Los Ángeles California',
+    title: 'La limpia con copal y hierbas',
+    paragraphs: [
+      'Con el humo del copal y las hierbas sagradas, Don Jacinto recorre a la persona para barrer lo negativo y purificar su energía. Muchos describen después una sensación de alivio y ligereza, como si se les hubiera quitado un peso.',
+      'La limpia se usa para el mal de ojo, la envidia, la mala suerte y la pesadez que no se explica. Cada caso se trabaja según lo que la persona está viviendo.',
+    ],
+  },
+  {
+    src: '/images/story-altar.webp',
+    alt: 'Altar con veladoras encendidas donde se realiza la limpia y la apertura de caminos de la tradición de Catemaco, Don Jacinto Nahual Los Ángeles',
+    title: 'Limpia y apertura de caminos',
+    paragraphs: [
+      'Más allá de retirar lo pesado, la limpia también <strong>abre camino</strong>: destraba el trabajo, el dinero y las oportunidades que parecían cerradas. Por eso muchas personas la buscan cuando sienten que su vida se estancó.',
+      'Si sientes cansancio sin causa, mala racha o que algo invisible te frena, escríbele a Don Jacinto y cuéntale tu caso. Con respeto y total discreción.',
+    ],
   },
 ];
 
@@ -260,8 +278,9 @@ const testimonials = [
   ]}
 
   cities={cities}
-  gallery={gallery}
-  galleryWide
+  imageStories={imageStories}
+  imageStoriesTitle="La limpia espiritual, por dentro"
+  whatsappTestimonials={whatsappTestimonials}
   testimonials={testimonials}
 
   finalCtaTitle="Aparta tu limpia espiritual por $97"

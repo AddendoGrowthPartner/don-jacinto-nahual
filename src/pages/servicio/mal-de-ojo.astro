@@ -1,5 +1,6 @@
 ---
 import ServiceLandingV2 from '../../components/ServiceLandingV2.astro';
+import { whatsappTestimonials } from '../../data/testimoniosWhatsapp.js';
 
 const cities = [
   { name: 'Los Ángeles', slug: 'los-angeles' },
@@ -58,26 +59,33 @@ const processSteps = [
   },
 ];
 
-const gallery = [
+const imageStories = [
   {
-    src: '/images/altar-espiritual.webp',
-    caption: 'Altar espiritual de Catemaco',
-    alt: 'Altar espiritual tradición de Catemaco Veracruz Don Jacinto Nahual mal de ojo limpia',
+    src: '/images/story-manos-vela.webp',
+    alt: 'Manos del curandero con una vela encendida durante una limpia para quitar el mal de ojo, tradición de Catemaco en Los Ángeles California',
+    title: 'Cómo se quita el mal de ojo',
+    paragraphs: [
+      'El mal de ojo es una forma de daño energético que se transmite —muchas veces sin intención— a través de una mirada cargada de envidia o admiración excesiva. Afecta sobre todo a los niños pequeños y a las personas con poca protección espiritual.',
+      'Don Jacinto realiza la limpia tradicional del mal de ojo con velas, hierbas y oración, el mismo método que se usa en los pueblos del sureste mexicano. No promete resultados ni reemplaza atención profesional: ofrece la tradición tal como se ha transmitido.',
+    ],
   },
   {
-    src: '/images/limpia-velas.webp',
-    caption: 'Limpia con velas · Purificación energética',
-    alt: 'Limpia espiritual con velas curandero mexicano Don Jacinto Nahual mal de ojo Los Ángeles',
+    src: '/images/story-altar.webp',
+    alt: 'Altar con veladoras encendidas de la tradición de Catemaco donde se trabaja la limpia del mal de ojo, Don Jacinto Nahual Los Ángeles',
+    title: 'El altar y las veladoras',
+    paragraphs: [
+      'En el altar, entre veladoras encendidas, Don Jacinto enfoca el trabajo en retirar el mal de ojo y la envidia que la persona trae encima. Cada veladora tiene su intención dentro de la tradición de Catemaco.',
+      'Cansancio sin causa, llanto inexplicable en los niños, mala racha que se repite: son señales que muchas familias asocian con el mal de ojo y por las que buscan una limpia.',
+    ],
   },
   {
-    src: '/images/ritual-fuego.webp',
-    caption: 'Ritual de fuego · Tradición ancestral',
-    alt: 'Ritual de fuego sagrado limpia de mal de ojo Don Jacinto Nahual Catemaco',
-  },
-  {
-    src: '/images/don-jacinto-ritual.webp',
-    caption: 'Trabajo espiritual con hierbas y oración',
-    alt: 'Don Jacinto Nahual trabajo espiritual hierbas oración limpia mal de ojo Los Ángeles',
+    src: '/images/story-curandero-ritual.webp',
+    alt: 'Curandero de Catemaco realizando una limpia con humo de copal para retirar el mal de ojo y la energía pesada en Los Ángeles California',
+    title: 'La limpia que retira la energía pesada',
+    paragraphs: [
+      'Con copal y hierbas, la limpia barre la energía pesada que dejó el mal de ojo y devuelve la tranquilidad. Es un trabajo sencillo, de toda la vida, que muchas familias latinas conservan de generación en generación.',
+      'Si sientes que a ti o a tu familia les hicieron mal de ojo, escríbele a Don Jacinto. Con respeto a la tradición y total discreción.',
+    ],
   },
 ];
 ---
@@ -177,7 +185,9 @@ const gallery = [
   ]}
 
   cities={cities}
-  gallery={gallery}
+  imageStories={imageStories}
+  imageStoriesTitle="La limpia del mal de ojo, por dentro"
+  whatsappTestimonials={whatsappTestimonials}
 
   finalCtaTitle="¿Llevas tiempo sintiendo que la envidia bloquea tu camino?"
   finalCtaParagraph="Don Jacinto Nahual ha acompañado a cientos de personas en el sur de California con casos de mal de ojo, envidia trabajada y bloqueos espirituales que parecían no tener explicación. Habla con él hoy mismo."
