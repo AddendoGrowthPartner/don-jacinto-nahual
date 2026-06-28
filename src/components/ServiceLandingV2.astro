@@ -77,6 +77,16 @@ export interface ServiceLandingV2Props {
   // Galería en 1 columna, imágenes horizontales a todo el ancho (16:9).
   galleryWide?: boolean;
 
+  // Bloques editoriales: imagen grande + título + texto que explica lo que se ve
+  // en la imagen (alternados izquierda/derecha). Reemplaza a la galería con contenido real.
+  imageStoriesTitle?: string;
+  imageStories?: {
+    src: string;
+    alt: string;
+    title: string;
+    paragraphs: string[];
+  }[];
+
   finalCtaTitle: string;
   finalCtaParagraph: string;
   finalCtaOverlayClass?: string;
@@ -165,6 +175,8 @@ const {
   gallery,
   galleryContain = false,
   galleryWide = false,
+  imageStories,
+  imageStoriesTitle,
   finalCtaTitle,
   finalCtaParagraph,
   finalCtaOverlayClass = 'bg-bg/90',
@@ -192,6 +204,7 @@ const phoneHref = 'tel:+12135981928';
 const hasTestimonials = Array.isArray(testimonials) && testimonials.length > 0;
 const hasWaTestimonials = Array.isArray(whatsappTestimonials) && whatsappTestimonials.length > 0;
 const hasGallery = Array.isArray(gallery) && gallery.length > 0;
+const hasImageStories = Array.isArray(imageStories) && imageStories.length > 0;
 
 // Enlazado interno: otros servicios (excluye el actual) + blogs.
 const currentServiceSlug = Astro.url.pathname.replace(/^\/servicio\//, '').replace(/\/$/, '');
@@ -969,6 +982,44 @@ const breadcrumbSchema = {
               </li>
             ))}
           </ul>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {hasImageStories && (
+    <!-- ====== SECCIÓN — BLOQUES EDITORIALES (imagen + contenido) ====== -->
+    <section class="bg-bg-alt py-20 sm:py-28">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <p class="text-gold text-xs tracking-[0.25em] uppercase mb-4">✦ Tradición viva ✦</p>
+          <h2 class="font-display text-3xl sm:text-4xl md:text-5xl leading-tight">
+            {imageStoriesTitle || 'El trabajo espiritual, por dentro'}
+          </h2>
+        </div>
+        <div class="space-y-16 sm:space-y-24">
+          {imageStories!.map((s, idx) => (
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-14 items-center">
+              <div class:list={["relative", idx % 2 === 1 && "md:order-2"]}>
+                <div class="absolute -inset-2 border border-gold/25 rounded-2xl"></div>
+                <img
+                  src={s.src}
+                  alt={s.alt}
+                  width="1200"
+                  height="1200"
+                  loading="lazy"
+                  decoding="async"
+                  class="relative w-full h-auto rounded-2xl shadow-2xl object-cover aspect-square"
+                />
+              </div>
+              <div class:list={[idx % 2 === 1 && "md:order-1"]}>
+                <h3 class="font-display text-2xl sm:text-3xl md:text-4xl text-gold-light mb-5 leading-tight" set:html={s.title} />
+                <div class="space-y-4 text-text/85 text-base sm:text-lg leading-relaxed">
+                  {s.paragraphs.map((p) => <p set:html={p} />)}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

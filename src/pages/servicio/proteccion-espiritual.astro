@@ -59,26 +59,33 @@ const processSteps = [
   },
 ];
 
-const gallery = [
+const imageStories = [
   {
-    src: '/images/don-jacinto-invocacion.webp',
-    caption: 'Invocación espiritual · Tradición de Catemaco',
-    alt: 'Don Jacinto Nahual invocación espiritual protección contra brujería Catemaco Los Ángeles',
+    src: '/images/story-altar.webp',
+    alt: 'Altar de protección espiritual con decenas de veladoras encendidas y hierbas de la tradición de Catemaco para blindar a la persona contra la envidia y el daño puesto',
+    title: 'El altar de protección',
+    paragraphs: [
+      'Sobre el altar, Don Jacinto enciende veladoras de distintos colores, cada una con su intención: alejar la envidia, cortar el daño puesto, devolver la tranquilidad al hogar. No es adorno — es el centro del trabajo espiritual de la tradición de Catemaco.',
+      'Cuando alguien llega sintiendo que <em>algo invisible</em> lo persigue —mala suerte que se repite, una pesadez que no se explica— el altar es donde se nombra esa situación y se empieza a trabajar para soltarla, con respeto y sin prometer nada que no se pueda cumplir.',
+    ],
   },
   {
-    src: '/images/altar-espiritual.webp',
-    caption: 'Altar de protección espiritual',
-    alt: 'Altar espiritual de protección tradición de Catemaco Veracruz Don Jacinto Nahual Los Ángeles',
+    src: '/images/story-curandero-ritual.webp',
+    alt: 'Curandero de Catemaco realizando una limpia espiritual con humo de copal y hierbas para retirar el mal de ojo, la envidia y el daño puesto en Los Ángeles',
+    title: 'La limpia que retira lo pesado',
+    paragraphs: [
+      'La limpia es el corazón de la protección. Con copal, hierbas y oración, Don Jacinto recorre a la persona para retirar las energías pesadas que cargó —a veces por años— sin saber de dónde venían.',
+      'Muchos describen después una sensación de alivio, como quitarse un peso de encima. Don Jacinto no asusta a nadie ni inventa males: escucha, evalúa con honestidad y trabaja solo lo que ve que se puede trabajar.',
+    ],
   },
   {
-    src: '/images/proteccion-galeria-1.webp',
-    caption: 'Ritual de fuego · Liberación de daño puesto',
-    alt: 'Ritual de fuego con caldero y velas para liberar el daño puesto y la mala suerte, tradición de Catemaco, Don Jacinto Nahual Los Ángeles',
-  },
-  {
-    src: '/images/proteccion-galeria-2.webp',
-    caption: 'Limpia con hierbas · Blindaje y protección',
-    alt: 'Limpia espiritual con salvia y hierbas ardiendo para protección contra la envidia y el mal de ojo, tradición de Catemaco, Don Jacinto Nahual',
+    src: '/images/story-manos-vela.webp',
+    alt: 'Manos del curandero sosteniendo una vela encendida con humo, sellando el blindaje espiritual de protección de la tradición de Catemaco',
+    title: 'El blindaje que cierra el paso a lo negativo',
+    paragraphs: [
+      'Después de soltar el daño viene el blindaje: cerrar el cuerpo y el hogar para que lo negativo no vuelva a entrar. La vela entre las manos sella ese trabajo y acompaña a la persona en su camino.',
+      'Si sientes que la envidia te está haciendo daño o que alguien te puso un mal, escríbele a Don Jacinto y cuéntale tu caso —con total discreción y la experiencia de más de 30 años de la tradición de Catemaco.',
+    ],
   },
 ];
 
@@ -279,7 +286,8 @@ const testimonials = [
   ]}
 
   cities={cities}
-  gallery={gallery}
+  imageStories={imageStories}
+  imageStoriesTitle="La protección espiritual, por dentro"
   testimonials={testimonials}
 
   finalCtaTitle="¿Mala suerte en todo y no sabes por qué te va mal?"
