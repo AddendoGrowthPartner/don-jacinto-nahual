@@ -788,11 +788,12 @@ export const areasTrabajo = [
 ];
 
 // Pools de imágenes para rotar y dar variedad visual entre ciudades.
+// Solo heros con sujeto claro y brillante (rostro/figura/altar). Se quitaron
+// ciudad-hero-curandero (abstracta: manos+humo, oscura) y limpia-velas (foto
+// documental muy oscura) porque como hero de ciudad se veían sombríos/confusos.
 export const heroPool = [
   '/images/don-jacinto-rezo.webp',
   '/images/don-jacinto-invocacion.webp',
-  '/images/ciudad-hero-curandero.webp',
-  '/images/limpia-velas.webp',
   '/images/ciudad-hero-altar.webp',
 ];
 
