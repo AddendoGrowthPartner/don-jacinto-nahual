@@ -59,16 +59,33 @@ const processSteps = [
   },
 ];
 
-const gallery = [
+const imageStories = [
   {
-    src: '/images/brujo-galeria-1.webp',
-    caption: 'Trabajo espiritual de pareja · Catemaco',
-    alt: 'Don Jacinto Nahual brujo curandero de Catemaco realizando un trabajo espiritual a una pareja entre velas y copal en Los Ángeles California',
+    src: '/images/story-curandero-ritual.webp',
+    alt: 'Brujo curandero de Catemaco realizando un trabajo espiritual con humo de copal, hierbas y oración para abrir caminos y retirar la mala suerte en Los Ángeles California',
+    title: 'Qué hace un brujo curandero de Catemaco',
+    paragraphs: [
+      'Un brujo curandero no adivina ni asusta: trabaja. Con la tradición de Catemaco, Veracruz —una de las más respetadas de México— Don Jacinto usa copal, hierbas, veladoras y oración para mover lo que está atorado en la vida de una persona: el amor, el trabajo, el dinero, la salud del espíritu.',
+      'Por sus manos han pasado cientos de casos en Los Ángeles y el sur de California: personas a las que <em>todo se les cerró</em> sin explicación, parejas que se enfriaron de un día para otro, negocios que se vinieron abajo. A cada una la escucha primero, evalúa con honestidad y le dice de frente qué se puede trabajar.',
+    ],
   },
   {
-    src: '/images/brujo-galeria-2.webp',
-    caption: 'Limpia con copal y sahumerio',
-    alt: 'Don Jacinto Nahual brujo curandero de Catemaco haciendo una limpia con copal y sahumerio a dos personas en Los Ángeles California',
+    src: '/images/story-altar.webp',
+    alt: 'Altar de un brujo curandero de Catemaco con decenas de veladoras de colores encendidas, donde se trabaja el caso de cada persona en Los Ángeles California',
+    title: 'El altar: donde se trabaja tu caso',
+    paragraphs: [
+      'El altar es el lugar de trabajo. Cada veladora tiene una intención —el amor, la prosperidad, la protección contra la envidia— y se enciende según lo que la persona está viviendo. No es espectáculo: es el método de toda la vida del curanderismo mexicano.',
+      'Si sientes que la mala suerte no te suelta, que alguien te desea el mal o que hay algo que no te deja avanzar, ahí es donde Don Jacinto empieza a trabajar tu caso, con respeto y total discreción.',
+    ],
+  },
+  {
+    src: '/images/story-manos-vela.webp',
+    alt: 'Manos del brujo curandero sosteniendo una vela encendida con humo en una limpia para abrir caminos y quitar el daño en Los Ángeles California',
+    title: 'La limpia que abre el camino',
+    paragraphs: [
+      'La limpia retira lo pesado que la persona carga y, sobre todo, <strong>abre camino</strong>: destraba el trabajo, el dinero y las oportunidades que parecían cerradas. Es uno de los trabajos que más buscan quienes llegan a Don Jacinto.',
+      'No hay promesas mágicas ni garantías: hay trabajo espiritual honesto de un curandero con más de 30 años. Cuéntale tu caso por WhatsApp y él te dice cómo te puede ayudar.',
+    ],
   },
 ];
 ---
@@ -251,8 +268,8 @@ const gallery = [
   ]}
 
   cities={cities}
-  gallery={gallery}
-  galleryWide
+  imageStories={imageStories}
+  imageStoriesTitle="El trabajo del brujo curandero, por dentro"
 
   finalCtaTitle="Recupera tu suerte, tu amor y tu paz interior"
   finalCtaParagraph="Brujo curandero de Catemaco con más de 30 años atendiendo casos difíciles de amor, dinero y envidias en Los Ángeles, Ontario y Santa Ana. Habla con Don Jacinto hoy y 100% confidencial. Habla con Don Jacinto hoy mismo."
