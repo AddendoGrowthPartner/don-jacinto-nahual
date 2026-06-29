@@ -1062,13 +1062,13 @@ const faqSchema = {
             href={`/blog/${p.slug}/`}
             class="group bg-bg rounded-lg overflow-hidden border border-gold/10 hover:border-gold/40 transition-all"
           >
-            <div class="relative h-48 overflow-hidden">
+            <div class="relative aspect-[4/3] overflow-hidden">
               <img
                 src={p.img}
                 alt={`${p.title} — Don Jacinto Nahual, curandero de Catemaco`}
                 width="800"
                 height="400"
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
                 loading="lazy"
               />
             </div>
