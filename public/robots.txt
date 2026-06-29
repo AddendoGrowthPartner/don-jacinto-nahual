@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.donjacintonahual.com/sitemap-index.xml
+
+# Resumen del sitio para asistentes de IA (estándar llmstxt.org)
+# llms.txt: https://www.donjacintonahual.com/llms.txt
