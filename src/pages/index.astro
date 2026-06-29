@@ -38,7 +38,7 @@ const cities = [
 
 const areas = [
   {
-    icon: '❤️‍🔥',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>',
     title: 'Problemas del Corazón',
     img: '/images/amor-pareja.webp',
     desc: 'Cuando el amor se enfría sin razón. Cuando una pareja se aleja de la noche a la mañana. Cuando hay infidelidad, separación o un tercero que interfiere. Cuando has intentado todo y nada funciona. Don Jacinto trabaja con rezo, oración e imposición de manos para sanar lo que está dañado en el plano espiritual y abrir el camino al amor verdadero.',
@@ -46,7 +46,7 @@ const areas = [
     slug: 'amor-pareja',
   },
   {
-    icon: '🌿',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>',
     title: 'Enfermedades que no Ceden',
     img: '/images/don-jacinto-ritual.webp',
     desc: 'Malestares que llevan meses o años sin diagnóstico claro. Dolores que van y vienen sin causa. Fatiga extrema que los médicos no explican. Condiciones que los tratamientos convencionales no mejoran. La medicina trata el cuerpo. La curanderil trata el espíritu. Cuando la raíz del problema es espiritual, la solución también debe serlo.',
@@ -54,7 +54,7 @@ const areas = [
     slug: 'curaciones',
   },
   {
-    icon: '💼',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="24" height="24"><rect x="2" y="7" width="20" height="14" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',
     title: 'Caminos Cerrados en el Trabajo y los Negocios',
     img: '/images/altar-espiritual.webp',
     desc: 'Cuando el negocio no levanta aunque hagas todo bien. Cuando pierdes empleos sin razón. Cuando los clientes no llegan o los proyectos se caen. Cuando sientes que hay una fuerza invisible bloqueando tu prosperidad. Don Jacinto trabaja para limpiar los caminos y abrir las puertas que la envidia o la brujería han cerrado.',
@@ -62,7 +62,7 @@ const areas = [
     slug: 'caminos-cerrados',
   },
   {
-    icon: '🛡️',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4"/></svg>',
     title: 'Víctimas de Brujería y Envidia',
     img: '/images/don-jacinto-invocacion.webp',
     desc: 'Cuando sospechas que alguien te ha hecho un daño espiritual. Cuando tu vida cambió drásticamente sin razón aparente. Cuando sientes presencias extrañas o energías que te persiguen. Cuando todo lo que construiste empieza a derrumbarse. Don Jacinto puede limpiar lo que fue puesto y protegerte para que no vuelva a suceder.',
@@ -570,17 +570,17 @@ const faqSchema = {
       <div class="grid md:grid-cols-2 gap-8">
         {areas.map((a, i) => (
           <div class="bg-bg-alt rounded-lg overflow-hidden border border-gold/10 hover:border-gold/40 transition-all flex flex-col">
-            <div class="relative h-64 overflow-hidden">
+            <div class="relative aspect-[4/3] overflow-hidden">
               <img
                 src={a.img}
                 alt={areaAltTexts[i]}
                 width="800"
                 height="600"
-                class={`w-full h-full object-cover ${a.slug === 'curaciones' ? 'object-top' : ''}`}
+                class="w-full h-full object-cover object-top"
                 loading="lazy"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-bg-alt via-bg-alt/30 to-transparent"></div>
-              <div class="absolute bottom-4 left-6 text-5xl">{a.icon}</div>
+              <div class="absolute bottom-4 left-6 w-12 h-12 rounded-full bg-bg/75 border border-gold/40 flex items-center justify-center text-gold shadow-lg shadow-black/40 backdrop-blur-sm" set:html={a.icon}></div>
             </div>
             <div class="p-8 flex-grow flex flex-col">
               <h3 class="font-display text-2xl text-gold-light mb-4">{a.title}</h3>
